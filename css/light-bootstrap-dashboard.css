@@ -1,15 +1,11 @@
 /*!
-
  =========================================================
  * Light Bootstrap Dashboard - v1.4.0
  =========================================================
-
  * Product Page: http://www.creative-tim.com/product/light-bootstrap-dashboard
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE.md)
-
  =========================================================
-
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 body,
@@ -109,7 +105,7 @@ input:focus {
     bottom: 0;
     right: auto;
     left: 0;
-    /* width: 100px; */
+    width: 150px;
     display: block;
     z-index: 1;
     color: #fff;
@@ -117,13 +113,16 @@ input:focus {
     background-size: cover;
     background-position: center center;
 }
-
+.x {
+    max-height: 100vh - 75px;
+    
+}
 .sidebar .sidebar-wrapper {
     position: relative;
     max-height: calc(100vh - 75px);
     min-height: 100%;
     overflow: auto;
-    width: 60px;
+    width: 150px;
     z-index: 4;
     padding-bottom: 100px;
 }

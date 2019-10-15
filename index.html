@@ -1,3 +1,20 @@
+<!-- Este codigo contiene toda la estructura de la aplicación. Será el primer codigo a mostrarse al cliente -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Acrópolis Gym</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Llamadas a los estilos propios -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
 <html>
 
 <head>
@@ -5,12 +22,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pacientes.css">
 </head>
 
 <body>
+    <header>
+
+        <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
+            <div class="sidebar-wrapper bg-info">
+                <div class="logo mb-5">
+                    <!-- <a href="#" class="simple-text">
+                        AET A.C
+                    </a> -->
+                    <img src="img/logo3.png" alt="" class="img-fluid rounded mb-5">
+                    <br>
+
     <!-- <div class="area"></div> -->
     <div class="wrapper">
         <div class="sidebar main-menu" data-color="sidebarcolor" id="sidebarmenu">
@@ -23,97 +55,151 @@
                         </span>
                     </li>
                 </div>
-                <!-- Opciones del menu -->
-                <ul class="nav flex-column mt-5">
 
-                    <li class="active nav-item" id="li-inicio">
-                        <i class="material-icons fa fa-2x">
-                            face
-                        </i>
-                        <span class="nav-text">
-                            Pacientes
-                        </span>
+                <ul class="nav flex-column align-items-center justify-content-center py-5 ">
+
+                    <li class="nav-item mb-3 d-flex " id="li-start">
+                        <a href="#" class="nav-link text-center">
+                            <div>
+                                <i class="material-icons ml-3 text-white">face</i>
+                                <span class="text-white">Pacientes</span>
+                            </div>
+                        </a>
+
                     </li>
 
-                    <li class="active nav-item mt-5" id="li-inicio">
-                        <i class="material-icons fa fa-2x">
-                            calendar_today
-                        </i>
-                        <span class="nav-text">
-                            Agenda
-                        </span>
+                    <li class="nav-item mb-3" id="li-members">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">restaurant</i>
+
+                        </a>
                     </li>
+                    <li class="nav-item mb-3" id="li-meetings">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">kitchen</i>
 
-                    <li class="active nav-item mt-5" id="li-inicio">
-                        <i class="material-icons fa fa-2x">
-                            restaurant
-                        </i>
-                        <span class="nav-text">
-                            Platillos
-                        </span>
+                        </a>
                     </li>
+                    <li class="nav-item mb-3" id="li-meetings">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">calendar_today</i>
 
-                    <li class="active nav-item mt-5" id="li-inicio">
-                        <i class="material-icons fa fa-2x">
-                            kitchen
-                        </i>
-                        <span class="nav-text">
-                            Alimentos
-                        </span>
+                        </a>
                     </li>
-
-
 
 
                 </ul>
             </div>
         </div>
 
-        <div class="main-panel">
-            <nav class="navbar navbar-expand-lg navbar-light border-bottom p-0">
-                <div class="container-fluid" id="x">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle d-lg-none" type="button" data-toggle="collapse"
-                            data-target="#navigation-example-2" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="container ml-5">
-                            <div class="row xy">
-                                <div class="col-md-6">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <p>Pacientes</p>
-                                        </div>
-                                        <div>
-                                            <i class="material-icons">
-                                                kitchen
-                                            </i>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="col-md-6 md-offset-6">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
+
+    </header>
+
+    <div class="main-panel">
+
+        <nav class="navbar-expand-lg navbar-light ml-3 p-0 d-lg-none">
+            <button class="navbar-toggle d-lg-none" type="button" data-toggle="collapse" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <br>
+        </nav>
+        <!-- CONTENT -->
+        <div class="content">
+            <div class="container-fluid">
+                <!--comienza aqui -->
+
+                <div class="row align-items-center  justify-content-between pacientes-cabecera">
+                    <div class="col-md-12  text-center">
+                        <span class="slogan">"Nutre tu vida para que la vida te nutra"</span>
+                        <hr>
+                    </div>
+                    <div class="col-md-7">
+
+
+                        <div class="pb-4">
+                            <span class="font-weight-bold t">Pacientes</span>
+
                         </div>
+                    </div>
+                    <div class="col-md-1 d-flex pb-4  align-items-center">
+
+                        <button class="btn btn-success d-flex p-2">
+                            <i class="material-icons">add</i>
+                            Nuevo
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center justify-content-end text-right pb-4">
+                        <input type="text" class="form-control rounded-pill" placeholder="Burcar...">
+                        <!-- <div class="ml-2">
+                            <img src="img/perfil.jpg" class="rounded-circle perfil" alt="">
+                        </div>  -->
+                    </div>
+                </div>
+
+                <div class="row mt-5 card-pacientes">
+                    <!-- <div class="p-3">
+                        <span class="card-title font-weight-bold">Mis Pacientes</span>
+                    </div> -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Correo</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <a href="#" class="avatar rounded-circle mr-3">
+                                                <img alt="Image placeholder" class="rounded-circle"
+                                                    src="img/perfil.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="mb-0 text-sm">Rosy Michel</span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+
+                                            <p href="#" class="table-td-text rounded-circle mr-3">
+                                                <span class="mb-0 text-sm">341-000-000</span>
+                                            </p>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+
+                                            <p href="#" class="table-td-text rounded-circle mr-3">
+                                                <span class="mb-0 text-sm">correo@hotmail.com</span>
+                                            </p>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
                     </div>
 
 
-
-
-
                 </div>
-
-            </nav>
-
-            <div class="content" id="prints">
-                <div class="row">
-
-                </div>
-            </div>
-
+                <!-- Llamadas a scripts de la libreria bootstrap -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                    crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous"></script>
         </div>
     </div>
 

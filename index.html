@@ -16,10 +16,63 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.1/vue-router.js"></script>
+<body>
+    <!-- <div class="area"></div> -->
+    <div class="wrapper">
+        <div class="sidebar main-menu" data-color="sidebarcolor" id="sidebarmenu">
+            <div class="sidebar-wrapper mt-5">
+                <div class="logo">
+                    <li class="active nav-item" id="li-inicio">
+                        <i class="material-icons fa fa-2x">calendar_today</i>
+                        <span class="nav-text">
+                            Mariana Michel
+                        </span>
+                    </li>
+                </div>
+                <!-- Opciones del menu -->
+                <ul class="nav flex-column mt-5">
 
+                    <li class="active nav-item" id="li-inicio">
+                        <i class="material-icons fa fa-2x">
+                            face
+                        </i>
+                        <span class="nav-text">
+                            Pacientes
+                        </span>
+                    </li>
+
+                    <li class="active nav-item mt-5" id="li-inicio">
+                        <i class="material-icons fa fa-2x">
+                            calendar_today
+                        </i>
+                        <span class="nav-text">
+                            Agenda
+                        </span>
+                    </li>
+
+                    <li class="active nav-item mt-5" id="li-inicio">
+                        <i class="material-icons fa fa-2x">
+                            restaurant
+                        </i>
+                        <span class="nav-text">
+                            Platillos
+                        </span>
+                    </li>
+
+                    <li class="active nav-item mt-5" id="li-inicio">
+                        <i class="material-icons fa fa-2x">
+                            kitchen
+                        </i>
+                        <span class="nav-text">
+                            Alimentos
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <html>
     <script src="js/templates/pacientes/pacientes.js"></script>
     <script src="js/templates/platillos.js"></script>
-
 
     <script src="js/app/app.js" type="module"></script>
     <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
@@ -37,7 +90,6 @@
 <body>
     <div id="app">
         <header>
-
             <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
                 <div class="sidebar-wrapper bg-info">
                     <div class="logo mb-5">
@@ -93,20 +145,7 @@
                                     <!-- <router-view></router-view> -->
                                 </div>
                             </div>
-
-
-
         </header>
-
-        <div class="main-panel">
-
-            <nav class="navbar-expand-lg navbar-light ml-3 p-0 d-lg-none">
-                <button class="navbar-toggle d-lg-none" type="button" data-toggle="collapse" aria-controls="navbarNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <br>
-            </nav>
             <!-- CONTENT -->
             <div class="content">
                 <div class="container-fluid">
@@ -114,10 +153,20 @@
                     <router-view></router-view>
                 </div>
             </div>
+                
 
+                <!-- Llamadas a scripts de la libreria bootstrap -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                    crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous"></script>
+            </div>
             <!-- Llamadas a scripts de la libreria bootstrap -->
-
-
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -1,4 +1,5 @@
-const PacientesHTML = { template:/*html*/ `
+const PacientesHTML = {
+    template:/*html*/ `
 <div>
  <div class="row align-items-center  justify-content-between pacientes-cabecera">
                     <div class="col-md-12  text-center">
@@ -15,10 +16,10 @@ const PacientesHTML = { template:/*html*/ `
                     </div>
                     <div class="col-lg-1  d-flex pb-4  align-items-center">
 
-                        <button class="btn btn-success d-flex p-2">
+                        <router-link class="btn btn-success d-flex p-2" to='/nuevo-paciente'>
                             <i class="material-icons">add</i>
                             Nuevo
-                        </button>
+                        </router-link>
                     </div>
                     <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
                         <input type="text" class="form-control rounded-pill" placeholder="Burcar...">

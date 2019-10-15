@@ -8,7 +8,8 @@ const Bar = { template: '<div>bar</div>' }
 // We'll talk about nested routes later.
 const routes = [
   { path: '/', component: PacientesHTML },
-  { path: '/platillos', component: PlatillosHTML }
+  { path: '/platillos', component: PlatillosHTML },
+  { path: '/nuevo-paciente', component: nuevoPacienteHTML}
 ]
 
 // 3. Create the router instance and pass the `routes` option

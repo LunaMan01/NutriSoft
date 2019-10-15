@@ -15,21 +15,23 @@
     <link rel="stylesheet" href="css/style.css">
 
 
-<html>
+    <html>
 
-<head>
+    <head>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/pacientes.css">
-</head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a3f1a47e08.js" crossorigin="anonymous"></script>
+
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <link rel="stylesheet" href="css/pacientes.css">
+    </head>
 
 <body>
     <header>
@@ -43,54 +45,49 @@
                     <img src="img/logo3.png" alt="" class="img-fluid rounded mb-5">
                     <br>
 
-    <!-- <div class="area"></div> -->
-    <div class="wrapper">
-        <div class="sidebar main-menu" data-color="sidebarcolor" id="sidebarmenu">
-            <div class="sidebar-wrapper mt-5">
-                <div class="logo">
-                    <li>
-                        <i class="material-icons fa fa-2x">calendar_today</i>
-                        <span class="nav-text">
-                            Mariana Michel
-                        </span>
-                    </li>
-                </div>
+                    <!-- <div class="area"></div> -->
+                    <div class="wrapper">
+                        <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
+                            <div class="sidebar-wrapper bg-info">
+                                <div class="logo">
+                                    <a href="#" class="simple-text">
+                                        Mariana Michel
+                                    </a>
+                                    <br>
+                                </div>
 
-                <ul class="nav flex-column align-items-center justify-content-center py-5 ">
+                                <ul class="nav flex-column">
 
-                    <li class="nav-item mb-3 d-flex " id="li-start">
-                        <a href="#" class="nav-link text-center">
-                            <div>
-                                <i class="material-icons ml-3 text-white">face</i>
-                                <span class="text-white">Pacientes</span>
+                                    <li class="active" id="li-start">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-users"></i>
+                                            <p>Pacientes</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item" id="li-start">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-utensils text-white"></i>
+                                            <p class="text-white">Platillos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" id="li-start">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-carrot text-white"></i>
+                                            <p class="text-white">Alimentos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" id="li-start">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-calendar-alt text-white"></i>
+                                            <p class="text-white">Agenda</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
                             </div>
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item mb-3" id="li-members">
-                        <a href="#" class="nav-link">
-                            <i class="material-icons">restaurant</i>
-
-                        </a>
-                    </li>
-                    <li class="nav-item mb-3" id="li-meetings">
-                        <a href="#" class="nav-link">
-                            <i class="material-icons">kitchen</i>
-
-                        </a>
-                    </li>
-                    <li class="nav-item mb-3" id="li-meetings">
-                        <a href="#" class="nav-link">
-                            <i class="material-icons">calendar_today</i>
-
-                        </a>
-                    </li>
-
-
-                </ul>
-            </div>
-        </div>
+                        </div>
 
 
 
@@ -112,79 +109,79 @@
 
                 <div class="row align-items-center  justify-content-between pacientes-cabecera">
                     <div class="col-md-12  text-center">
-                        <span class="slogan">"Nutre tu vida para que la vida te nutra"</span>
+                        <span class="slogan text-white">"Nutre tu vida para que la vida te nutra"</span>
                         <hr>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-lg-7">
 
 
                         <div class="pb-4">
-                            <span class="font-weight-bold t">Pacientes</span>
+                            <span class="font-weight-bold t text-white">Pacientes</span>
 
                         </div>
                     </div>
-                    <div class="col-md-1 d-flex pb-4  align-items-center">
+                    <div class="col-lg-1  d-flex pb-4  align-items-center">
 
                         <button class="btn btn-success d-flex p-2">
                             <i class="material-icons">add</i>
                             Nuevo
                         </button>
                     </div>
-                    <div class="col-md-4 d-flex align-items-center justify-content-end text-right pb-4">
+                    <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
                         <input type="text" class="form-control rounded-pill" placeholder="Burcar...">
-                        <!-- <div class="ml-2">
-                            <img src="img/perfil.jpg" class="rounded-circle perfil" alt="">
-                        </div>  -->
+
                     </div>
                 </div>
 
                 <div class="row mt-5 card-pacientes">
-                    <!-- <div class="p-3">
-                        <span class="card-title font-weight-bold">Mis Pacientes</span>
-                    </div> -->
+
                     <div class="table-responsive">
-                        <table class="table align-items-center">
+                        <table class="table table-borderless">
                             <thead>
                                 <tr>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Correo</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">
-                                        <div class="media align-items-center">
-                                            <a href="#" class="avatar rounded-circle mr-3">
-                                                <img alt="Image placeholder" class="rounded-circle"
-                                                    src="img/perfil.jpg">
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="mb-0 text-sm">Rosy Michel</span>
-                                            </div>
+                                        <div class="d-sm-flex flex-sm-column d-md-inline">
+                                            <img src="img/perfil.jpg" alt="Rosy Michel"
+                                                class="img-fluid mr-1 rounded rounded-circle" style="width: 50px;">
+                                            Rosy Michel
                                         </div>
                                     </th>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-
-                                            <p href="#" class="table-td-text rounded-circle mr-3">
-                                                <span class="mb-0 text-sm">341-000-000</span>
-                                            </p>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-
-                                            <p href="#" class="table-td-text rounded-circle mr-3">
-                                                <span class="mb-0 text-sm">correo@hotmail.com</span>
-                                            </p>
-
-                                        </div>
-                                    </td>
+                                    <td>3414209734</td>
+                                    <td>michel91_3@hotmail.com</td>
 
                                 </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-sm-flex flex-sm-column d-md-inline">
+                                            <img src="img/perfil.jpg" alt="Rosy Michel"
+                                                class="img-fluid mr-1 rounded rounded-circle" style="width: 50px;">
+                                            Rosy Michel
+                                        </div>
+                                    </th>
+                                    <td>3414209734</td>
+                                    <td>michel91_3@hotmail.com</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-sm-flex flex-sm-column d-md-inline">
+                                            <img src="img/perfil.jpg" alt="Rosy Michel"
+                                                class="img-fluid mr-1 rounded rounded-circle" style="width: 50px;">
+                                            Rosy Michel
+                                        </div>
+                                    </th>
+                                    <td>3414209734</td>
+                                    <td>michel91_3@hotmail.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                     </div>
 
@@ -200,19 +197,19 @@
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
                     crossorigin="anonymous"></script>
+            </div>
         </div>
-    </div>
 
-    <!-- Llamadas a scripts de la libreria bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        <!-- Llamadas a scripts de la libreria bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 </body>
 

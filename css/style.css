@@ -13,33 +13,33 @@
 /*b*/
 
 /*Camciar color aqui*/
-.background-menu {
+/* .background-menu { */
      /* background:  #4CAF50 */
-}
+/* } */
 
 .content {
   background: #F0F3F8;
-  border-left: 2px solid #ffffff;
-  border-radius: 40px 0px 0px 40px;
+  /* border-left: 2px solid #ffffff;
+  border-radius: 40px 0px 0px 40px; */
   height: 100vh;
 }
 
-.nav-item:hover {
+/* .nav-item:hover {
   background: #20253B;
   
-}
+} */
 
-.nav-item:hover a i{
+/* .nav-item:hover a i{
   color: #ffffff;
 
-}
+} */
 
-.nav-item {
+/* .nav-item {
   cursor: pointer;
   border-radius:40px;
   -moz-border-radius:40px;
   -webkit-border-radius:40px;
-}
+} */
 
 
 /*c*/

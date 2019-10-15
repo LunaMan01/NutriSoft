@@ -3,7 +3,7 @@
 <html lang="es">
 
 <head>
-    <title>Acrópolis Gym</title>
+    <title>NutriSoft</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,61 +14,65 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.1/vue-router.js"></script>
 
-    <html>
+    <script src="js/templates/pacientes/pacientes.js"></script>
+    <script src="js/templates/platillos.js"></script>
 
-    <head>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
-        <!-- <link rel="stylesheet" href="css/style.css"> -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/a3f1a47e08.js" crossorigin="anonymous"></script>
+    <script src="js/app/app.js" type="module"></script>
+    <link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a3f1a47e08.js" crossorigin="anonymous"></script>
 
-        <!-- <link rel="stylesheet" href="css/style.css"> -->
-        <link rel="stylesheet" href="css/pacientes.css">
-    </head>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/pacientes.css">
+</head>
 
 <body>
-    <header>
+    <div id="app">
+        <header>
 
-        <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
-            <div class="sidebar-wrapper bg-info">
-                <div class="logo mb-5">
-                    <!-- <a href="#" class="simple-text">
+            <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
+                <div class="sidebar-wrapper bg-info">
+                    <div class="logo mb-5">
+                        <!-- <a href="#" class="simple-text">
                         AET A.C
                     </a> -->
-                    <img src="img/logo3.png" alt="" class="img-fluid rounded mb-5">
-                    <br>
+                        <img src="img/logo3.png" alt="" class="img-fluid rounded mb-5">
+                        <br>
 
-                    <!-- <div class="area"></div> -->
-                    <div class="wrapper">
-                        <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
-                            <div class="sidebar-wrapper bg-info">
-                                <div class="logo">
-                                    <a href="#" class="simple-text">
-                                        Mariana Michel
-                                    </a>
-                                    <br>
-                                </div>
+                        <!-- <div class="area"></div> -->
+                        <div class="wrapper">
 
-                                <ul class="nav flex-column">
-
-                                    <li class="active" id="li-start">
-                                        <a href="#" class="nav-link">
-                                            <i class="fas fa-users"></i>
-                                            <p>Pacientes</p>
+                            <div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
+                                <div class="sidebar-wrapper bg-info">
+                                    <div class="logo">
+                                        <a href="#" class="simple-text">
+                                            Mariana Michel
                                         </a>
-                                    </li>
+                                        <br>
+                                    </div>
 
-                                    <li class="nav-item" id="li-start">
+                                    <ul class="nav flex-column">
+                                        <!-- cambiar por active -->
+                                        <li class="nav-item" id="li-start">
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-users text-white"></i>
+                                                <p class="text-white"><router-link to="/" class="text-white">Pacientes</router-link></p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item" id="li-start">
                                         <a href="#" class="nav-link">
                                             <i class="fas fa-utensils text-white"></i>
-                                            <p class="text-white">Platillos</p>
+                                            <p class="text-white"><router-link to="/platillos" class="text-white">Platillos</router-link></p>
                                         </a>
                                     </li>
                                     <li class="nav-item" id="li-start">
@@ -85,132 +89,46 @@
                                     </li>
 
 
-                                </ul>
+                                    </ul>
+                                    <!-- <router-view></router-view> -->
+                                </div>
                             </div>
-                        </div>
 
 
 
-    </header>
+        </header>
 
-    <div class="main-panel">
+        <div class="main-panel">
 
-        <nav class="navbar-expand-lg navbar-light ml-3 p-0 d-lg-none">
-            <button class="navbar-toggle d-lg-none" type="button" data-toggle="collapse" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <br>
-        </nav>
-        <!-- CONTENT -->
-        <div class="content">
-            <div class="container-fluid">
-                <!--comienza aqui -->
-
-                <div class="row align-items-center  justify-content-between pacientes-cabecera">
-                    <div class="col-md-12  text-center">
-                        <span class="slogan text-white">"Nutre tu vida para que la vida te nutra"</span>
-                        <hr>
-                    </div>
-                    <div class="col-lg-7">
-
-
-                        <div class="pb-4">
-                            <span class="font-weight-bold t text-white">Pacientes</span>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-1  d-flex pb-4  align-items-center">
-
-                        <button class="btn btn-success d-flex p-2">
-                            <i class="material-icons">add</i>
-                            Nuevo
-                        </button>
-                    </div>
-                    <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
-                        <input type="text" class="form-control rounded-pill" placeholder="Burcar...">
-
-                    </div>
+            <nav class="navbar-expand-lg navbar-light ml-3 p-0 d-lg-none">
+                <button class="navbar-toggle d-lg-none" type="button" data-toggle="collapse" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <br>
+            </nav>
+            <!-- CONTENT -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!--comienza aqui -->
+                    <router-view></router-view>
                 </div>
-
-                <div class="row mt-5 card-pacientes">
-
-                    <div class="table-responsive">
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Correo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <div class="d-sm-flex flex-sm-column d-md-inline">
-                                            <img src="img/perfil.jpg" alt="Rosy Michel"
-                                                class="img-fluid mr-1 rounded rounded-circle" style="width: 50px;">
-                                            Rosy Michel
-                                        </div>
-                                    </th>
-                                    <td>3414209734</td>
-                                    <td>michel91_3@hotmail.com</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <div class="d-sm-flex flex-sm-column d-md-inline">
-                                            <img src="img/perfil.jpg" alt="Rosy Michel"
-                                                class="img-fluid mr-1 rounded rounded-circle" style="width: 50px;">
-                                            Rosy Michel
-                                        </div>
-                                    </th>
-                                    <td>3414209734</td>
-                                    <td>michel91_3@hotmail.com</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <div class="d-sm-flex flex-sm-column d-md-inline">
-                                            <img src="img/perfil.jpg" alt="Rosy Michel"
-                                                class="img-fluid mr-1 rounded rounded-circle" style="width: 50px;">
-                                            Rosy Michel
-                                        </div>
-                                    </th>
-                                    <td>3414209734</td>
-                                    <td>michel91_3@hotmail.com</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-
-
-                </div>
-                <!-- Llamadas a scripts de la libreria bootstrap -->
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                    crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                    crossorigin="anonymous"></script>
             </div>
+
+            <!-- Llamadas a scripts de la libreria bootstrap -->
+
+
         </div>
-
-        <!-- Llamadas a scripts de la libreria bootstrap -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

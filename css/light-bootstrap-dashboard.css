@@ -105,7 +105,7 @@ input:focus {
     bottom: 0;
     right: auto;
     left: 0;
-    width: 120px; /*Cambiar tamaño del sidebar aqui*/
+    width: 260px;
     display: block;
     z-index: 1;
     color: #fff;
@@ -119,7 +119,7 @@ input:focus {
     max-height: calc(100vh - 75px);
     min-height: 100%;
     overflow: auto;
-    width: 120px;
+    width: 260px;
     z-index: 4;
     padding-bottom: 100px;
 }
@@ -146,13 +146,10 @@ input:focus {
     float: none;
 }
 
-
-
 .sidebar .nav .open > a,
 .sidebar li:hover > a,
 .sidebar .nav li:hover > a {
-    /* background-color: rgba(255, 255, 255, 0.13); */
-    background-color: #20253B;
+    background-color: rgba(255, 255, 255, 0.13);
     opacity: 1;
 }
 
@@ -160,10 +157,9 @@ input:focus {
     color: #98A6AD;
     margin: 5px 15px;
     opacity: .86;
-    /* border-radius: 4px; */
+    border-radius: 4px;
     display: block;
 }
-
 
 .sidebar .nav li.active > a {
     color: #FFFFFF;
@@ -185,7 +181,7 @@ input:focus {
 .sidebar .nav i {
     font-size: 28px;
     float: left;
-    margin-right: 0px;
+    margin-right: 15px;
     /* line-height: 30px !important;
     width: 30px; */
     text-align: center;
@@ -207,13 +203,13 @@ input:focus {
 
 .sidebar:before {
     opacity: .33;
-    background: #63cb6b;
+    background: #000000;
 }
 
 
 
 .sidebar[data-color="sidebarcolor"]:after {
-    background: #63cb6b;
+    background: #212120;
     background-size: 150% 150%;
 }
 
@@ -221,7 +217,7 @@ input:focus {
     position: relative;
     z-index: 2;
     float: right;
-    width: calc(100% - 120px);
+    width: calc(100% - 260px);
 }
 
 .main-panel > .content {

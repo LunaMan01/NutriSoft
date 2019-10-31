@@ -1,4 +1,5 @@
-const nuevoPacienteHTML = {template: /*html*/`
+const nuevoPacienteHTML = {
+    template: /*html*/`
 <div class="accordion" id="accordionExample">
     <div class="card">
         <div class="card-header" id="headingOne">
@@ -11,7 +12,7 @@ const nuevoPacienteHTML = {template: /*html*/`
     
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="datos-generales-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-4">
@@ -63,7 +64,11 @@ const nuevoPacienteHTML = {template: /*html*/`
                                 <input type="text" name="whats" id="whats" class="form-control">                        
                             </div>
                         </div>
-                    </div>                                                             
+
+                    </div> 
+                    <div class="text-right">
+                        <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                    </div>
                 </form>
             </div>
         </div>    
@@ -78,7 +83,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="estilo-vida-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-6">
@@ -98,7 +103,10 @@ const nuevoPacienteHTML = {template: /*html*/`
                                 <input type="text" name="nivel-estres" id="nivel-estres" class="form-control">
                             </div>
                         </div>
-                    </div>                                                             
+                    </div>    
+                    <div class="text-right">
+                        <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                    </div>                                                         
                 </form>
             </div>
         </div>
@@ -113,7 +121,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="historia-clinica-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-4">
@@ -149,7 +157,11 @@ const nuevoPacienteHTML = {template: /*html*/`
                                 <input type="text" name="antecedentes-heredo" id="antecedentes-heredo" class="form-control">
                             </div>
                         </div>
-                    </div>                                                             
+                        
+                    </div>   
+                    <div class="text-right">
+                        <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                    </div>                                                   
                 </form>
             </div>
         </div>
@@ -164,88 +176,94 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
             <div class="card-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-4 col-md-4 col-lg-4 d-flex flex-column">
-                            <div class="">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Ácido úrico alto
-                                </label>
+                <form id="etiquetas-paciente-form" onsubmit="return false" method="post">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-4 col-md-4 col-lg-4 d-flex flex-column">
+                                <div class="">
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Ácido úrico alto
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Accidente vascular cerebral
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Adicción a drogas o alcohol
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Anorexia
+                                    </label>
+                                </div>
                             </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Accidente vascular cerebral
-                                </label>
+                            <div class="col-4 col-md-4 col-lg-4 d-flex flex-column">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Diabetes mellitus I
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Diabetes mellitus II
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Cáncer
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Bulimia
+                                    </label>
+                                </div>
                             </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Adicción a drogas o alcohol
-                                </label>
+                            <div class="col-4 col-md-4 col-lg-4 d-flex flex-column">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Deportista
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Embarazada
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        DEnfermedad crónica
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Enfermedad genética
+                                    </label>
+                                </div>
                             </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Anorexia
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-4 col-lg-4 d-flex flex-column">
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Diabetes mellitus I
-                                </label>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Diabetes mellitus II
-                                </label>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Cáncer
-                                </label>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Bulimia
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-4 col-lg-4 d-flex flex-column">
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Deportista
-                                </label>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Embarazada
-                                </label>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    DEnfermedad crónica
-                                </label>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Enfermedad genética
-                                </label>
-                            </div>
-                        </div>
-                    </div>   
-                </div>                                                             
+                            
+                        </div>   
+                    </div>    
+                    <div class="text-right">
+                            <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                        </div>            
+                </form>                                                
             </div>
         </div>
     </div>
@@ -259,7 +277,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="habitos-toxicos-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             
@@ -299,7 +317,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="mediciones-basicas-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-6">
@@ -319,7 +337,10 @@ const nuevoPacienteHTML = {template: /*html*/`
                             <div class="col-12 col-lg-6 bg-info">
                             </div>
                         </div>
-                    </div>                                                             
+                    </div>      
+                    <div class="text-right">
+                            <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                        </div>                                                          
                 </form>
             </div>
         </div>
@@ -334,7 +355,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="bioimpedancia-paciente-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-4">
@@ -374,7 +395,10 @@ const nuevoPacienteHTML = {template: /*html*/`
                                 <input type="text" name="edad-metabolica" id="edad-metabolica" class="form-control">                                
                             </div>
                         </div>
-                    </div>                                                             
+                    </div>    
+                    <div class="text-right">
+                            <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                        </div>                                                            
                 </form>
             </div>
         </div>
@@ -389,7 +413,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="pliegues-form" onsubmit="return false" method="post"> 
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-6">
@@ -433,7 +457,10 @@ const nuevoPacienteHTML = {template: /*html*/`
                                 <input type="text" name="pectoral" id="pectoral" class="form-control">                                
                             </div>
                         </div>
-                    </div>                                                             
+                    </div>   
+                    <div class="text-right">
+                            <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                        </div>                                                             
                 </form>
             </div>
         </div>
@@ -448,7 +475,7 @@ const nuevoPacienteHTML = {template: /*html*/`
         </div>
         <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="perimetros-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
                             <div class="col-12 col-lg-6">
@@ -504,7 +531,10 @@ const nuevoPacienteHTML = {template: /*html*/`
                                 <input type="text" name="pantorrilla" id="pantorrilla" class="form-control">                                
                             </div>
                         </div>
-                    </div>                                                             
+                    </div>     
+                    <div class="text-right">
+                            <button class="btn btn-success" type="submit">Guardar</button>                                                              
+                        </div>                                                           
                 </form>
             </div>
         </div>

@@ -75,6 +75,10 @@
 
             $etiquetas->execute();
         } else if($value == 5){
+            // HABITOS TOXICOS            
+        } else if($value == 6){
+            // PLAN ALIMENTICIO            
+        } else if($value == 7){
             // MEDICIONES BASICAS
             $mediciones = $conn->prepape("INSERT INTO mediciones_basicas (ID_PACIENTES, Estatura, Peso, Factor_Act, Embarazo)
                 VALUES (:id, :estatura, :peso, :actividad, :embarazo)");
@@ -86,7 +90,7 @@
             $mediciones->bindPAram(':embarazo', $_POST['embarazo']);
 
             $mediciones->execute();
-        } else if($value == 6){
+        } else if($value == 8){
             // BIOIMPEDANCIA
             $bioimpedancia = $conn->prepare("INSERT INTO bioimpedancia (ID_PACIENTES, Grasa_Total, Grasa_Superior, Grasa_Inferior, Grasa_Viseral, Masa_Libre_Grasa, Masa_Muscular, Peso_Oseo, Agua_Corporal, Edad_Metabolica)
                 VALUES (:id, :total, :superior, :inferior, :viseral, :libre, :muscular, :oseo, :agua, :edad)");
@@ -103,14 +107,45 @@
             $bioimpedancia->bindParam(':edad', $_POST['edadMetabolica']);
 
             $bioimpedancia->execute();
-        } else if($value == 7){
-            
-        } else if($value == 8){
-            
         } else if($value == 9){
-            
+            // PLIEGUES
+            $pliegues = $conn->prepare("INSERT INTO pliegues (ID_PACIENTES, Subescapular, Triceps, Biceps, Ileocrestal, Suprailiaco, Abdominal, muslo_Frontal, Pantorrilla_Medial, Axiliar_Medial, Pectoral)
+                VALUES (:id, :subescapular, :tricep, :bicep, :ileocrestal, :suprailiaco, :abdominal, :frontal, :medial, :axiliar, :pectoral)");
+
+            $pliegues->bindParam(':id', $lastIdPaciente);
+            $pliegues->bindParam(':subescapular', $_POST['subescapular']);
+            $pliegues->bindParam(':tricep', $_POST['tricep']);
+            $pliegues->bindParam(':bicep', $_POST['bicep']);
+            $pliegues->bindParam(':ileocrestal', $_POST['ileocrestal']);
+            $pliegues->bindParam(':suprailiaco', $_POST['suprailiaco']);
+            $pliegues->bindParam(':abdominal', $_POST['abdominal']);
+            $pliegues->bindParam(':frontal', $_POST['frontal']);
+            $pliegues->bindParam(':medial', $_POST['medial']);
+            $pliegues->bindParam(':axiliar', $_POST['axiliar']);
+            $pliegues->bindParam(':pectoral', $_POST['pectoral']);
+
+            $pliegues->execute();
         } else if($value == 10){
-            
+            // PERIMETROS
+            $perimetros = $conn->prepare("INSERT INTO perimetros (ID_PACIENTES, Cefalico, Cuello, Brazo_Relajado, Brazo_Contraido, Antebrazo, Muñeca, Meseoesternal, Umbilical, Cintura, Caderas, Muslo, Muslo_Medio, Pantorrilla)
+                VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muñeca, :mesoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
+
+            $perimetros->bindParam(':id', $lastIdPaciente);
+            $perimetros->bindParam(':cefalico', $_POST['cefalico']);
+            $perimetros->bindParam(':cuello', $_POST['cuello']);
+            $perimetros->bindParam(':relajado', $_POST['relajado']);
+            $perimetros->bindParam(':contraido', $_POST['contraido']);
+            $perimetros->bindParam(':antebrazo', $_POST['antebrazo']);
+            $perimetros->bindParam(':muñeca', $_POST['muñeca']);
+            $perimetros->bindParam(':mesoesternal', $_POST['mesoesternal']);
+            $perimetros->bindParam(':umbilical', $_POST['umbilical']);
+            $perimetros->bindParam(':cintura', $_POST['cintura']);
+            $perimetros->bindParam(':caderas', $_POST['caderas']);
+            $perimetros->bindParam(':muslo', $_POST['muslo']);
+            $perimetros->bindParam(':medio', $_POST['medio']);
+            $perimetros->bindParam(':pantorrilla', $_POST['pantorrilla']);
+
+            $perimetros->execute();
         }
     }catch(PDOException $e){
         echo 'Error: '.$e->getMessage();

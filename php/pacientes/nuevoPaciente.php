@@ -87,7 +87,22 @@
 
             $mediciones->execute();
         } else if($value == 6){
-            
+            // BIOIMPEDANCIA
+            $bioimpedancia = $conn->prepare("INSERT INTO bioimpedancia (ID_PACIENTES, Grasa_Total, Grasa_Superior, Grasa_Inferior, Grasa_Viseral, Masa_Libre_Grasa, Masa_Muscular, Peso_Oseo, Agua_Corporal, Edad_Metabolica)
+                VALUES (:id, :total, :superior, :inferior, :viseral, :libre, :muscular, :oseo, :agua, :edad)");
+
+            $bioimpedancia->bindParam(':id', $lastIdPaciente);
+            $bioimpedancia->bindParam(':total', $_POST['grasaTotal']);
+            $bioimpedancia->bindParam(':superior', $_POST['grasaSuperior']);
+            $bioimpedancia->bindParam(':inferior', $_POST['grasaInferior']);
+            $bioimpedancia->bindParam(':viseral', $_POST['grasaViseral']);
+            $bioimpedancia->bindParam(':libre', $_POST['masaLibreGrasa']);
+            $bioimpedancia->bindParam(':muscular', $_POST['masaMuscular']);
+            $bioimpedancia->bindParam(':oseo', $_POST['pesoOseo']);
+            $bioimpedancia->bindParam(':agua', $_POST['aguaCorporal']);
+            $bioimpedancia->bindParam(':edad', $_POST['edadMetabolica']);
+
+            $bioimpedancia->execute();
         } else if($value == 7){
             
         } else if($value == 8){

@@ -3,63 +3,63 @@ const PacientesController = (() => {
     
     const addDatosGenerales = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('datos-generales-form');    
-        datos.append('form', 1);
+        datos.append('value', 1);
         PacientesModel.add(datos);
     }
 
     const addDatosEstiloVida = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('estilo-vida-form');    
-        datos.append('form', 2);
+        datos.append('value', 2);
         PacientesModel.add(datos);
     }
 
     const addDatosHistoriaClinica = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('historia-clinica-form');   
-        datos.append('form', 3); 
+        datos.append('value', 3); 
         PacientesModel.add(datos);
     }
 
     const addDatosEtiquetaPacientes = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('etiquetas-paciente-form');    
-        datos.append('form', 4);
+        datos.append('value', 4);
         PacientesModel.add(datos);
     }
     
     //Falta añadir a html
     const addDatosHabitosToxicos = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('habitos-toxicos-form');    
-        datos.append('form', 5);
+        datos.append('value', 5);
         PacientesModel.add(datos);
     }
 
     //Falta añadir a html
     const addDatosPlanAlimenticio = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('plan-alimenticio-form');    
-        datos.append('form', 6);
+        datos.append('value', 6);
         PacientesModel.add(datos);
     }
 
     const addDatosMedicionesBasicas = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('mediciones-basicas-form'); 
-        datos.append('form', 7);   
+        datos.append('value', 7);   
         PacientesModel.add(datos);
     } 
 
     const addDatosBioimpedancia = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('bioimpedancia-paciente-form');
-        datos.append('form', 8);    
+        datos.append('value', 8);    
         PacientesModel.add(datos);
     }
 
     const addDatosPeliegues = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('pliegues-form');    
-        datos.append('form', 9);
+        datos.append('value', 9);
         PacientesModel.add(datos);
     }
 
     const addDatosPerimetros = () => {
         let datos = UIPacientes.obtenerDatosDeFormulario('perimetros-form');    
-        datos.append('form', 10);
+        datos.append('value', 10);
         PacientesModel.add(datos);
     }
 

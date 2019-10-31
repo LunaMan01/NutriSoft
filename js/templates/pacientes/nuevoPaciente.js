@@ -337,7 +337,7 @@ const nuevoPacienteHTML = {
                                 <label for="factor-actividad" class="col-form-label">Factor de actividad:</label>                            
                                 <input type="text" name="factor-actividad" id="factor-actividad" class="form-control">
                                 <div class="m-4">
-                                    <input class="form-check-input " type="checkbox" id="embarazo">
+                                    <input class="form-check-input " type="checkbox" id="embarazo" name="embarazo">
                                     <label class="form-check-label " for="embarazo">
                                         Embarazo
                                     </label>

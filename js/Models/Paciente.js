@@ -1,9 +1,17 @@
-const PacienteModel = (() => {
+const PacientesModel = (() => {
+
+    function postForm(url, formToSend) {
+        var req = new XMLHttpRequest();
+        req.open("POST", url, false);
+        req.send(formToSend);
+        return req.responseText;
+    }
     
     return{
-        addDatosNuevoPaciente : (formulario) => {
+        add : (formulario) => {
             let respuesta = postForm('php/pacientes/nuevoPaciente', formulario);
+            console.log(respuesta);
         }
 
     }
-})
+})();

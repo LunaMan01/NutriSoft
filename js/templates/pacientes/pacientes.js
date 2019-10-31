@@ -14,9 +14,9 @@ const PacientesHTML = {
 
                         </div>
                     </div>
-                    <div class="col-lg-1  d-flex pb-4  align-items-center">
+                    <div class="col-lg-1  d-flex pb-4  align-items-center" >
 
-                        <router-link class="btn btn-success d-flex p-2" to='/nuevo-paciente'>
+                        <router-link class="btn btn-success d-flex p-2" to='/nuevo-paciente' id="nuevo-paciente-btn">
                             <i class="material-icons">add</i>
                             Nuevo
                         </router-link>

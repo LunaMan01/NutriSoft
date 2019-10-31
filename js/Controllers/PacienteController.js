@@ -1,7 +1,9 @@
 const PacientesController = (() => {
 
-    
+    let guardado = false;
+
     const addDatosGenerales = () => {
+        console.log('datos.generales');
         let datos = UIPacientes.obtenerDatosDeFormulario('datos-generales-form');    
         datos.append('form', 1);
         PacientesModel.add(datos);
@@ -63,7 +65,10 @@ const PacientesController = (() => {
         PacientesModel.add(datos);
     }
 
+    
+
     const addEventos = () => {
+        
         document.getElementById('datos-generales-form').addEventListener('submit', addDatosGenerales);
         document.getElementById('estilo-vida-form').addEventListener('submit', addDatosEstiloVida);
         document.getElementById('historia-clinica-form').addEventListener('submit', addDatosHistoriaClinica);
@@ -81,5 +86,13 @@ const PacientesController = (() => {
         }
     }
 })();
+
+
+const pacientesVue = new Vue ({
+    el: '#x',
+    data : {
+        guardado : false
+    }
+  });
 
 PacientesController.init();

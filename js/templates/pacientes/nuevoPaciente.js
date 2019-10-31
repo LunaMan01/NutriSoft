@@ -10,7 +10,7 @@ const nuevoPacienteHTML = {
             </h1>
         </div>
     
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 <form id="datos-generales-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
@@ -73,7 +73,7 @@ const nuevoPacienteHTML = {
             </div>
         </div>    
     </div>
-    <div class="card">
+    <div v-bind:class="'[{ d-none: guardado }, card]'" id="x">
         <div class="card-header" id="headingTwo">
             <h2 class="my-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -540,5 +540,6 @@ const nuevoPacienteHTML = {
         </div>
     </div>  
 </div>
+
 `
 };

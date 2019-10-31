@@ -329,7 +329,7 @@ const nuevoPacienteHTML = {
                 <form id="mediciones-basicas-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-12">
                                 <label for="estatura" class="col-form-label">Estatura:</label>                            
                                 <input type="text" name="estatura" id="estatura" class="form-control">                            
                                 <label for="peso" class="col-form-label">Peso:</label>                            
@@ -342,8 +342,6 @@ const nuevoPacienteHTML = {
                                         Embarazo
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6 bg-info">
                             </div>
                         </div>
                     </div>      

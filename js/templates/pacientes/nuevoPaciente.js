@@ -26,31 +26,35 @@ const nuevoPacienteHTML = {
                             <div class="col-12 col-lg-4">
                                 <label for="materno" class="col-form-label">Apellido materno:</label>                            
                                 <input type="text" name="materno" id="materno" class="form-control">
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <label for="nacimiento" class="col-form-label">Fecha de nacimiento:</label>                            
-                                <input type="text" name="nacimiento" id="nacimiento" class="form-control">                        
-                            </div>                                                     
-                            <div class="col-12 col-lg-4">
+                            </div>                                                                               
+                            <div class="col-12 col-lg-12">
                                 <label for="genero" class="col-form-label">Genero:</label>                            
                                 <input type="text" name="genero" id="genero" class="form-control">                        
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <label for="calle" class="col-form-label">Calle:</label>                            
+                                <input type="text" name="calle" id="calle" class="form-control">                        
+                            </div>
+                            <div class="col-12 col-lg-1">
+                                <label for="numero" class="col-form-label">Número:</label>                            
+                                <input type="text" name="numero" id="numero" class="form-control">                        
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <label for="colonia" class="col-form-label">Colonia:</label>                            
+                                <input type="text" name="colonia" id="colonia" class="form-control">                        
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <label for="ciudad" class="col-form-label">Ciudad:</label>                            
+                                <input type="text" name="ciudad" id="ciudad" class="form-control">                        
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <label for="estado" class="col-form-label">Estado:</label>                            
+                                <input type="text" name="estado" id="estado" class="form-control">                        
                             </div>
                             <div class="col-12 col-lg-4">
                                 <label for="escolaridad" class="col-form-label">Escolaridad:</label>                            
                                 <input type="text" name="escolaridad" id="escolaridad" class="form-control">                        
                             </div>                       
-                            <div class="col-12 col-lg-4">
-                                <label for="direccion" class="col-form-label">Direccion:</label>                            
-                                <input type="text" name="direccion" id="direccion" class="form-control">                        
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <label for="ciudad" class="col-form-label">Ciudad:</label>                            
-                                <input type="text" name="ciudad" id="ciudad" class="form-control">                        
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <label for="estado" class="col-form-label">Estado:</label>                            
-                                <input type="text" name="estado" id="estado" class="form-control">                        
-                            </div>
                             <div class="col-12 col-lg-4">
                                 <label for="correo" class="col-form-label">Correo electronico:</label>                            
                                 <input type="text" name="correo" id="correo" class="form-control">                        
@@ -59,10 +63,15 @@ const nuevoPacienteHTML = {
                                 <label for="telefono" class="col-form-label">Telefono:</label>                            
                                 <input type="text" name="telefono" id="telefono" class="form-control">                        
                             </div>
-                            <div class="col-12 col-lg-4">
-                                <label for="whats" class="col-form-label">WhatsApp:</label>                            
-                                <input type="text" name="whats" id="whats" class="form-control">                        
+                            <div class="col-12  col-lg-12">
+                                <label for="historial" class="col-form-label">Historial:</label>                            
+                                <input type="text" name="historial" id="historial" class="form-control">                        
                             </div>
+                            <div class="col-12  col-lg-12">
+                                <label for="observaciones" class="col-form-label">Observaciones:</label>                            
+                                <textarea class="form-control" rows="3" name="observaciones" id="observaciones"></textarea>                           
+                            </div>
+                            
                         </div>
 
                     </div> 
@@ -320,7 +329,7 @@ const nuevoPacienteHTML = {
                 <form id="mediciones-basicas-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
                         <div class="row form-group">                                        
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-12">
                                 <label for="estatura" class="col-form-label">Estatura:</label>                            
                                 <input type="text" name="estatura" id="estatura" class="form-control">                            
                                 <label for="peso" class="col-form-label">Peso:</label>                            
@@ -333,8 +342,6 @@ const nuevoPacienteHTML = {
                                         Embarazo
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6 bg-info">
                             </div>
                         </div>
                     </div>      

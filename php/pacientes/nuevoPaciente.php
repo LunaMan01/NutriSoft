@@ -3,6 +3,8 @@
 
     $value = $_POST['value'];
 
+    $lastIdPaciente;
+
     try{
         if($value == 1){
             $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Año_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Año_C, Dia_SC, Mes_SC, Año_SC, Observaciones)
@@ -33,8 +35,20 @@
             $generales->bindParam(':observaciones', $_POST['observaciones']);
 
             $generales->execute();
+
+            $lastIdPaciente = $conn->lastInsertId();
+
         } else if($value == 2){
-            
+            $vida = $conn->prepare("INSERT INTO estilo_vida (ID_PACIENTES, Act_Laboral, Descripcion_Act_Lab, Deportes, Estres)
+                VALUES(:id, :actividad, :descripcion, :deportes, :estres)");
+
+            $vida->bindParam(':id', $lastIdPaciente);
+            $vida->bindParam(':actividad', $_POST['actividadLaboral']);
+            $vida->bindParam(':descripcion', $_POST['descripcion']);
+            $vida->bindParam(':deportes', $_POST['deportes']);
+            $vida->bindParam(':estres', $_POST['estres']);
+
+            $vida->execute();
         } else if($value == 3){
             
         } else if($value == 4){

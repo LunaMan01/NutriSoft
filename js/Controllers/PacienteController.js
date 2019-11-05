@@ -92,15 +92,64 @@ const PacientesController = (() => {
         UIPacientes.mostrarPacientes(PacientesModel.consultarTodosLosPacientes());
     }
 
-    
+    //---------------------------------------
+    //  CONSULTA DINAMICA DE PACIENTES
+    //---------------------------------------
+    const consultaDinamicaPacientes = () => {
+        let datoABuscar = UIPacientes.obtenerDatoABuscar();
+        
+        setTimeout(function () {
+            console.log(datoABuscar)
+            UIPacientes.mostrarPacientes(PacientesModel.buscarPaciente(datoABuscar));
+        }, 2000);
+            
+    }
+
+    //---------------------------------------
+    //  ELIMINAR PACIENTE
+    //---------------------------------------
+    const eliminarPaciente = (idPacienteAEliminar) => {
+        if (PacientesModel.eliminarPaciente(idPacienteAEliminar)) {
+            UIPacientes.eliminarRegistroDeTabla();
+            swal("Paciente eliminado correctamente", {
+                icon: "success",
+            });
+        } else {
+            console.log('No se elimino');
+        }
+    }
+
+    const configurarEventoEliminar = () => {
+        document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
+            if(e.target.matches('.accion-eliminar')) {
+                let idPacienteAEliminar = UIPacientes.obtenerId(e);
+                swal({
+                    title: "¿Está seguro?",
+                    text: "Este paciente será eliminado permanentemente",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((aceptar) => {
+                    if (aceptar) {
+                        eliminarPaciente(idPacienteAEliminar);
+                    }
+                });
+
+                
+            }
+        }) 
+    }
+
+
     
     
 
     const addEventos = () => {
 
         document.getElementById('nuevo-paciente-btn').addEventListener('click', abrirVentanaNuevoPaciente);
-        
-        
+        document.getElementById('buscar-paciente-input').addEventListener('keyup', consultaDinamicaPacientes);
+        configurarEventoEliminar();
 
     }
 

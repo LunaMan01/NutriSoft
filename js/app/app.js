@@ -1,30 +1,9 @@
-
-const Bar = { template: '<div>bar</div>' }
-
-// 2. Define some routes
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// `Vue.extend()`, or just a component options object.
-// We'll talk about nested routes later.
-const routes = [
-  { path: '/', component: PacientesHTML },
-  { path: '/platillos', component: PlatillosHTML },
-  { path: '/nuevo-paciente', component: nuevoPacienteHTML}
-]
-
-// 3. Create the router instance and pass the `routes` option
-// You can pass in additional options here, but let's
-// keep it simple for now.
-const router = new VueRouter({
-  routes // short for `routes: routes`
-})
-
-// 4. Create and mount the root instance.
-// Make sure to inject the router with the router option to make the
-// whole app router-aware.
-const app = new Vue({
-  router
-}).$mount('#app')
+const load = (url, element) => {
+  let req = new XMLHttpRequest();
+  req.open("GET", url, false);
+  req.send(null);
+  element.innerHTML = req.responseText;
+}
 
 const postForm = (url, formToSend) => {
   var req = new XMLHttpRequest();
@@ -40,3 +19,74 @@ const post = (url, data) => {
   req.send(data);
   return req.responseText;
 }
+
+function isEmpty(string) {
+  string = string.trim();
+  return (!string || 0 === string.length);
+}
+
+
+
+
+
+
+const contentPanel = document.querySelector('.content');
+
+const HTMLRoutes = {
+  pacientes: 'html/pacientes/pacientes.html',
+
+
+};
+
+
+const UIController = (() => {
+
+  const addControllerScript = (scriptId, scripSrc) => {
+    if (document.getElementById(scriptId) == null) {
+      let script = document.createElement('script');
+      script.setAttribute('src', scripSrc);
+      script.setAttribute('id', scriptId);
+      document.head.appendChild(script);
+    }
+  }
+
+  const changeActiveItem = (elementId) => {
+    document.querySelector('.active').classList.remove('active');
+    document.getElementById(elementId).classList.add('active');
+  }
+
+  return {
+
+    abrirPacientes: () => {
+      load(HTMLRoutes.pacientes, contentPanel);
+      changeActiveItem('li-pacientes');
+      addControllerScript('pacientes-controller', 'js/Controllers/PacienteController.js');
+      if (typeof PacientesController !== 'undefined') {
+        PacientesController.init();
+      }
+    },
+
+
+  }
+})();
+
+
+
+
+const controller = (() => {
+
+  const setUpEvents = () => {
+    document.getElementById('pacientes-link').addEventListener('click', UIController.abrirPacientes);
+
+  }
+
+  return {
+    init: () => {
+      UIController.abrirPacientes();
+      setUpEvents();
+    }
+  }
+
+})(UIController);
+
+controller.init();

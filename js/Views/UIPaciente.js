@@ -1,6 +1,6 @@
-const UIPaciente = (() => {
+const UIPacientes = (() => {
     return {
-        obtenerDatosDeFormulario = (id, numero) => {
+        obtenerDatosDeFormulario : (id) => {
             let form = document.getElementById(id);
                 let data = new FormData(form);
                 data.append("value", numero);

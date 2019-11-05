@@ -1,7 +1,9 @@
 const PacientesController = (() => {
 
-    
+    let guardado = false;
+
     const addDatosGenerales = () => {
+        console.log('datos.generales');
         let datos = UIPacientes.obtenerDatosDeFormulario('datos-generales-form');    
         datos.append('value', 1);
         PacientesModel.add(datos);
@@ -63,7 +65,8 @@ const PacientesController = (() => {
         PacientesModel.add(datos);
     }
 
-    const addEventos = () => {
+
+    const cargarEventosNuevoPaciente = () => {
         document.getElementById('datos-generales-form').addEventListener('submit', addDatosGenerales);
         document.getElementById('estilo-vida-form').addEventListener('submit', addDatosEstiloVida);
         document.getElementById('historia-clinica-form').addEventListener('submit', addDatosHistoriaClinica);
@@ -72,6 +75,21 @@ const PacientesController = (() => {
         document.getElementById('bioimpedancia-paciente-form').addEventListener('submit', addDatosBioimpedancia);
         document.getElementById('pliegues-form').addEventListener('submit', addDatosPeliegues);
         document.getElementById('perimetros-form').addEventListener('submit', addDatosPerimetros);
+    }
+
+    const abrirVentanaNuevoPaciente = () => {
+        load('html/pacientes/nuevo-paciente.html', contentPanel);
+        cargarEventosNuevoPaciente();
+    }
+
+    
+    
+
+    const addEventos = () => {
+
+        document.getElementById('nuevo-paciente-btn').addEventListener('click', abrirVentanaNuevoPaciente);
+        
+        
 
     }
 
@@ -81,5 +99,8 @@ const PacientesController = (() => {
         }
     }
 })();
+
+
+
 
 PacientesController.init();

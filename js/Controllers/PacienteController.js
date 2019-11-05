@@ -68,6 +68,31 @@ const PacientesController = (() => {
         PacientesModel.add(datos);
     }
 
+    const configurarCalendariosEnInputs = () => {
+        new Lightpick({
+            field: document.getElementById('fecha-nacimiento'),
+            minDate: moment(),
+            onSelect: () => {
+                
+            }
+        });
+
+        new Lightpick({
+            field: document.getElementById('fecha-consulta'),
+            minDate: moment(),
+            onSelect: () => {
+                
+            }
+        });
+
+        new Lightpick({
+            field: document.getElementById('fecha-siguiente-consulta'),
+            minDate: moment(),
+            onSelect: () => {
+                
+            }
+        });
+    }
 
     const cargarEventosNuevoPaciente = () => {
         document.getElementById('datos-generales-form').addEventListener('submit', addDatosGenerales);
@@ -78,6 +103,7 @@ const PacientesController = (() => {
         document.getElementById('bioimpedancia-paciente-form').addEventListener('submit', addDatosBioimpedancia);
         document.getElementById('pliegues-form').addEventListener('submit', addDatosPeliegues);
         document.getElementById('perimetros-form').addEventListener('submit', addDatosPerimetros);
+        configurarCalendariosEnInputs();
     }
 
     const abrirVentanaNuevoPaciente = () => {

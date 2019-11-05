@@ -9,7 +9,7 @@ const PacientesModel = (() => {
     
     return{
         add : (formulario) => {
-            let respuesta = postForm('php/pacientes/nuevoPaciente', formulario);
+            let respuesta = postForm('php/pacientes/nuevoPaciente.php', formulario);
             console.log(respuesta);
         }
 

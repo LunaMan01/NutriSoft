@@ -1,3 +1,4 @@
+<h1 class="h2 text-center mb-2">Nuevo paciente</h1>
 <div class="accordion" id="accordionExample">
     <div class="card">
         <div class="card-header" id="headingOne">
@@ -9,7 +10,7 @@
             </h1>
         </div>
 
-        <div class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample" id="collapseOne">
             <div class="card-body">
                 <form id="datos-generales-form" onsubmit="return false" method="post">
                     <div class="container-fluid">
@@ -82,7 +83,7 @@
             </div>
         </div>
     </div>
-    <div v-bind:class="'[{ d-none: guardado }, card]'" id="x">
+    <div class="card">
         <div class="card-header" id="headingTwo">
             <h2 class="my-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"

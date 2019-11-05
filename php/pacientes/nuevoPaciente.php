@@ -45,10 +45,10 @@
                 VALUES(:id, :actividad, :descripcion, :deportes, :estres)");
 
             $vida->bindParam(':id', $lastIdPaciente);
-            $vida->bindParam(':actividad', $_POST['actividadLaboral']);
-            $vida->bindParam(':descripcion', $_POST['descripcion']);
-            $vida->bindParam(':deportes', $_POST['deportes']);
-            $vida->bindParam(':estres', $_POST['estres']);
+            $vida->bindParam(':actividad', $_POST['actividad-laboral']);
+            $vida->bindParam(':descripcion', $_POST['descripcion-actividad-laboral']);
+            $vida->bindParam(':deportes', $_POST['actividades-deportivas']);
+            $vida->bindParam(':estres', $_POST['nivel-estres']);
 
             $vida->execute();
         } else if($value == 3){
@@ -57,14 +57,14 @@
                 VALUES (:id, :motivo, :terapeuta, :cirugias, :sangre, :alergias, :diagnostico, :vacunas, :antecedentes)");
 
             $clinica->bindParam(':id', $lastIdPaciente);
-            $clinica->bindParam(':motivo', $_POST['motivoConsulta']);
-            $clinica->bindParam(':terapeuta', $_POST['terapeutaPrevio']);
-            $clinica->bindParam(':cirugias', $_POST['cirugiasRealizadas']);
-            $clinica->bindParam(':sangre', $_POST['tipoSangre']);
+            $clinica->bindParam(':motivo', $_POST['motivo-consulta']);
+            $clinica->bindParam(':terapeuta', $_POST['terapeutica-previa']);
+            $clinica->bindParam(':cirugias', $_POST['cirugias']);
+            $clinica->bindParam(':sangre', $_POST['tipo-sangre']);
             $clinica->bindParam(':alergias', $_POST['alergias']);
-            $clinica->bindParam(':diagnostico', $_POST['diagnosticoPrevio']);
+            $clinica->bindParam(':diagnostico', $_POST['diagnostico-previo']);
             $clinica->bindParam(':vacunas', $_POST['vacunas']);
-            $clinica->bindParam(':antecedentes', $_POST['antecedentesFamiliares']);
+            $clinica->bindParam(':antecedentes', $_POST['antecedentes-heredo']);
 
             $clinica->execute();
         } else if($value == 4){
@@ -86,7 +86,7 @@
             $mediciones->bindPAram(':id', $lastIdPaciente);
             $mediciones->bindPAram(':estatura', $_POST['estatura']);
             $mediciones->bindPAram(':peso', $_POST['peso']);
-            $mediciones->bindPAram(':actividad', $_POST['factorActividad']);
+            $mediciones->bindPAram(':actividad', $_POST['factor-actividad']);
             $mediciones->bindPAram(':embarazo', $_POST['embarazo']);
 
             $mediciones->execute();
@@ -96,15 +96,15 @@
                 VALUES (:id, :total, :superior, :inferior, :viseral, :libre, :muscular, :oseo, :agua, :edad)");
 
             $bioimpedancia->bindParam(':id', $lastIdPaciente);
-            $bioimpedancia->bindParam(':total', $_POST['grasaTotal']);
-            $bioimpedancia->bindParam(':superior', $_POST['grasaSuperior']);
-            $bioimpedancia->bindParam(':inferior', $_POST['grasaInferior']);
-            $bioimpedancia->bindParam(':viseral', $_POST['grasaViseral']);
-            $bioimpedancia->bindParam(':libre', $_POST['masaLibreGrasa']);
-            $bioimpedancia->bindParam(':muscular', $_POST['masaMuscular']);
-            $bioimpedancia->bindParam(':oseo', $_POST['pesoOseo']);
-            $bioimpedancia->bindParam(':agua', $_POST['aguaCorporal']);
-            $bioimpedancia->bindParam(':edad', $_POST['edadMetabolica']);
+            $bioimpedancia->bindParam(':total', $_POST['grasa-total']);
+            $bioimpedancia->bindParam(':superior', $_POST['grasa-superior']);
+            $bioimpedancia->bindParam(':inferior', $_POST['grasa-inferior']);
+            $bioimpedancia->bindParam(':viseral', $_POST['grasa-visceral']);
+            $bioimpedancia->bindParam(':libre', $_POST['masa-libre-grasa']);
+            $bioimpedancia->bindParam(':muscular', $_POST['masa-muscular']);
+            $bioimpedancia->bindParam(':oseo', $_POST['peso-oseo']);
+            $bioimpedancia->bindParam(':agua', $_POST['agua-corporal']);
+            $bioimpedancia->bindParam(':edad', $_POST['edad-metabolica']);
 
             $bioimpedancia->execute();
         } else if($value == 9){
@@ -114,14 +114,14 @@
 
             $pliegues->bindParam(':id', $lastIdPaciente);
             $pliegues->bindParam(':subescapular', $_POST['subescapular']);
-            $pliegues->bindParam(':tricep', $_POST['tricep']);
-            $pliegues->bindParam(':bicep', $_POST['bicep']);
+            $pliegues->bindParam(':tricep', $_POST['triceps']);
+            $pliegues->bindParam(':bicep', $_POST['biceps']);
             $pliegues->bindParam(':ileocrestal', $_POST['ileocrestal']);
             $pliegues->bindParam(':suprailiaco', $_POST['suprailiaco']);
             $pliegues->bindParam(':abdominal', $_POST['abdominal']);
-            $pliegues->bindParam(':frontal', $_POST['frontal']);
-            $pliegues->bindParam(':medial', $_POST['medial']);
-            $pliegues->bindParam(':axiliar', $_POST['axiliar']);
+            $pliegues->bindParam(':frontal', $_POST['muslo-frontal']);
+            $pliegues->bindParam(':medial', $_POST['pantorrilla-medial']);
+            $pliegues->bindParam(':axiliar', $_POST['axilar-medial']);
             $pliegues->bindParam(':pectoral', $_POST['pectoral']);
 
             $pliegues->execute();
@@ -133,16 +133,16 @@
             $perimetros->bindParam(':id', $lastIdPaciente);
             $perimetros->bindParam(':cefalico', $_POST['cefalico']);
             $perimetros->bindParam(':cuello', $_POST['cuello']);
-            $perimetros->bindParam(':relajado', $_POST['relajado']);
-            $perimetros->bindParam(':contraido', $_POST['contraido']);
+            $perimetros->bindParam(':relajado', $_POST['mitad-brazo-relajado']);
+            $perimetros->bindParam(':contraido', $_POST['mitad-brazo-contraido']);
             $perimetros->bindParam(':antebrazo', $_POST['antebrazo']);
             $perimetros->bindParam(':muñeca', $_POST['muñeca']);
             $perimetros->bindParam(':mesoesternal', $_POST['mesoesternal']);
             $perimetros->bindParam(':umbilical', $_POST['umbilical']);
             $perimetros->bindParam(':cintura', $_POST['cintura']);
-            $perimetros->bindParam(':caderas', $_POST['caderas']);
+            $perimetros->bindParam(':caderas', $_POST['cadera']);
             $perimetros->bindParam(':muslo', $_POST['muslo']);
-            $perimetros->bindParam(':medio', $_POST['medio']);
+            $perimetros->bindParam(':medio', $_POST['muslo-medio']);
             $perimetros->bindParam(':pantorrilla', $_POST['pantorrilla']);
 
             $perimetros->execute();

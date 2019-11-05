@@ -15,7 +15,7 @@ const UIPacientes = (() => {
             return document.getElementById('buscar-paciente-input').value;
         },
 
-        obtenerId : () => {
+        obtenerId : (event) => {
             let i = event.target;
             let td = i.parentNode;
             tr = td.parentNode;
@@ -28,6 +28,10 @@ const UIPacientes = (() => {
 
         eliminarRegistroDeTabla : () => {
             tr.remove();
+        },
+
+        cargarDatosPacienteEnInputs : (pacienteJSON) => {
+            
         }
     }
 })();

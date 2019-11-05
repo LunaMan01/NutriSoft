@@ -1,7 +1,7 @@
 const PacientesController = (() => {
 
     let guardado = false;
-
+    let idPacienteAEditar;
     // --------------------------------------------------------
     //    FUNCIONES NECESARIAS PARA AGREGAR UN NUEVO PACIENTE
     // --------------------------------------------------------
@@ -143,6 +143,23 @@ const PacientesController = (() => {
 
 
     
+    //------------------------------------------------------
+    // FUNCIONES NECESARIAS PARA ACTUALIZAR UN PACIENTE
+    //------------------------------------------------------
+    const configurarEventoEditar = () => {
+        document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
+            if(e.target.matches('.accion-editar')) {
+                idPacienteAEditar = UIPacientes.obtenerId(e);
+                let pacienteJSON = UIPacientes.obtenerPacienteJSON(idPacienteAEditar);
+                load('html/pacientes/editar-paciente.html', contentPanel);
+                UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON);
+                
+            }
+        }) 
+    }
+
+
+    
     
 
     const addEventos = () => {
@@ -150,12 +167,12 @@ const PacientesController = (() => {
         document.getElementById('nuevo-paciente-btn').addEventListener('click', abrirVentanaNuevoPaciente);
         document.getElementById('buscar-paciente-input').addEventListener('keyup', consultaDinamicaPacientes);
         configurarEventoEliminar();
-
+        configurarEventoEditar();
     }
 
     return {
         init : () => {
-            mostrarTodosLosPacientes();
+            // mostrarTodosLosPacientes();
             addEventos();
         }
     }

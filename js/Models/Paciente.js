@@ -14,9 +14,22 @@ const PacientesModel = (() => {
         },
 
         consultarTodosLosPacientes : () => {
-            let responseText = post('php/pacientes/consultarPacientes', null);
-            console.log(responseText);
-            return responseText;
+            let respuesta = post('php/pacientes/consultarPacientes', null);
+            console.log(respuesta);
+            return respuesta;
+        },
+
+        buscarPaciente : (datoABuscar) => {
+
+            let respuesta = post('php/pacientes/consultarPacientes', 'dato='+datoABuscar);
+            console.log(respuesta);
+            return respuesta;
+        },
+
+        eliminarPaciente : (idPacienteAEliminar) => {
+            let respuesta = post('php/pacientes/consultarPacientes', 'dato='+datoABuscar);
+            console.log(respuesta);
+            return respuesta.trim() == 'success'  ? true : false;
         }
 
     }

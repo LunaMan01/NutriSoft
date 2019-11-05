@@ -11,6 +11,12 @@ const PacientesModel = (() => {
         add : (formulario) => {
             let respuesta = postForm('php/pacientes/nuevoPaciente.php', formulario);
             console.log(respuesta);
+        },
+
+        consultarTodosLosPacientes : () => {
+            let responseText = post('php/pacientes/consultarPacientes', null);
+            console.log(responseText);
+            return responseText;
         }
 
     }

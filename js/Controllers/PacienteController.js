@@ -2,6 +2,9 @@ const PacientesController = (() => {
 
     let guardado = false;
 
+    // --------------------------------------------------------
+    //    FUNCIONES NECESARIAS PARA AGREGAR UN NUEVO PACIENTE
+    // --------------------------------------------------------
     const addDatosGenerales = () => {
         console.log('datos.generales');
         let datos = UIPacientes.obtenerDatosDeFormulario('datos-generales-form');    
@@ -82,6 +85,14 @@ const PacientesController = (() => {
         cargarEventosNuevoPaciente();
     }
 
+    //---------------------------------------
+    //  CONSULTAR TODOS LOS PACIENTES
+    //---------------------------------------
+    const mostrarTodosLosPacientes = () => {
+        UIPacientes.mostrarPacientes(PacientesModel.consultarTodosLosPacientes());
+    }
+
+    
     
     
 
@@ -95,6 +106,7 @@ const PacientesController = (() => {
 
     return {
         init : () => {
+            mostrarTodosLosPacientes();
             addEventos();
         }
     }

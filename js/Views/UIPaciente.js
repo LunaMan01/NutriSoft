@@ -5,6 +5,10 @@ const UIPacientes = (() => {
                 let data = new FormData(form);
                 data.append("value", numero);
                 return data;
+        },
+
+        mostrarPacientes : (pacientes) => {
+            document.getElementById('pacientes-table-body').innerHTML = pacientes;
         }
     }
 })();

@@ -3,42 +3,43 @@
 
     $value = $_POST['value'];
 
-    $lastIdPaciente;
+    $lastIdPaciente = 0;
 
-    try{
+    try{        
         if($value == 1){
+            
             // DATOS GENERALES
-            $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Año_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Año_C, Dia_SC, Mes_SC, Año_SC, Observaciones)
-                VALUES (:nombre, :apellidoP, :apellidoM, :escolaridad, :genero, :diaNa, :mesNa, :añoNa, :calle, :numero, :colonia, :ciudad, :estado, :telefono, :correo, :historial, :diaCon, :mesCon, :añoCon, :diaSiCon, :mesSiCon, :añoSiCon, :observaciones)");
-
+            $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Anio_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Anio_C, Dia_SC, Mes_SC, Anio_SC, Observaciones)
+                VALUES (:nombre, :apellidoP, :apellidoM, :escolaridad, :genero, :diaNa, :mesNa, :anioNa, :calle, :numero, :colonia, :ciudad, :estado, :telefono, :correo, :historial, :diaCon, :mesCon, :anioCon, :diaSiCon, :mesSiCon, :anioSiCon, :observaciones)");
+            $e = '26';
             $generales->bindParam(':nombre', $_POST['nombre']);
             $generales->bindParam(':apellidoP', $_POST['paterno']);
             $generales->bindParam(':apellidoM', $_POST['materno']);
             $generales->bindParam(':escolaridad', $_POST['escolaridad']);
-            $generales->bindParam(':genero', $_POST['genero']);
-            $generales->bindParam(':diaNa', $_POST['diaNacimiento']);
-            $generales->bindParam(':mesNa', $_POST['mesNacimiento']);
-            $generales->bindParam(':añoNa', $_POST['añoNacimiento']);
+            $generales->bindParam(':genero', $_POST['genero']);            
+            $generales->bindParam(':diaNa', $e);//$_POST['diaNacimiento']);            
+            $generales->bindParam(':mesNa', $e);//$_POST['mesNacimiento']);            
+            $generales->bindParam(':anioNa', $e);//$_POST['añoNacimiento']);
             $generales->bindParam(':calle', $_POST['calle']);
-            $generales->bindParam(':numero', $_POST['numero']);
+            $generales->bindParam(':numero', $_POST['numero']);            
             $generales->bindParam(':colonia', $_POST['colonia']);
             $generales->bindParam(':ciudad', $_POST['ciudad']);
             $generales->bindParam(':estado', $_POST['estado']);
             $generales->bindParam(':telefono', $_POST['telefono']);
             $generales->bindParam(':correo', $_POST['correo']);
             $generales->bindParam(':historial', $_POST['historial']);
-            $generales->bindParam(':diaCon', $_POST['diaConsulta']);
-            $generales->bindParam(':mesCon', $_POST['mesConsulta']);
-            $generales->bindParam(':añoCon', $_POST['añoConsulta']);
-            $generales->bindParam(':diaSiCon', $_POST['diaSiguienteConsulta']);
-            $generales->bindParam(':mesSiCon', $_POST['mesSiguienteConsulta']);
-            $generales->bindParam(':añoSiCon', $_POST['añoSiguienteConsulta']);
+            $generales->bindParam(':diaCon', $e);//;$_POST['diaConsulta']);
+            $generales->bindParam(':mesCon', $e);//$_POST['mesConsulta']);
+            $generales->bindParam(':anioCon', $e);//$_POST['añoConsulta']);
+            $generales->bindParam(':diaSiCon', $e);//$_POST['diaSiguienteConsulta']);
+            $generales->bindParam(':mesSiCon', $e);//$_POST['mesSiguienteConsulta']);
+            $generales->bindParam(':anioSiCon', $e);//$_POST['añoSiguienteConsulta']);
             $generales->bindParam(':observaciones', $_POST['observaciones']);
 
             $generales->execute();
 
             $lastIdPaciente = $conn->lastInsertId();
-
+            echo 'this5455';
         } else if($value == 2){
             // ESTILO DE VIDA
             $vida = $conn->prepare("INSERT INTO estilo_vida (ID_PACIENTES, Act_Laboral, Descripcion_Act_Lab, Deportes, Estres)

@@ -21,7 +21,7 @@ const PacientesModel = (() => {
 
         buscarPaciente : (datoABuscar) => {
 
-            let respuesta = post('php/pacientes/consultarPacientes.php', 'dato='+datoABuscar);
+            let respuesta = post('php/pacientes/dinamicaPacientes.php', 'dato='+datoABuscar);
             console.log(respuesta);
             return respuesta;
         },

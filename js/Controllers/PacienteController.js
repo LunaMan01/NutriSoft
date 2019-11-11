@@ -285,8 +285,9 @@ const PacientesController = (() => {
     }
 
     return {
-        init: () => {
-            // mostrarTodosLosPacientes();
+
+        init : () => {
+            mostrarTodosLosPacientes();
             addEventos();
         }
     }

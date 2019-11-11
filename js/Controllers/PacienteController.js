@@ -172,22 +172,88 @@ const PacientesController = (() => {
     //------------------------------------------------------
     // FUNCIONES NECESARIAS PARA ACTUALIZAR UN PACIENTE
     //------------------------------------------------------
+
+    const editarDatosGenerales = () => {
+        console.log('datos.generales');
+        let datos = UIPacientes.obtenerDatosDeFormulario('datos-generales-form');    
+        PacientesModel.actualizar(datos,1,idPacienteAEditar);
+    }
+
+    const editarDatosEstiloVida = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('estilo-vida-form');    
+        PacientesModel.actualizar(datos, 2, idPacienteAEditar);
+    }
+
+    const editarDatosHistoriaClinica = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('historia-clinica-form');   
+        PacientesModel.actualizar(datos, 3, idPacienteAEditar);
+    }
+
+    const editarDatosEtiquetaPacientes = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('etiquetas-paciente-form');    
+        PacientesModel.actualizar(datos,4,idPacienteAEditar);
+    }
+    
+    //Falta añadir a html
+    const editarDatosHabitosToxicos = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('habitos-toxicos-form');    
+        PacientesModel.actualizar(datos, 5, idPacienteAEditar);
+    }
+
+    //Falta añadir a html
+    const editarDatosPlanAlimenticio = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('plan-alimenticio-form');    
+        PacientesModel.actualizar(datos, 6, idPacienteAEditar);
+    }
+
+    const editarDatosMedicionesBasicas = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('mediciones-basicas-form'); 
+        PacientesModel.actualizar(datos, 7, idPacienteAEditar);
+    } 
+
+    const editarDatosBioimpedancia = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('bioimpedancia-paciente-form');
+        PacientesModel.actualizar(datos, 8, idPacienteAEditar);
+    }
+
+    const editarDatosPliegues = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('pliegues-form');    
+        PacientesModel.actualizar(datos, 9, idPacienteAEditar);
+    }
+
+    const editarDatosPerimetros = () => {
+        let datos = UIPacientes.obtenerDatosDeFormulario('perimetros-form');    
+        PacientesModel.actualizar(datos, 10, idPacienteAEditar);
+    }
+
+    const cargarEventosEditarPaciente = () => {
+        document.getElementById('datos-generales-form').addEventListener('submit', editarDatosGenerales);
+        document.getElementById('estilo-vida-form').addEventListener('submit', editarDatosEstiloVida);
+        document.getElementById('historia-clinica-form').addEventListener('submit', editarDatosHistoriaClinica);
+        document.getElementById('etiquetas-paciente-form').addEventListener('submit', editarDatosEtiquetaPacientes);
+        document.getElementById('mediciones-basicas-form').addEventListener('submit', editarDatosMedicionesBasicas);
+        document.getElementById('bioimpedancia-paciente-form').addEventListener('submit', editarDatosBioimpedancia);
+        document.getElementById('pliegues-form').addEventListener('submit', editarDatosPliegues);
+        document.getElementById('perimetros-form').addEventListener('submit', editarDatosPerimetros);
+        configurarCalendariosEnInputs();
+    }
+
     const configurarEventoEditar = () => {
         document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
             if(e.target.matches('.accion-editar')) {
                 idPacienteAEditar = UIPacientes.obtenerId(e);
-                let pacienteJSON = UIPacientes.obtenerPacienteJSON(idPacienteAEditar);
+                //let pacienteJSON = PacientesModel.obtenerPacienteJSON(idPacienteAEditar); //Descomentar cuando json de paciente este completado
                 load('html/pacientes/editar-paciente.html', contentPanel);
-                UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON);
-                
+               // UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
+                cargarEventosEditarPaciente();
             }
         }) 
     }
 
+   
+
 
     
-    
-
     const addEventos = () => {
 
         document.getElementById('nuevo-paciente-btn').addEventListener('click', abrirVentanaNuevoPaciente);

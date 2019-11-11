@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     $value = $_POST['value'];
-
+    echo 'this';
     try{        
         if($value == 1){
             // DATOS GENERALES
@@ -53,7 +53,7 @@
             // HISTORIA CLINICA
             $lastIdPaciente = $_COOKIE['Id'];
 
-            $clinica = $conn->prepare("INSERT INTO historia_clinica (ID_PACIENTES, Motivo_Consulta, Terapeuta_Previa, Cirugias_Realizadas, Tipo_Sangre, Alergias, Diagnostico_Previo, Vacunas, Antecendentes_Familiares) 
+            $clinica = $conn->prepare("INSERT INTO historia_clinica (ID_PACIENTES, Motivo_Consulta, Terapeuta_Previa, Cirugias_Realizadas, Tipo_Sangre, Alergias, Diagnostico_Previo, Vacunas, Antecedentes_Familiares) 
                 VALUES (:id, :motivo, :terapeuta, :cirugias, :sangre, :alergias, :diagnostico, :vacunas, :antecedentes)");
 
             $clinica->bindParam(':id', $lastIdPaciente);
@@ -75,21 +75,43 @@
 
             $etiquetas->execute();
         } else if($value == 5){
-            // HABITOS TOXICOS            
+            // HABITOS TOXICOS
+            $cigarro = cigarro();
+            $alcohol = alcohol();
+            $drogas = drogas(); 
+
+            $habitos = $conn->prepare("INSERT INTO habitos_toxicos (ID_Pacientes, Frecuencia_Cigarro, Cantidad_Cigarro, Frecuencia_Alcohol, Cantidad_Alcohol, Frecuencia_Drogas, Cantidad_Drogas)
+                VALUES (:id, :freC, :canC, :freA, :canA, :freD, :canD)");
+
+            $habitos->bindParam('id', $lastIdPaciente);
+            $habitos->bindParam('freC', $cigarro);
+            $habitos->bindParam('canC', $_POST['cantidad-cigarro']);
+            $habitos->bindParam('freA', $alcohol);
+            $habitos->bindParam('canA', $_POST['cantidad-alcohol']);
+            $habitos->bindParam('freD', $drogas);
+            $habitos->bindParam('canD', $_POST['cantidad-drogas']);
+
+            $habitos->execute();
         } else if($value == 6){
             // PLAN ALIMENTICIO            
         } else if($value == 7){
             // MEDICIONES BASICAS
             $lastIdPaciente = $_COOKIE['Id'];
 
-            $mediciones = $conn->prepape("INSERT INTO mediciones_basicas (ID_PACIENTES, Estatura, Peso, Factor_Act, Embarazo)
+            $mediciones = $conn->prepare("INSERT INTO mediciones_basicas (ID_PACIENTES, Estatura, Peso, Factor_Act, Embarazo)
                 VALUES (:id, :estatura, :peso, :actividad, :embarazo)");
 
-            $mediciones->bindPAram(':id', $lastIdPaciente);
-            $mediciones->bindPAram(':estatura', $_POST['estatura']);
-            $mediciones->bindPAram(':peso', $_POST['peso']);
-            $mediciones->bindPAram(':actividad', $_POST['factor-actividad']);
-            $mediciones->bindPAram(':embarazo', $_POST['embarazo']);
+            $mediciones->bindParam(':id', $lastIdPaciente);
+            $mediciones->bindParam(':estatura', $_POST['estatura']);
+            $mediciones->bindParam(':peso', $_POST['peso']);
+            $mediciones->bindParam(':actividad', $_POST['factor-actividad']);
+            $emb = 0;
+            if(empty($_POST['embarazo']))
+                $mediciones->bindParam(':embarazo', $emb);
+            else{
+                $emb = 1;
+                $mediciones->bindParam(':embarazo', $emb);
+            }
 
             $mediciones->execute();
         } else if($value == 8){
@@ -135,8 +157,8 @@
             // PERIMETROS
             $lastIdPaciente = $_COOKIE['Id'];
             
-            $perimetros = $conn->prepare("INSERT INTO perimetros (ID_PACIENTES, Cefalico, Cuello, Brazo_Relajado, Brazo_Contraido, Antebrazo, Muñeca, Meseoesternal, Umbilical, Cintura, Caderas, Muslo, Muslo_Medio, Pantorrilla)
-                VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muñeca, :mesoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
+            $perimetros = $conn->prepare("INSERT INTO perimetros (ID_PACIENTES, Cefalico, Cuello, Brazo_Relajado, Brazo_Contraido, Antebrazo, Muneca, Meseoesternal, Umbilical, Cintura, Caderas, Muslo, Muslo_Medio, Pantorrilla)
+                VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muneca, :mesoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
 
             $perimetros->bindParam(':id', $lastIdPaciente);
             $perimetros->bindParam(':cefalico', $_POST['cefalico']);
@@ -144,7 +166,7 @@
             $perimetros->bindParam(':relajado', $_POST['mitad-brazo-relajado']);
             $perimetros->bindParam(':contraido', $_POST['mitad-brazo-contraido']);
             $perimetros->bindParam(':antebrazo', $_POST['antebrazo']);
-            $perimetros->bindParam(':muñeca', $_POST['muñeca']);
+            $perimetros->bindParam(':muneca', $_POST['muneca']);
             $perimetros->bindParam(':mesoesternal', $_POST['mesoesternal']);
             $perimetros->bindParam(':umbilical', $_POST['umbilical']);
             $perimetros->bindParam(':cintura', $_POST['cintura']);
@@ -158,5 +180,75 @@
     }catch(PDOException $e){
         echo 'Error: '.$e->getMessage();
     }
+
+    function cigarro(){
+        if(in_array('0', $_POST['frecuencia-cigarro'])){
+            $cigarro = 0;
+        }
+
+        if(in_array('1', $_POST['frecuencia-cigarro'])){
+            $cigarro = 1;
+        }
+
+        if(in_array('2', $_POST['frecuencia-cigarro'])){
+            $cigarro = 2;
+        }
+
+        if(in_array('3', $_POST['frecuencia-cigarro'])){
+            $cigarro = 3;
+        }
+
+        if(in_array('4', $_POST['frecuencia-cigarro'])){
+            $cigarro = 4;
+        }
+        return $cigarro ;
+    }
+
+    function alcohol(){
+        if(in_array('0', $_POST['frecuencia-alcohol'])){
+            $alcohol = 0;
+        }
+
+        if(in_array('1', $_POST['frecuencia-alcohol'])){
+            $alcohol = 1;
+        }
+
+        if(in_array('2', $_POST['frecuencia-alcohol'])){
+            $alcohol = 2;
+        }
+
+        if(in_array('3', $_POST['frecuencia-alcohol'])){
+            $alcohol = 3;
+        }
+
+        if(in_array('4', $_POST['frecuencia-alcohol'])){
+            $alcohol = 4;
+        }
+        return $alcohol;
+    }
+
+    function drogas(){
+        if(in_array('0', $_POST['frecuencia-drogas'])){
+            $drogas = 0;
+        }
+
+        if(in_array('1', $_POST['frecuencia-drogas'])){
+            $drogas = 1;
+        }
+
+        if(in_array('2', $_POST['frecuencia-drogas'])){
+            $drogas = 2;
+        }
+
+        if(in_array('3', $_POST['frecuencia-drogas'])){
+            $drogas = 3;
+        }
+
+        if(in_array('4', $_POST['frecuencia-drogas'])){
+            $drogas = 4;
+        }
+        return $drogas;
+    }
+
     $conn = null;
 ?>

@@ -247,10 +247,24 @@ const PacientesController = (() => {
                // UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
                 cargarEventosEditarPaciente();
             }
-        }) 
+        });
     }
 
+    //------------------------------------------------------
+    // FUNCIONES NECESARIAS PARA VER LOS DATOS DE UN PACIENTE
+    //------------------------------------------------------
    
+    const configurarEventoVerPaciente = () => {
+        document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
+            if(e.target.matches('.accion-ver')) {
+                idPacienteAEditar = UIPacientes.obtenerId(e);
+                //let pacienteJSON = PacientesModel.obtenerPacienteJSON(idPacienteAEditar); //Descomentar cuando json de paciente este completado
+                load('html/pacientes/ver-paciente.html', contentPanel);
+               // UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
+    
+            }
+        });
+    }
 
 
     
@@ -260,6 +274,7 @@ const PacientesController = (() => {
         document.getElementById('buscar-paciente-input').addEventListener('keyup', consultaDinamicaPacientes);
         configurarEventoEliminar();
         configurarEventoEditar();
+        configurarEventoVerPaciente();
     }
 
     return {

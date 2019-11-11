@@ -406,3 +406,5 @@ COMMIT;
 ALTER TABLE pacientes CHANGE Año_N Anio_N char(4);
 ALTER TABLE pacientes CHANGE Año_C Anio_C char(4);
 ALTER TABLE pacientes CHANGE Año_SC Anio_SC char(4);
+ALTER TABLE perimetros CHANGE Muñeca Muneca float;
+

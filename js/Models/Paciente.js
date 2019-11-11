@@ -14,14 +14,14 @@ const PacientesModel = (() => {
         },
 
         consultarTodosLosPacientes : () => {
-            let respuesta = post('php/pacientes/consultarPacientes', null);
+            let respuesta = post('php/pacientes/consultarPacientes.php', null);
             console.log(respuesta);
             return respuesta;
         },
 
         buscarPaciente : (datoABuscar) => {
 
-            let respuesta = post('php/pacientes/consultarPacientes', 'dato='+datoABuscar);
+            let respuesta = post('php/pacientes/consultarPacientes.php', 'dato='+datoABuscar);
             console.log(respuesta);
             return respuesta;
         },

@@ -3,11 +3,8 @@
 
     $value = $_POST['value'];
 
-    $lastIdPaciente = 0;
-
     try{        
         if($value == 1){
-            
             // DATOS GENERALES
             $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Anio_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Anio_C, Dia_SC, Mes_SC, Anio_SC, Observaciones)
                 VALUES (:nombre, :apellidoP, :apellidoM, :escolaridad, :genero, :diaNa, :mesNa, :anioNa, :calle, :numero, :colonia, :ciudad, :estado, :telefono, :correo, :historial, :diaCon, :mesCon, :anioCon, :diaSiCon, :mesSiCon, :anioSiCon, :observaciones)");
@@ -37,11 +34,11 @@
             $generales->bindParam(':observaciones', $_POST['observaciones']);
 
             $generales->execute();
-
-            $lastIdPaciente = $conn->lastInsertId();
-            echo 'this5455';
+            setcookie("Id", $conn->lastInsertId(), time() + (86400), "/");
         } else if($value == 2){
             // ESTILO DE VIDA
+            $lastIdPaciente = $_COOKIE['Id'];
+            
             $vida = $conn->prepare("INSERT INTO estilo_vida (ID_PACIENTES, Act_Laboral, Descripcion_Act_Lab, Deportes, Estres)
                 VALUES(:id, :actividad, :descripcion, :deportes, :estres)");
 
@@ -54,6 +51,8 @@
             $vida->execute();
         } else if($value == 3){
             // HISTORIA CLINICA
+            $lastIdPaciente = $_COOKIE['Id'];
+
             $clinica = $conn->prepare("INSERT INTO historia_clinica (ID_PACIENTES, Motivo_Consulta, Terapeuta_Previa, Cirugias_Realizadas, Tipo_Sangre, Alergias, Diagnostico_Previo, Vacunas, Antecendentes_Familiares) 
                 VALUES (:id, :motivo, :terapeuta, :cirugias, :sangre, :alergias, :diagnostico, :vacunas, :antecedentes)");
 
@@ -81,6 +80,8 @@
             // PLAN ALIMENTICIO            
         } else if($value == 7){
             // MEDICIONES BASICAS
+            $lastIdPaciente = $_COOKIE['Id'];
+
             $mediciones = $conn->prepape("INSERT INTO mediciones_basicas (ID_PACIENTES, Estatura, Peso, Factor_Act, Embarazo)
                 VALUES (:id, :estatura, :peso, :actividad, :embarazo)");
 
@@ -93,6 +94,8 @@
             $mediciones->execute();
         } else if($value == 8){
             // BIOIMPEDANCIA
+            $lastIdPaciente = $_COOKIE['Id'];
+
             $bioimpedancia = $conn->prepare("INSERT INTO bioimpedancia (ID_PACIENTES, Grasa_Total, Grasa_Superior, Grasa_Inferior, Grasa_Viseral, Masa_Libre_Grasa, Masa_Muscular, Peso_Oseo, Agua_Corporal, Edad_Metabolica)
                 VALUES (:id, :total, :superior, :inferior, :viseral, :libre, :muscular, :oseo, :agua, :edad)");
 
@@ -110,6 +113,8 @@
             $bioimpedancia->execute();
         } else if($value == 9){
             // PLIEGUES
+            $lastIdPaciente = $_COOKIE['Id'];
+
             $pliegues = $conn->prepare("INSERT INTO pliegues (ID_PACIENTES, Subescapular, Triceps, Biceps, Ileocrestal, Suprailiaco, Abdominal, muslo_Frontal, Pantorrilla_Medial, Axiliar_Medial, Pectoral)
                 VALUES (:id, :subescapular, :tricep, :bicep, :ileocrestal, :suprailiaco, :abdominal, :frontal, :medial, :axiliar, :pectoral)");
 
@@ -128,6 +133,8 @@
             $pliegues->execute();
         } else if($value == 10){
             // PERIMETROS
+            $lastIdPaciente = $_COOKIE['Id'];
+            
             $perimetros = $conn->prepare("INSERT INTO perimetros (ID_PACIENTES, Cefalico, Cuello, Brazo_Relajado, Brazo_Contraido, Antebrazo, Muñeca, Meseoesternal, Umbilical, Cintura, Caderas, Muslo, Muslo_Medio, Pantorrilla)
                 VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muñeca, :mesoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
 

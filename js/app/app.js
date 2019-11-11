@@ -34,6 +34,7 @@ const contentPanel = document.querySelector('.content');
 
 const HTMLRoutes = {
   pacientes: 'html/pacientes/pacientes.html',
+  alimentos: 'php/alimentos.php'
 
 
 };
@@ -66,6 +67,10 @@ const UIController = (() => {
       }
     },
 
+    abrirAlimentos : () => {
+      load(HTMLRoutes.alimentos, contentPanel);
+      changeActiveItem('li-alimentos');
+    }
 
   }
 })();
@@ -77,6 +82,7 @@ const controller = (() => {
 
   const setUpEvents = () => {
     document.getElementById('pacientes-link').addEventListener('click', UIController.abrirPacientes);
+    document.getElementById('alimentos-link').addEventListener('click', UIController.abrirAlimentos);
 
   }
 

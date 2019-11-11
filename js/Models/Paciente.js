@@ -35,7 +35,13 @@ const PacientesModel = (() => {
         obtenerPacienteJSON : (idPaciente) => {
             let respuesta = post('php/pacientes/pacienteJSON', 'id='+idPaciente);
             return JSON.parse(respuesta);
-        }
+        },
 
+        actualizar : (data, numeroDeFormulario, idPaciente) => {
+            data.append('value', numeroDeFormulario);    
+            data.append('id-paciente', idPaciente);
+            let respuesta = postForm('php/pacientes/nuevoPaciente.php', data);
+            console.log(respuesta);
+        }
     }
 })();

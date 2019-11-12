@@ -27,13 +27,13 @@ const PacientesModel = (() => {
         },
 
         eliminarPaciente : (idPacienteAEliminar) => {
-            let respuesta = post('php/pacientes/eliminarPaciente', 'id='+idPacienteAEliminar);
+            let respuesta = post('php/pacientes/eliminarPacientes.php', 'id='+idPacienteAEliminar);
             console.log(respuesta);
             return respuesta.trim() == 'success'  ? true : false;
         },
 
         obtenerPacienteJSON : (idPaciente) => {
-            let respuesta = post('php/pacientes/pacienteJSON', 'id='+idPaciente);
+            let respuesta = post('php/pacientes/pacienteJSON.php', 'id='+idPaciente);
             return JSON.parse(respuesta);
         },
 

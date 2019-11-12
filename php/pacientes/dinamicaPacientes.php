@@ -1,11 +1,11 @@
 <?php 
     include '../conexion.php';
 
-    $dato = $_POST['buscar-paciente-input'];
+    $dato = $_POST['dato'];
 
     try{
         $query = $conn->prepare("SELECT ID_PACIENTES, Nombre_P, Ap_P, Telefono, Correo FROM Pacientes
-            WHERE Nombre_P LIKE ? OR Ap_P LIKE = ? OR Telefono LIKE ? OR Correo LIKE ?");
+            WHERE Nombre_P LIKE ? OR Ap_P LIKE ? OR Telefono LIKE ? OR Correo LIKE ?");
 
         $query->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
     

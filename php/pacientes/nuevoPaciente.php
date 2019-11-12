@@ -2,7 +2,12 @@
     include '../conexion.php';
 
     $value = $_POST['value'];
-    echo 'this';
+    $fechaNacimiento = $_POST['fecha-nacimiento'];
+    $fechaConsulta = $_POST['fecha-consulta'];
+    $fechaSiguineteConsulta = $_POST['fecha-siguiente-consulta'];
+
+    echo $fechaNacimiento;
+
     try{        
         if($value == 1){
             // DATOS GENERALES

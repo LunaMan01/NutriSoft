@@ -2,7 +2,14 @@
     include '../conexion.php';
 
     $value = $_POST['value'];
-    echo 'this';
+    $fechaNacimiento = $_POST['fecha-nacimiento'];
+    $fechaConsulta = $_POST['fecha-consulta'];
+    $fechaSiguineteConsulta = $_POST['fecha-siguiente-consulta'];
+
+    $fechaN = explode("/", $fechaNacimiento);
+    $fechaC = explode("/", $fechaConsulta);
+    $fechaSC = explode("/", $fechaSiguineteConsulta);
+
     try{        
         if($value == 1){
             // DATOS GENERALES
@@ -14,9 +21,9 @@
             $generales->bindParam(':apellidoM', $_POST['materno']);
             $generales->bindParam(':escolaridad', $_POST['escolaridad']);
             $generales->bindParam(':genero', $_POST['genero']);            
-            $generales->bindParam(':diaNa', $e);//$_POST['diaNacimiento']);            
-            $generales->bindParam(':mesNa', $e);//$_POST['mesNacimiento']);            
-            $generales->bindParam(':anioNa', $e);//$_POST['añoNacimiento']);
+            $generales->bindParam(':diaNa', $fechaN[0]);            
+            $generales->bindParam(':mesNa', $fechaN[1]);            
+            $generales->bindParam(':anioNa', $fechaN[2]);
             $generales->bindParam(':calle', $_POST['calle']);
             $generales->bindParam(':numero', $_POST['numero']);            
             $generales->bindParam(':colonia', $_POST['colonia']);
@@ -25,12 +32,12 @@
             $generales->bindParam(':telefono', $_POST['telefono']);
             $generales->bindParam(':correo', $_POST['correo']);
             $generales->bindParam(':historial', $_POST['historial']);
-            $generales->bindParam(':diaCon', $e);//;$_POST['diaConsulta']);
-            $generales->bindParam(':mesCon', $e);//$_POST['mesConsulta']);
-            $generales->bindParam(':anioCon', $e);//$_POST['añoConsulta']);
-            $generales->bindParam(':diaSiCon', $e);//$_POST['diaSiguienteConsulta']);
-            $generales->bindParam(':mesSiCon', $e);//$_POST['mesSiguienteConsulta']);
-            $generales->bindParam(':anioSiCon', $e);//$_POST['añoSiguienteConsulta']);
+            $generales->bindParam(':diaCon', $fechaC[0]);
+            $generales->bindParam(':mesCon', $fechaC[1]);
+            $generales->bindParam(':anioCon', $fechaC[2]);
+            $generales->bindParam(':diaSiCon', $fechaSC[0]);
+            $generales->bindParam(':mesSiCon', $fechaSC[1]);
+            $generales->bindParam(':anioSiCon', $fechaSC[2]);
             $generales->bindParam(':observaciones', $_POST['observaciones']);
 
             $generales->execute();

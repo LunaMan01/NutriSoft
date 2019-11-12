@@ -2,19 +2,22 @@ const UIPacientes = (() => {
 
     const cargarDatosGenerales  = (pacienteJSON) => {
         document.getElementById('nombre').value = pacienteJSON.nombre;
-        document.getElementById('paterno').value = pacienteJSON.nombre;
-        document.getElementById('materno').value = pacienteJSON.nombre;
-        document.getElementById('genero').value = pacienteJSON.nombre;
-        document.getElementById('calle').value = pacienteJSON.nombre;
-        document.getElementById('numero').value = pacienteJSON.nombre;
-        document.getElementById('colonia').value = pacienteJSON.nombre;
-        document.getElementById('ciudad').value = pacienteJSON.nombre;
-        document.getElementById('estado').value = pacienteJSON.nombre;
-        document.getElementById('escolaridad').value = pacienteJSON.nombre;
-        document.getElementById('correo').value = pacienteJSON.nombre;
-        document.getElementById('telefono').value = pacienteJSON.nombre;
-        document.getElementById('historial').value = pacienteJSON.nombre;
-        document.getElementById('observaciones').value = pacienteJSON.nombre;
+        document.getElementById('paterno').value = pacienteJSON.paterno;
+        document.getElementById('materno').value = pacienteJSON.materno;
+        document.getElementById('genero').value = pacienteJSON.genero;
+        document.getElementById('fecha-nacimiento').value = pacienteJSON.fechaNacimiento;
+        document.getElementById('calle').value = pacienteJSON.calle;
+        document.getElementById('numero').value = pacienteJSON.numero;
+        document.getElementById('colonia').value = pacienteJSON.colonia;
+        document.getElementById('ciudad').value = pacienteJSON.ciudad;
+        document.getElementById('estado').value = pacienteJSON.estado;
+        document.getElementById('escolaridad').value = pacienteJSON.escolaridad;
+        document.getElementById('correo').value = pacienteJSON.correo;
+        document.getElementById('telefono').value = pacienteJSON.telefono;
+        document.getElementById('historial').value = pacienteJSON.historial;
+        document.getElementById('fecha-consulta').value = pacienteJSON.fechaConsulta;
+        document.getElementById('fecha-siguiente-consulta').value = pacienteJSON.fechaSiguienteConsulta;
+        document.getElementById('observaciones').value = pacienteJSON.observaciones;
     }
 
     const cargarEstiloDeVida = (pacienteJSON) => {

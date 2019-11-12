@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -8,24 +8,20 @@
 		<script src="jquery-3.4.1.js"> </script>
 	</head>
 
-	<body>
-		<h1>AAAAAAAAAAAA</h1>
+	<body> -->
+		<h1>ALIMENTOS</h1>
 		<br><br>
-		<section >
-			<!--<h4>Formularios</h4> 
-		-->
-			<iframe name = "iframeAli"> </iframe>
-		</section>
-		<nav>
+		
+		<nav class="nav navbar">
 		<table>
 		<tr> 
 			<td>
-				<a href="AgregarAli.php"  target = "iframeAli"> AGREGAR</a>
+				<a href="php\AgregarAli.php"  target = "iframeAli"> AGREGAR</a>
 				
 			</td>
 			<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 			<td>
-				<a href="BuscarAli.php"  target = "iframeAli"> BUSCAR </a>
+				<a href="php\BuscarAli.php"  target = "iframeAli"> BUSCAR </a>
 			</td>
 		</tr>
 		<TR></TR><tr></tr><tr></tr><TR></TR><tr></tr><tr></tr><TR></TR><tr></tr><tr></tr>
@@ -40,5 +36,10 @@
 		</tr>
 		</table>
 		</nav>
-	</body>
-</html>
+		<section >
+			<!--<h4>Formularios</h4> 
+		-->
+			<iframe name = "iframeAli" class="container-fluid" style="heigth=1500px;"> </iframe>
+		</section>
+	<!-- </body>
+</html> -->

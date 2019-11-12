@@ -5,7 +5,7 @@
         $pacientes = "SELECT ID_PACIENTES, Nombre_P, Ap_P, Telefono, Correo FROM Pacientes";
 
         foreach($conn->query($pacientes) as $row){
-            echo '<tr class="bg-warning">                    
+            echo '<tr class="">                    
                     <td>'.$row['Nombre_P'].' '.$row['Ap_P'].'</td>'.
                     '<td>'.$row['Telefono'].'</td>'.
                     '<td>'.$row['Correo'].'</td>'.

@@ -3,65 +3,89 @@
 	<head>
 		<title> AGREGAR ALIMENTOS </title>
 	</head> -->
-	<body>
-		<h1>Agregar alimentosss</h1>
-		<div id="agregar" target="iframeA">
-			<FORM action="AgregarAli.php" method="POST">
-				<table>
-					<tr>
-						<td><label for="ID_ALIMENTOS"> ID_ALIMENTOS </label></td>
-						<td><input type="text" name="ID_ALIMENTOS" value="" pattern="[0-9]{1,5}" title="numero en rango de 1-99999"></td>
-					</tr>
-					<tr>
-						<td><label for="ID_GRUPOS"> ID_GRUPOS </label></td>
-						<td><input type="text" name="ID_GRUPOS" value="" pattern="[0-9]{1,5}" title="Numero dentro del rango de 1-99999"></td>
-					</tr>
-					<tr>
-						<td><label for="Nombre_Ali"> Nombre </label></td>
-						<td><input type="text" name="Nombre_Ali" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"></td>
-					</tr>
-					<tr>
-						<td><label for="Cantidad_Ali"> Cantidad </label></td>
-						<td><input type="text" name="Cantidad_Ali" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"></td>
-					</tr>
-					<tr>
-						<td><label for="Unidad_Ali"> Unidad </label></td>
-						<td><input type="text" name="Unidad_Ali" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"></td>
-					</tr>
-					<tr>
-						<td><label for="Peso_Bruto"> Peso Bruto </label></td>
-						<td><input type="text" name="Peso_Bruto" value="" pattern="[0-9]{1,5}" title="Numero que este dentro del rango de 1-99999"></td>
-					</tr>
-					<tr>
-						<td><label for="Peso_Neto"> Peso Neto </label></td>
-						<td><input type="text" name="Peso_Neto" value="" pattern="[0-9]{1,5}" title="Solo numeros"></td>
-					</tr>
-					<tr>
-						<td><label for="Energia_Kal_Ali"> Energias Kal. </label></td>
-						<td><input type="text" name="Energia_Kal_Ali" value="" pattern="[0-9]{1,5}" title="Solo numeros"></td>
-					</tr>
-					<tr>
-						<td><label for="Proteinas_Ali"> Proteinas </label></td>
-						<td><input type="text" name="Proteinas_Ali" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal"></td>
-					</tr>
-					<tr>
-						<td><label for="Lipidos_Ali"> Lipidos </label></td>
-						<td><input type="text" name="Lipidos_Ali" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal"></td>
-					</tr>
-					<tr>
-						<td><label for="Hidratos_Carbono_Ali"> Hidratos de Carbono </label></td>
-						<td><input type="text" name="Hidratos_Carbono_Ali" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal"></td>
-					</tr>
-				</table>
+	<!-- <body> -->
+		<div class="card-pacientes">
+			<div class="container">
+				<h3 class="mb-5">Nuevo alimento</h3>
+				<div id="agregar">
+					<form action="php\AgregarAli.php" method="POST">				
+								<div class="form-group">
+									<label for="ID_ALIMENTOS"> ID_ALIMENTOS </label>
+								
+									<input type="text" class="form-control" name="ID_ALIMENTOS" value="" pattern="[0-9]{1,5}" title="numero en rango de 1-99999">
+								</div>
+							
+								<div class="form-group">
+									<label for="ID_GRUPOS"> ID_GRUPOS </label>
+								
+									<input type="text" name="ID_GRUPOS" class="form-control" value="" pattern="[0-9]{1,5}" title="Numero dentro del rango de 1-99999">
+								</div>
+							
+								<div class="form-group">
+									<label for="Nombre_Ali"> Nombre </label>
+								
+									<input type="text" name="Nombre_Ali" class="form-control" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+								</div>
+							
+								<div class="form-group">
+									<label for="Cantidad_Ali"> Cantidad </label>
+								
+									<input type="text" name="Cantidad_Ali" class="form-control" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+								</div>
+								<div class="form-group">
+									<label class="form-group" for="Unidad_Ali"> Unidad </label>
+									<input type="text" name="Unidad_Ali" class="form-control" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+								</div>
+													
+								
+							
+								<div class="form-group">
+									<label for="Peso_Bruto"> Peso Bruto </label>
+								
+									<input type="text" name="Peso_Bruto" class="form-control" value="" pattern="[0-9]{1,5}" title="Numero que este dentro del rango de 1-99999">
+								<div>
+							
+								<div class="form-group">
+									<label for="Peso_Neto"> Peso Neto </label>
+								
+									<input type="text" name="Peso_Neto" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros">
+								<div>
+							
+								<div class="form-group">
+									<label for="Energia_Kal_Ali"> Energias Kal. </label>
+									<input type="text" name="Energia_Kal_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros">
+								<div>
+							
+								<div class="form-group">
+									<label for="Proteinas_Ali"> Proteinas </label>
+								
+									<input type="text" name="Proteinas_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal">
+								<div>
+							
+								<div class="form-group">
+									<label for="Lipidos_Ali"> Lipidos </label>
+								
+									<input type="text" name="Lipidos_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal">
+								<div>
+							
+								<div class="form-group">
+									<label for="Hidratos_Carbono_Ali"> Hidratos de Carbono </label>
+								
+									<input type="text" name="Hidratos_Carbono_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal">
+								</div>				
 
-				<input type="submit" value="Ingresar" name="Agregar">
-				<input type="reset" value="Limpiar">
-			</FORM>
+						<div class="text-right">
+							<input type="reset" value="Limpiar" class="btn btn-secondary">
+							<input type="submit" value="Ingresar" name="Agregar" class="btn btn-success">
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 
 		<!--CODIGO INSERTAR GRUPOS_ALi -->
 		<?php
-			echo 'SIIII';
+			
 			if (isset($_POST['Agregar'])) {
 				$conectar=mysqli_connect('localhost','root','','sdn');
 				if (!$conectar) {

@@ -6,9 +6,9 @@
 
 /*a*/
 
-.auto-height {
+/* .auto-height {
     height: auto !important;
-}
+} */
 
 /*b*/
 
@@ -21,7 +21,7 @@
   background: #F0F3F8;
   /* border-left: 2px solid #ffffff;
   border-radius: 40px 0px 0px 40px; */
-  height: 100vh;
+  height: 100%;
 }
 
 .acciones {

@@ -34,7 +34,7 @@ const contentPanel = document.querySelector('.content');
 
 const HTMLRoutes = {
   pacientes: 'html/pacientes/pacientes.html',
-  alimentos: 'php/alimentos.php'
+  alimentos: 'html/alimentos/alimentos.html'
 
 
 };
@@ -70,6 +70,10 @@ const UIController = (() => {
     abrirAlimentos : () => {
       load(HTMLRoutes.alimentos, contentPanel);
       changeActiveItem('li-alimentos');
+      addControllerScript('alimentos-controller', 'js/Controllers/AlimentosController.js');
+      if (typeof AlimentosController !== 'undefined') {
+        AlimentosController.init();
+      }
     }
 
   }

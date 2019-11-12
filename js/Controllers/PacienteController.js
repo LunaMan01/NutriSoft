@@ -71,7 +71,6 @@ const PacientesController = (() => {
     const configurarCalendariosEnInputs = () => {
         new Lightpick({
             field: document.getElementById('fecha-nacimiento'),
-            minDate: moment(),
             onSelect: () => {
 
             }

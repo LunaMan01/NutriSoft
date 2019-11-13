@@ -6,6 +6,7 @@
 
     try{
         if($value == 1){
+            
             // MEDICIONES BASICAS
             $fechaNacimiento = $_POST['fecha-nacimiento'];
             $fechaConsulta = $_POST['fecha-consulta'];
@@ -23,7 +24,7 @@
                 Genero = :genero,
                 Dia_N = :diaN,
                 Mes_N = :mesN,
-                Anio_N = :añoN,
+                Anio_N = :anioN,
                 Calle_P = :calle,
                 Num_P = :numero,
                 Col_P = :colonia,
@@ -34,10 +35,10 @@
                 Historial_P = :historial,
                 Dia_C = :diaC,
                 Mes_C = :mesC,
-                Anio_C = añoC,
+                Anio_C = :anioC,
                 Dia_SC = :diaS,
                 Mes_SC = :mesS,
-                Anio_SC = ;añoS,
+                Anio_SC = :anioS,
                 Observaciones = :observaciones
                 WHERE ID_PACIENTES = ".$id);
 
@@ -48,7 +49,7 @@
             $generales->bindParam(':genero', $_POST['genero']);            
             $generales->bindParam(':diaN', $fechaN[0]);            
             $generales->bindParam(':mesN', $fechaN[1]);            
-            $generales->bindParam(':añoN', $fechaN[2]);
+            $generales->bindParam(':anioN', $fechaN[2]);
             $generales->bindParam(':calle', $_POST['calle']);
             $generales->bindParam(':numero', $_POST['numero']);            
             $generales->bindParam(':colonia', $_POST['colonia']);
@@ -59,10 +60,10 @@
             $generales->bindParam(':historial', $_POST['historial']);
             $generales->bindParam(':diaC', $fechaC[0]);
             $generales->bindParam(':mesC', $fechaC[1]);
-            $generales->bindParam(':añoC', $fechaC[2]);
+            $generales->bindParam(':anioC', $fechaC[2]);
             $generales->bindParam(':diaS', $fechaS[0]);
             $generales->bindParam(':mesS', $fechaS[1]);
-            $generales->bindParam(':añoS', $fechaS[2]);
+            $generales->bindParam(':anioS', $fechaS[2]);
             $generales->bindParam(':observaciones', $_POST['observaciones']);
             $generales->execute();
 
@@ -166,14 +167,14 @@
             $bioimpedancia = $conn->prepare("UPDATE bioimpedancia SET
                 Grasa_Total = :total,
                 Grasa_Superior = :superior,
-                Grasa_Inferior = inferior,
+                Grasa_Inferior = :inferior,
                 Grasa_Viseral = :viseral,
                 Masa_Libre_Grasa = :libre,
                 Masa_Muscular = :muscular,
                 Peso_Oseo = :oseo,
                 Agua_Corporal = :agua,
                 Edad_Metabolica = :edad
-                WHERE ID_PACIENTE = ".$id);
+                WHERE ID_PACIENTES = ".$id);
 
             $bioimpedancia->bindParam(':total', $_POST['grasa-total']);
             $bioimpedancia->bindParam(':superior', $_POST['grasa-superior']);

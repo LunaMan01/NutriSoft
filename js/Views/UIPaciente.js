@@ -33,7 +33,7 @@ const UIPacientes = (() => {
         document.getElementById('cirugias').value = pacienteJSON.cirugias;
         document.getElementById('tipo-sangre').value = pacienteJSON.sangre;
         document.getElementById('alergias').value = pacienteJSON.alergias;
-        document.getElementById('diagnostivo-previo').value = pacienteJSON.diagnostico;
+        document.getElementById('diagnostico-previo').value = pacienteJSON.diagnostico;
         document.getElementById('vacunas').value = pacienteJSON.vacunas;
         document.getElementById('antecedentes-heredo').value = pacienteJSON.antecedentes;
     }
@@ -84,7 +84,7 @@ const UIPacientes = (() => {
         document.getElementById('abdominal').value = pacienteJSON.abdomianl;
         document.getElementById('muslo-frontal').value = pacienteJSON.frontal;
         document.getElementById('pantorrilla-medial').value = pacienteJSON.medial;
-        document.getElementById('axiliar-medial').value = pacienteJSON.axiliar;
+        document.getElementById('axilar-medial').value = pacienteJSON.axiliar;
         document.getElementById('pectoral').value = pacienteJSON.pectoral;
 
     }
@@ -142,7 +142,10 @@ const UIPacientes = (() => {
             cargarDatosGenerales(pacienteJSON);
             cargarEstiloDeVida(pacienteJSON);
             cargarHistoriaClinica(pacienteJSON);
-            
+            // cargarEtiquetasPaciente(pacienteJSON);
+            cargarHabitosToxicos(pacienteJSON);
+            cargarPlanAlimenticio(pacienteJSON);
+            cargarMedicionesBasicas(pacienteJSON);
             cargarBioimpedancia(pacienteJSON);
             cargarPliegues(pacienteJSON);
             cargarPerimetros(pacienteJSON);

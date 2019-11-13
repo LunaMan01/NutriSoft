@@ -15,7 +15,6 @@
             // DATOS GENERALES
             $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Anio_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Anio_C, Dia_SC, Mes_SC, Anio_SC, Observaciones)
                 VALUES (:nombre, :apellidoP, :apellidoM, :escolaridad, :genero, :diaNa, :mesNa, :anioNa, :calle, :numero, :colonia, :ciudad, :estado, :telefono, :correo, :historial, :diaCon, :mesCon, :anioCon, :diaSiCon, :mesSiCon, :anioSiCon, :observaciones)");
-            $e = '26';
             $generales->bindParam(':nombre', $_POST['nombre']);
             $generales->bindParam(':apellidoP', $_POST['paterno']);
             $generales->bindParam(':apellidoM', $_POST['materno']);
@@ -76,11 +75,11 @@
             $clinica->execute();
         } else if($value == 4){
             // ETIQUETAS DE PACIENTE
-            $etiquetas = $conn->prepare("");
+            // $etiquetas = $conn->prepare("");
 
-            $etiquetas->bindParam(':', $_POST['']);
+            // $etiquetas->bindParam(':', $_POST['']);
 
-            $etiquetas->execute();
+            // $etiquetas->execute();
         } else if($value == 5){
             // HABITOS TOXICOS
             $cigarro = cigarro();
@@ -100,7 +99,13 @@
 
             $habitos->execute();
         } else if($value == 6){
-            // PLAN ALIMENTICIO            
+            // PLAN ALIMENTICIO
+            $plan = $conn->prepare("INSERT INTO plan_alimenticio (Descripcion)
+                VALUES (:descripcion)");
+
+            $plan->bindParam('descripcion', $_POST['plan-alimenticio']);
+
+            $plan->execute();
         } else if($value == 7){
             // MEDICIONES BASICAS
             $lastIdPaciente = $_COOKIE['Id'];
@@ -165,7 +170,7 @@
             $lastIdPaciente = $_COOKIE['Id'];
             
             $perimetros = $conn->prepare("INSERT INTO perimetros (ID_PACIENTES, Cefalico, Cuello, Brazo_Relajado, Brazo_Contraido, Antebrazo, Muneca, Meseoesternal, Umbilical, Cintura, Caderas, Muslo, Muslo_Medio, Pantorrilla)
-                VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muneca, :mesoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
+                VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muneca, :meseoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
 
             $perimetros->bindParam(':id', $lastIdPaciente);
             $perimetros->bindParam(':cefalico', $_POST['cefalico']);
@@ -174,7 +179,7 @@
             $perimetros->bindParam(':contraido', $_POST['mitad-brazo-contraido']);
             $perimetros->bindParam(':antebrazo', $_POST['antebrazo']);
             $perimetros->bindParam(':muneca', $_POST['muneca']);
-            $perimetros->bindParam(':mesoesternal', $_POST['mesoesternal']);
+            $perimetros->bindParam(':meseoesternal', $_POST['meseoesternal']);
             $perimetros->bindParam(':umbilical', $_POST['umbilical']);
             $perimetros->bindParam(':cintura', $_POST['cintura']);
             $perimetros->bindParam(':caderas', $_POST['cadera']);

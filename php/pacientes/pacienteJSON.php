@@ -169,7 +169,7 @@
             echo $plieguesJSON;
 
         } else if($value == 10){
-            //PERIMETROS
+            // PERIMETROS
             $perimetros = $conn->prepare("SELECT * FROM perimetros WHERE ID_PACIENTES = ".$id);
 
             $perimetros = new \stdClass();

@@ -258,19 +258,31 @@
         }
 
         if(in_array('1', $_POST['frecuencia-cigarro'])){
-            $cigarro = 1;
+            $cigarro = "1 día/semana";
         }
 
         if(in_array('2', $_POST['frecuencia-cigarro'])){
-            $cigarro = 2;
+            $cigarro = "2 días/semana";
         }
 
         if(in_array('3', $_POST['frecuencia-cigarro'])){
-            $cigarro = 3;
+            $cigarro = "3 días/semana";
         }
 
         if(in_array('4', $_POST['frecuencia-cigarro'])){
-            $cigarro = 4;
+            $cigarro = "4 días/semana";
+        }
+
+        if(in_array('5', $_POST['frecuencia-cigarro'])){
+            $cigarro = "5 días/semana";
+        }
+
+        if(in_array('6', $_POST['frecuencia-cigarro'])){
+            $cigarro = "6 días/semana";
+        }
+
+        if(in_array('7', $_POST['frecuencia-cigarro'])){
+            $cigarro = "7 días/semana";
         }
         return $cigarro ;
     }
@@ -281,19 +293,31 @@
         }
 
         if(in_array('1', $_POST['frecuencia-alcohol'])){
-            $alcohol = 1;
+            $alcohol = "1 día/semana";
         }
 
         if(in_array('2', $_POST['frecuencia-alcohol'])){
-            $alcohol = 2;
+            $alcohol = "2 días/semana";
         }
 
         if(in_array('3', $_POST['frecuencia-alcohol'])){
-            $alcohol = 3;
+            $alcohol = "3 días/semana";
         }
 
         if(in_array('4', $_POST['frecuencia-alcohol'])){
-            $alcohol = 4;
+            $alcohol = "4 días/semana";
+        }
+
+        if(in_array('5', $_POST['frecuencia-alcohol'])){
+            $alcohol = "5 días/semana";
+        }
+
+        if(in_array('6', $_POST['frecuencia-alcohol'])){
+            $alcohol = "6 días/semana";
+        }
+
+        if(in_array('7', $_POST['frecuencia-alcohol'])){
+            $alcohol = "7 días/semana";
         }
         return $alcohol;
     }
@@ -304,19 +328,31 @@
         }
 
         if(in_array('1', $_POST['frecuencia-drogas'])){
-            $drogas = 1;
+            $drogas = "1 día/semana";
         }
 
         if(in_array('2', $_POST['frecuencia-drogas'])){
-            $drogas = 2;
+            $drogas = "2 días/semana";
         }
 
         if(in_array('3', $_POST['frecuencia-drogas'])){
-            $drogas = 3;
+            $drogas = "3 días/semana";
         }
 
         if(in_array('4', $_POST['frecuencia-drogas'])){
-            $drogas = 4;
+            $drogas = "4 días/semana";
+        }
+
+        if(in_array('5', $_POST['frecuencia-drogas'])){
+            $drogas = "5 días/semana";
+        }
+
+        if(in_array('6', $_POST['frecuencia-drogas'])){
+            $drogas = "6 días/semana";
+        }
+
+        if(in_array('7', $_POST['frecuencia-drogas'])){
+            $drogas = "7 días/semana";
         }
         return $drogas;
     }

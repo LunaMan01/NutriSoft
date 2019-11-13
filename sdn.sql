@@ -407,4 +407,7 @@ ALTER TABLE pacientes CHANGE Año_N Anio_N char(4);
 ALTER TABLE pacientes CHANGE Año_C Anio_C char(4);
 ALTER TABLE pacientes CHANGE Año_SC Anio_SC char(4);
 ALTER TABLE perimetros CHANGE Muñeca Muneca float;
+ALTER TABLE habitos_toxicos CHANGE Cantidad_Cigarro Cantidad_Cigarro varchar(50);
+ALTER TABLE habitos_toxicos CHANGE Cantidad_Alcohol Cantidad_Alcohol varchar(50);
+ALTER TABLE habitos_toxicos CHANGE Cantidad_Drogas Cantidad_Drogas varchar(50); 
 

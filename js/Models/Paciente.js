@@ -20,10 +20,12 @@ const PacientesModel = (() => {
         },
 
         buscarPaciente : (datoABuscar) => {
-
-            let respuesta = post('php/pacientes/dinamicaPacientes.php', 'dato='+datoABuscar);
-            console.log(respuesta);
-            return respuesta;
+            let req = new XMLHttpRequest();
+            req.open("POST", 'php/pacientes/dinamicaPacientes.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send('dato='+datoABuscar);            
+            console.log(req.responseText);
+            return req.responseText;
         },
 
         eliminarPaciente : (idPacienteAEliminar) => {
@@ -33,10 +35,6 @@ const PacientesModel = (() => {
             req.send('id='+idPacienteAEliminar);            
             console.log(req.responseText);
             return JSON.parse(req.responseText);
-
-            /*let respuesta = post('php/pacientes/eliminarPacientes.php', 'id='+idPacienteAEliminar);
-            console.log(respuesta);
-            return respuesta.trim() == 'success'  ? true : false;*/
         },
 
         obtenerPacienteJSON : (idPaciente) => {

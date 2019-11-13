@@ -1,8 +1,8 @@
 <?php 
-    include 'conexion.php';
+    include '../conexion.php';
 
     $id = $_POST['id'];
-    echo $id;
+
     try{
         // DATOS GENERALES
         $datos = "SELECT * FROM pacientes WHERE ID_PACIENTES = ".$id;
@@ -48,7 +48,7 @@
 
         foreach($conn->query($estilo) as $row){
             $generales->laboral = $row['Act_Laboral'];
-            $generales->descripcion = $row['escripcion_Act_Lab'];
+            $generales->descripcion = $row['Descripcion_Act_Lab'];
             $generales->deportivas = $row['Deportes'];
             $generales->estres = $row['Estres'];
         }
@@ -57,14 +57,14 @@
         $historia = "SELECT * FROM historia_clinica WHERE ID_PACIENTES = ".$id;
 
         foreach($conn->query($historia) as $row){
-            $generales->$motivo = $row['Motivo_Consulta'];
-            $generales->$previa = $row['Terapeuta_Previa'];
-            $generales->$cirugias = $row['Cirugias_Realizadas'];
-            $generales->$sangre = $row['Tipo_Sangre'];
-            $generales->$alergias = $row['Alergias'];
-            $generales->$diagnostico = $row['Diagnostivo_Previo'];
-            $generales->$vacunas = $row['Vacunas'];
-            $generales->$antecedentes = $row['Antecedentes_Familiares'];
+            $generales->motivo = $row['Motivo_Consulta'];
+            $generales->previa = $row['Terapeuta_Previa'];
+            $generales->cirugias = $row['Cirugias_Realizadas'];
+            $generales->sangre = $row['Tipo_Sangre'];
+            $generales->alergias = $row['Alergias'];
+            $generales->diagnostico = $row['Diagnostico_Previo'];
+            $generales->vacunas = $row['Vacunas'];
+            $generales->antecedentes = $row['Antecedentes_Familiares'];
         }
 
         // ETIQUETAS DE PACIENTE

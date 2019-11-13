@@ -6,7 +6,7 @@
 
         foreach($conn->query($pacientes) as $row){
             echo '<tr>                
-                    <td id="'.$row['ID_PACIENTES'].'">'.$row['Nombre_P'].' '.$row['Ap_P'].'</td>'.
+                    <th id="'.$row['ID_PACIENTES'].'">'.$row['Nombre_P'].' '.$row['Ap_P'].'</th>'.
                     '<td>'.$row['Telefono'].'</td>'.
                     '<td>'.$row['Correo'].'</td>'.
                 '<td>

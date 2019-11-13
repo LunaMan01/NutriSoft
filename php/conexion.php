@@ -4,7 +4,7 @@
     $password = "";
     try {
         date_default_timezone_set('America/Mexico_City');
-        $conn = new PDO("mysql:host=$servername;dbname=sdn", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=sdn;charset=utf8", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // echo "Connected successfully";

@@ -240,9 +240,9 @@ const PacientesController = (() => {
 
     const abrirVentanaEditarPaciente = (idPaciente) => {
 
-        //let pacienteJSON = PacientesModel.obtenerPacienteJSON(idPaciente); //Descomentar cuando json de paciente este completado
+        let pacienteJSON = PacientesModel.obtenerPacienteJSON(idPaciente); //Descomentar cuando json de paciente este completado
         load('html/pacientes/editar-paciente.html', contentPanel);
-        // UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
+        UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
         cargarEventosEditarPaciente();
     }
 
@@ -263,9 +263,9 @@ const PacientesController = (() => {
         document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-ver')) {
                 idPacienteAEditar = UIPacientes.obtenerId(e);
-                //let pacienteJSON = PacientesModel.obtenerPacienteJSON(idPacienteAEditar); //Descomentar cuando json de paciente este completado
+                let pacienteJSON = PacientesModel.obtenerPacienteJSON(idPacienteAEditar); //Descomentar cuando json de paciente este completado
                 load('html/pacientes/ver-paciente.html', contentPanel);
-                // UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
+                UIPacientes.cargarDatosPacienteEnInputs(pacienteJSON); // Descomentar cuando json de paciente este completado
                 document.getElementById('editar-paciente-link').addEventListener('click', () => {
                     abrirVentanaEditarPaciente(idPacienteAEditar);
                 })

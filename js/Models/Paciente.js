@@ -40,7 +40,7 @@ const PacientesModel = (() => {
         actualizar : (data, numeroDeFormulario, idPaciente) => {
             data.append('value', numeroDeFormulario);    
             data.append('id-paciente', idPaciente);
-            let respuesta = postForm('php/pacientes/nuevoPaciente.php', data);
+            let respuesta = postForm('php/pacientes/actualizarPaciente.php', data);
             console.log(respuesta);
         }
     }

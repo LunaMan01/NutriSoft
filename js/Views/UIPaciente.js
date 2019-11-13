@@ -21,21 +21,21 @@ const UIPacientes = (() => {
     }
 
     const cargarEstiloDeVida = (pacienteJSON) => {
-        document.getElementById('actividad-laboral').value = pacienteJSON.nombre;
-        document.getElementById('descripcion-actividad-laboral').value = pacienteJSON.nombre;
-        document.getElementById('actividades-deportivas').value = pacienteJSON.nombre;
-        document.getElementById('nivel-estres').value = pacienteJSON.nombre;
+        document.getElementById('actividad-laboral').value = pacienteJSON.laboral;
+        document.getElementById('descripcion-actividad-laboral').value = pacienteJSON.descripcion;
+        document.getElementById('actividades-deportivas').value = pacienteJSON.deportivas;
+        document.getElementById('nivel-estres').value = pacienteJSON.estres;
     }
 
     const cargarHistoriaClinica = (pacienteJSON) => {
-        document.getElementById('motivo-consulta').value = pacienteJSON.nombre;
-        document.getElementById('terapeutica-previa').value = pacienteJSON.nombre;
-        document.getElementById('cirugias').value = pacienteJSON.nombre;
-        document.getElementById('tipo-sangre').value = pacienteJSON.nombre;
-        document.getElementById('alergias').value = pacienteJSON.nombre;
-        document.getElementById('diagnostivo-previo').value = pacienteJSON.nombre;
-        document.getElementById('vacunas').value = pacienteJSON.nombre;
-        document.getElementById('antecedentes-heredo').value = pacienteJSON.nombre;
+        document.getElementById('motivo-consulta').value = pacienteJSON.motivo;
+        document.getElementById('terapeutica-previa').value = pacienteJSON.previa;
+        document.getElementById('cirugias').value = pacienteJSON.cirugias;
+        document.getElementById('tipo-sangre').value = pacienteJSON.sangre;
+        document.getElementById('alergias').value = pacienteJSON.alergias;
+        document.getElementById('diagnostivo-previo').value = pacienteJSON.diagnostico;
+        document.getElementById('vacunas').value = pacienteJSON.vacunas;
+        document.getElementById('antecedentes-heredo').value = pacienteJSON.antecedentes;
     }
 
     const cargarEtiquetasPaciente = (pacienteJSON) => {
@@ -43,58 +43,66 @@ const UIPacientes = (() => {
     }
 
     const cargarHabitosToxicos = (pacienteJSON) => {
-
+        document.getElementById('frecuencia-cigarro').value = pacienteJSON.fCigarro;
+        document.getElementById('cantidad-cigarro').value = pacienteJSON.cCigarro;
+        document.getElementById('frecuencia-alcohol').value = pacienteJSON.fAlcohol;
+        document.getElementById('cantidad-alcohol').value = pacienteJSON.cAlcohol;
+        document.getElementById('frecuencia-drogas').value = pacienteJSON.fDrogas;
+        document.getElementById('cantidad-drogas').value = pacienteJSON.cDrogas;
     }
 
     const cargarPlanAlimenticio = (pacienteJSON) => {
-        
+        document.getElementById('plan-alimenticio').value = pacienteJSON.plan;
     }
 
 
     const cargarMedicionesBasicas = (pacienteJSON) => {
-
+        document.getElementById('estatura').value = pacienteJSON.estatura;
+        document.getElementById('peso').value = pacienteJSON.peso;
+        document.getElementById('factor-actividad').value = pacienteJSON.factor;
+        document.getElementById('embarazo').value = pacienteJSON.embarazo;
     }
 
     const cargarBioimpedancia = (pacienteJSON) => {
-        document.getElementById('grasa-total').value = pacienteJSON.nombre;
-        document.getElementById('grasa-superior').value = pacienteJSON.nombre;
-        document.getElementById('grasa-inferior').value = pacienteJSON.nombre;
-        document.getElementById('grasa-visceral').value = pacienteJSON.nombre;
-        document.getElementById('masa-libre-grasa').value = pacienteJSON.nombre;
-        document.getElementById('masa-muscular').value = pacienteJSON.nombre;
-        document.getElementById('peso-oseo').value = pacienteJSON.nombre;
-        document.getElementById('agua-corporal').value = pacienteJSON.nombre;
-        document.getElementById('edad-metabolica').value = pacienteJSON.nombre;
+        document.getElementById('grasa-total').value = pacienteJSON.total;
+        document.getElementById('grasa-superior').value = pacienteJSON.superior;
+        document.getElementById('grasa-inferior').value = pacienteJSON.inferior;
+        document.getElementById('grasa-visceral').value = pacienteJSON.viseral;
+        document.getElementById('masa-libre-grasa').value = pacienteJSON.libre;
+        document.getElementById('masa-muscular').value = pacienteJSON.muscular;
+        document.getElementById('peso-oseo').value = pacienteJSON.oseo;
+        document.getElementById('agua-corporal').value = pacienteJSON.agua;
+        document.getElementById('edad-metabolica').value = pacienteJSON.edad;
     }
 
     const cargarPliegues = (pacienteJSON) => {
-        document.getElementById('subescapular').value = pacienteJSON.nombre;
-        document.getElementById('triceps').value = pacienteJSON.nombre;
-        document.getElementById('biceps').value = pacienteJSON.nombre;
-        document.getElementById('ileocrestal').value = pacienteJSON.nombre;
-        document.getElementById('suprailiaco').value = pacienteJSON.nombre;
-        document.getElementById('abdominal').value = pacienteJSON.nombre;
-        document.getElementById('muslo-frontal').value = pacienteJSON.nombre;
-        document.getElementById('pantorrilla-medial').value = pacienteJSON.nombre;
-        document.getElementById('axiliar-medial').value = pacienteJSON.nombre;
-        document.getElementById('pectorial').value = pacienteJSON.nombre;
+        document.getElementById('subescapular').value = pacienteJSON.subes;
+        document.getElementById('triceps').value = pacienteJSON.tricep;
+        document.getElementById('biceps').value = pacienteJSON.bicep;
+        document.getElementById('ileocrestal').value = pacienteJSON.crestal;
+        document.getElementById('suprailiaco').value = pacienteJSON.supra;
+        document.getElementById('abdominal').value = pacienteJSON.abdomianl;
+        document.getElementById('muslo-frontal').value = pacienteJSON.frontal;
+        document.getElementById('pantorrilla-medial').value = pacienteJSON.medial;
+        document.getElementById('axiliar-medial').value = pacienteJSON.axiliar;
+        document.getElementById('pectoral').value = pacienteJSON.pectoral;
 
     }
 
     const cargarPerimetros = (pacienteJSON) => {
-        document.getElementById('cefalico').value = pacienteJSON.nombre;
-        document.getElementById('cuello').value = pacienteJSON.nombre;
-        document.getElementById('mitad-brazo-relajado').value = pacienteJSON.nombre;
-        document.getElementById('mitad-brazo-contraido').value = pacienteJSON.nombre;
-        document.getElementById('antebrazo').value = pacienteJSON.nombre;
-        document.getElementById('muneca').value = pacienteJSON.nombre;
-        document.getElementById('mesoesternal').value = pacienteJSON.nombre;
-        document.getElementById('umbilical').value = pacienteJSON.nombre;
-        document.getElementById('cintura').value = pacienteJSON.nombre;
-        document.getElementById('cadera').value = pacienteJSON.nombre;
-        document.getElementById('muslo').value = pacienteJSON.nombre;
-        document.getElementById('muslo-medio').value = pacienteJSON.nombre;
-        document.getElementById('pantorrilla').value = pacienteJSON.nombre;
+        document.getElementById('cefalico').value = pacienteJSON.cefalico;
+        document.getElementById('cuello').value = pacienteJSON.cuello;
+        document.getElementById('mitad-brazo-relajado').value = pacienteJSON.relajado;
+        document.getElementById('mitad-brazo-contraido').value = pacienteJSON.contraido;
+        document.getElementById('antebrazo').value = pacienteJSON.antebrazo;
+        document.getElementById('muneca').value = pacienteJSON.muñeca;
+        document.getElementById('meseoesternal').value = pacienteJSON.meseo;
+        document.getElementById('umbilical').value = pacienteJSON.umbilical;
+        document.getElementById('cintura').value = pacienteJSON.cintura;
+        document.getElementById('cadera').value = pacienteJSON.caderas;
+        document.getElementById('muslo').value = pacienteJSON.muslo;
+        document.getElementById('muslo-medio').value = pacienteJSON.medio;
+        document.getElementById('pantorrilla').value = pacienteJSON.pantorrilla;
 
     }
 

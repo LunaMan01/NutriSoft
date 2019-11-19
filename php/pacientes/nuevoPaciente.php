@@ -2,17 +2,18 @@
     include '../conexion.php';
 
     $value = $_POST['value'];
-    $fechaNacimiento = $_POST['fecha-nacimiento'];
-    $fechaConsulta = $_POST['fecha-consulta'];
-    $fechaSiguineteConsulta = $_POST['fecha-siguiente-consulta'];
-
-    $fechaN = explode("/", $fechaNacimiento);
-    $fechaC = explode("/", $fechaConsulta);
-    $fechaSC = explode("/", $fechaSiguineteConsulta);
 
     try{        
         if($value == 1){
             // DATOS GENERALES
+            $fechaNacimiento = $_POST['fecha-nacimiento'];
+            $fechaConsulta = $_POST['fecha-consulta'];
+            $fechaSiguineteConsulta = $_POST['fecha-siguiente-consulta'];
+
+            $fechaN = explode("/", $fechaNacimiento);
+            $fechaC = explode("/", $fechaConsulta);
+            $fechaSC = explode("/", $fechaSiguineteConsulta);
+
             $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Anio_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Anio_C, Dia_SC, Mes_SC, Anio_SC, Observaciones)
                 VALUES (:nombre, :apellidoP, :apellidoM, :escolaridad, :genero, :diaNa, :mesNa, :anioNa, :calle, :numero, :colonia, :ciudad, :estado, :telefono, :correo, :historial, :diaCon, :mesCon, :anioCon, :diaSiCon, :mesSiCon, :anioSiCon, :observaciones)");
             $generales->bindParam(':nombre', $_POST['nombre']);

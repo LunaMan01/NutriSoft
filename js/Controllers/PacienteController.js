@@ -102,6 +102,8 @@ const PacientesController = (() => {
         document.getElementById('bioimpedancia-paciente-form').addEventListener('submit', addDatosBioimpedancia);
         document.getElementById('pliegues-form').addEventListener('submit', addDatosPeliegues);
         document.getElementById('perimetros-form').addEventListener('submit', addDatosPerimetros);
+        document.getElementById('habitos-toxicos-form').addEventListener('submit', addDatosHabitosToxicos);
+        document.getElementById('plan-alimenticio-form').addEventListener('submit', addDatosPlanAlimenticio);
         configurarCalendariosEnInputs();
     }
 

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row align-items-center  justify-content-between pacientes-cabecera">
+        <div class="col-md-12  text-center">
+            <span class="slogan text-white">"Nutre tu vida para que la vida te nutra"</span>
+            <hr>
+        </div>
+        <div class="col-lg-7">
+
+
+            <div class="pb-4">
+                <span class="font-weight-bold t text-white">Alimentos</span>
+
+            </div>
+        </div>
+        <div class="col-lg-1  d-flex pb-4  align-items-center">
+
+            <router-link class="btn btn-success d-flex p-2" id="agregar-alimento-btn">
+                <i class="material-icons">add</i>
+                Nuevo
+            </router-link>
+        </div>
+        <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
+            <input type="text" class="form-control rounded-pill" placeholder="Burcar..." id="buscar-alimento-input">
+
+        </div>
+    </div>
+
+    <div id="contenido-alimentos">
+
+        <div class="row mt-5 card-pacientes">
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col"> ID_ALIMENTOS </th>
+                            <th scope="col"> ID_GRUPOS </th>
+                            <th scope="col"> Nombre </th>
+                            <th scope="col"> Cantidad </th>
+                            <th scope="col"> Unidad </th>
+                            <th scope="col"> Peso Bruto </th>
+                            <th scope="col"> Peso Neto </th>
+                            <th scope="col"> Energias Kal. </th>
+                            <th scope="col"> Proteinas </th>
+                            <th scope="col"> Lipidos </th>
+                            <th scope="col"> Hidratos de Carbono </th>
+                            <th scope="col"> Funciones </th>
+                        </tr>
+                    </thead>
+                    <tbody id="alimentos-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

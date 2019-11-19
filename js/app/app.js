@@ -1,6 +1,7 @@
 const load = (url, element) => {
   let req = new XMLHttpRequest();
   req.open("GET", url, false);
+  req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   req.send(null);
   element.innerHTML = req.responseText;
 }
@@ -34,6 +35,7 @@ const contentPanel = document.querySelector('.content');
 
 const HTMLRoutes = {
   pacientes: 'html/pacientes/pacientes.html',
+  alimentos: 'html/alimentos/alimentos.html'
 
 
 };
@@ -66,6 +68,14 @@ const UIController = (() => {
       }
     },
 
+    abrirAlimentos : () => {
+      load(HTMLRoutes.alimentos, contentPanel);
+      changeActiveItem('li-alimentos');
+      addControllerScript('alimentos-controller', 'js/Controllers/AlimentosController.js');
+      if (typeof AlimentosController !== 'undefined') {
+        AlimentosController.init();
+      }
+    }
 
   }
 })();
@@ -77,6 +87,7 @@ const controller = (() => {
 
   const setUpEvents = () => {
     document.getElementById('pacientes-link').addEventListener('click', UIController.abrirPacientes);
+    document.getElementById('alimentos-link').addEventListener('click', UIController.abrirAlimentos);
 
   }
 
@@ -89,4 +100,11 @@ const controller = (() => {
 
 })(UIController);
 
+const mostrarMensaje = (mensaje, tipo) => {
+  swal(mensaje, {
+    icon: tipo,
+  });
+}
+
 controller.init();
+

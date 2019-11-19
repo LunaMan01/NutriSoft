@@ -2,27 +2,54 @@
     include '../conexion.php';
 
     $value = $_POST['value'];
-    $fechaNacimiento = $_POST['fecha-nacimiento'];
-    $fechaConsulta = $_POST['fecha-consulta'];
-    $fechaSiguineteConsulta = $_POST['fecha-siguiente-consulta'];
+    $id = $_POST['id'];
 
-    $fechaN = explode("/", $fechaNacimiento);
-    $fechaC = explode("/", $fechaConsulta);
-    $fechaSC = explode("/", $fechaSiguineteConsulta);
-
-    try{        
+    try{
         if($value == 1){
-            // DATOS GENERALES
-            $generales = $conn->prepare("INSERT INTO pacientes (Nombre_P, AP_P, AM_P, Escolaridad, Genero, Dia_N, Mes_N, Anio_N, Calle_P, Num_P, Col_P, Ciudad, Estado, Telefono, Correo, Historial_P, Dia_C, Mes_C, Anio_C, Dia_SC, Mes_SC, Anio_SC, Observaciones)
-                VALUES (:nombre, :apellidoP, :apellidoM, :escolaridad, :genero, :diaNa, :mesNa, :anioNa, :calle, :numero, :colonia, :ciudad, :estado, :telefono, :correo, :historial, :diaCon, :mesCon, :anioCon, :diaSiCon, :mesSiCon, :anioSiCon, :observaciones)");
+            
+            // MEDICIONES BASICAS
+            $fechaNacimiento = $_POST['fecha-nacimiento'];
+            $fechaConsulta = $_POST['fecha-consulta'];
+            $fechaSiguiente = $_POST['fecha-siguiente-consulta'];
+
+            $fechaN = explode("/", $fechaNacimiento);
+            $fechaC = explode("/", $fechaConsulta);
+            $fechaS = explode("/", $fechaSiguiente);
+
+            $generales = $conn->prepare("UPDATE pacientes SET
+                Nombre_P = :nombre,
+                AP_P = :apellidoP,
+                AM_P = :apellidoM,
+                Escolaridad = :escolaridad,
+                Genero = :genero,
+                Dia_N = :diaN,
+                Mes_N = :mesN,
+                Anio_N = :anioN,
+                Calle_P = :calle,
+                Num_P = :numero,
+                Col_P = :colonia,
+                Ciudad = :ciudad,
+                Estado = :estado,
+                Telefono = :telefono,
+                Correo = :correo,
+                Historial_P = :historial,
+                Dia_C = :diaC,
+                Mes_C = :mesC,
+                Anio_C = :anioC,
+                Dia_SC = :diaS,
+                Mes_SC = :mesS,
+                Anio_SC = :anioS,
+                Observaciones = :observaciones
+                WHERE ID_PACIENTES = ".$id);
+
             $generales->bindParam(':nombre', $_POST['nombre']);
             $generales->bindParam(':apellidoP', $_POST['paterno']);
             $generales->bindParam(':apellidoM', $_POST['materno']);
             $generales->bindParam(':escolaridad', $_POST['escolaridad']);
             $generales->bindParam(':genero', $_POST['genero']);            
-            $generales->bindParam(':diaNa', $fechaN[0]);            
-            $generales->bindParam(':mesNa', $fechaN[1]);            
-            $generales->bindParam(':anioNa', $fechaN[2]);
+            $generales->bindParam(':diaN', $fechaN[0]);            
+            $generales->bindParam(':mesN', $fechaN[1]);            
+            $generales->bindParam(':anioN', $fechaN[2]);
             $generales->bindParam(':calle', $_POST['calle']);
             $generales->bindParam(':numero', $_POST['numero']);            
             $generales->bindParam(':colonia', $_POST['colonia']);
@@ -31,38 +58,43 @@
             $generales->bindParam(':telefono', $_POST['telefono']);
             $generales->bindParam(':correo', $_POST['correo']);
             $generales->bindParam(':historial', $_POST['historial']);
-            $generales->bindParam(':diaCon', $fechaC[0]);
-            $generales->bindParam(':mesCon', $fechaC[1]);
-            $generales->bindParam(':anioCon', $fechaC[2]);
-            $generales->bindParam(':diaSiCon', $fechaSC[0]);
-            $generales->bindParam(':mesSiCon', $fechaSC[1]);
-            $generales->bindParam(':anioSiCon', $fechaSC[2]);
+            $generales->bindParam(':diaC', $fechaC[0]);
+            $generales->bindParam(':mesC', $fechaC[1]);
+            $generales->bindParam(':anioC', $fechaC[2]);
+            $generales->bindParam(':diaS', $fechaS[0]);
+            $generales->bindParam(':mesS', $fechaS[1]);
+            $generales->bindParam(':anioS', $fechaS[2]);
             $generales->bindParam(':observaciones', $_POST['observaciones']);
-
             $generales->execute();
-            setcookie("Id", $conn->lastInsertId(), time() + (86400), "/");
+
         } else if($value == 2){
             // ESTILO DE VIDA
-            $lastIdPaciente = $_COOKIE['Id'];
-            
-            $vida = $conn->prepare("INSERT INTO estilo_vida (ID_PACIENTES, Act_Laboral, Descripcion_Act_Lab, Deportes, Estres)
-                VALUES(:id, :actividad, :descripcion, :deportes, :estres)");
+            $vida = $conn->prepare("UPDATE estilo_vida SET 
+                Act_Laboral = :actividad, 
+                Descripcion_Act_Lab = :descripcion, 
+                Deportes = :deportes, 
+                Estres = :estres
+                WHERE ID_PACIENTES = ".$id);
 
-            $vida->bindParam(':id', $lastIdPaciente);
             $vida->bindParam(':actividad', $_POST['actividad-laboral']);
             $vida->bindParam(':descripcion', $_POST['descripcion-actividad-laboral']);
             $vida->bindParam(':deportes', $_POST['actividades-deportivas']);
             $vida->bindParam(':estres', $_POST['nivel-estres']);
-
             $vida->execute();
+
         } else if($value == 3){
             // HISTORIA CLINICA
-            $lastIdPaciente = $_COOKIE['Id'];
+            $clinica = $conn->prepare("UPDATE historia_clinica SET
+                Motivo_Consulta = :motivo, 
+                Terapeuta_Previa = :terapeuta, 
+                Cirugias_Realizadas = :cirugias, 
+                Tipo_Sangre = :sangre, 
+                Alergias = :alergias, 
+                Diagnostico_Previo = :diagnostico, 
+                Vacunas = :vacunas, 
+                Antecedentes_Familiares = :antecedentes
+                WHERE ID_PACIENTES = ".$id);
 
-            $clinica = $conn->prepare("INSERT INTO historia_clinica (ID_PACIENTES, Motivo_Consulta, Terapeuta_Previa, Cirugias_Realizadas, Tipo_Sangre, Alergias, Diagnostico_Previo, Vacunas, Antecedentes_Familiares) 
-                VALUES (:id, :motivo, :terapeuta, :cirugias, :sangre, :alergias, :diagnostico, :vacunas, :antecedentes)");
-
-            $clinica->bindParam(':id', $lastIdPaciente);
             $clinica->bindParam(':motivo', $_POST['motivo-consulta']);
             $clinica->bindParam(':terapeuta', $_POST['terapeutica-previa']);
             $clinica->bindParam(':cirugias', $_POST['cirugias']);
@@ -71,49 +103,53 @@
             $clinica->bindParam(':diagnostico', $_POST['diagnostico-previo']);
             $clinica->bindParam(':vacunas', $_POST['vacunas']);
             $clinica->bindParam(':antecedentes', $_POST['antecedentes-heredo']);
-
             $clinica->execute();
+
         } else if($value == 4){
             // ETIQUETAS DE PACIENTE
-            // $etiquetas = $conn->prepare("");
+            
 
-            // $etiquetas->bindParam(':', $_POST['']);
-
-            // $etiquetas->execute();
         } else if($value == 5){
             // HABITOS TOXICOS
             $cigarro = cigarro();
             $alcohol = alcohol();
             $drogas = drogas(); 
 
-            $habitos = $conn->prepare("INSERT INTO habitos_toxicos (ID_Pacientes, Frecuencia_Cigarro, Cantidad_Cigarro, Frecuencia_Alcohol, Cantidad_Alcohol, Frecuencia_Drogas, Cantidad_Drogas)
-                VALUES (:id, :freC, :canC, :freA, :canA, :freD, :canD)");
-
-            $habitos->bindParam('id', $lastIdPaciente);
+            $habitos = $conn->prepare("UPDATE habitos_toxicos SET
+                Frecuencia_Cigarro = :freC,
+                Cantidad_Cigarro = :canC,
+                Frecuencia_Alcohol = :freA,
+                Cantidad_Alcohol = :canA,
+                Frecuencia_Drogas = :freD,
+                Cantidad_Drogas = :canD
+                WHERE ID_PACIENTES = ".$id);
+            
             $habitos->bindParam('freC', $cigarro);
             $habitos->bindParam('canC', $_POST['cantidad-cigarro']);
             $habitos->bindParam('freA', $alcohol);
             $habitos->bindParam('canA', $_POST['cantidad-alcohol']);
             $habitos->bindParam('freD', $drogas);
             $habitos->bindParam('canD', $_POST['cantidad-drogas']);
-
             $habitos->execute();
+
         } else if($value == 6){
             // PLAN ALIMENTICIO
-            $plan = $conn->prepare("INSERT INTO plan_alimenticio (Descripcion)
-                VALUES (:descripcion)");
+            $plan = $conn->prepare("UPDATE plan_alimenticio SET
+                Descripcion = :descripcion
+                WHERE ID_PACIENTES = ".$id);
 
             $plan->bindParam('descripcion', $_POST['plan-alimenticio']);
-
             $plan->execute();
+
         } else if($value == 7){
             // MEDICIONES BASICAS
-            $lastIdPaciente = $_COOKIE['Id'];
+            $mediciones = $conn->prepare("UPDATE mediciones_basicas SET
+                Estatura = :estatura,
+                Peso = :peso,
+                Factor_Act = :actividad,
+                Embarazo = :embarazo
+                WHERE ID_PACIENTES = ".$id);
 
-            $mediciones = $conn->prepare("INSERT INTO mediciones_basicas (ID_PACIENTES, Estatura, Peso, Factor_Act, Embarazo)
-                VALUES (:id, :estatura, :peso, :actividad, :embarazo)");
-
-            $mediciones->bindParam(':id', $lastIdPaciente);
             $mediciones->bindParam(':estatura', $_POST['estatura']);
             $mediciones->bindParam(':peso', $_POST['peso']);
             $mediciones->bindParam(':actividad', $_POST['factor-actividad']);
@@ -124,16 +160,22 @@
                 $emb = 1;
                 $mediciones->bindParam(':embarazo', $emb);
             }
-
             $mediciones->execute();
+
         } else if($value == 8){
             // BIOIMPEDANCIA
-            $lastIdPaciente = $_COOKIE['Id'];
+            $bioimpedancia = $conn->prepare("UPDATE bioimpedancia SET
+                Grasa_Total = :total,
+                Grasa_Superior = :superior,
+                Grasa_Inferior = :inferior,
+                Grasa_Viseral = :viseral,
+                Masa_Libre_Grasa = :libre,
+                Masa_Muscular = :muscular,
+                Peso_Oseo = :oseo,
+                Agua_Corporal = :agua,
+                Edad_Metabolica = :edad
+                WHERE ID_PACIENTES = ".$id);
 
-            $bioimpedancia = $conn->prepare("INSERT INTO bioimpedancia (ID_PACIENTES, Grasa_Total, Grasa_Superior, Grasa_Inferior, Grasa_Viseral, Masa_Libre_Grasa, Masa_Muscular, Peso_Oseo, Agua_Corporal, Edad_Metabolica)
-                VALUES (:id, :total, :superior, :inferior, :viseral, :libre, :muscular, :oseo, :agua, :edad)");
-
-            $bioimpedancia->bindParam(':id', $lastIdPaciente);
             $bioimpedancia->bindParam(':total', $_POST['grasa-total']);
             $bioimpedancia->bindParam(':superior', $_POST['grasa-superior']);
             $bioimpedancia->bindParam(':inferior', $_POST['grasa-inferior']);
@@ -143,16 +185,23 @@
             $bioimpedancia->bindParam(':oseo', $_POST['peso-oseo']);
             $bioimpedancia->bindParam(':agua', $_POST['agua-corporal']);
             $bioimpedancia->bindParam(':edad', $_POST['edad-metabolica']);
-
             $bioimpedancia->execute();
+
         } else if($value == 9){
             // PLIEGUES
-            $lastIdPaciente = $_COOKIE['Id'];
+            $pliegues = $conn->prepare("UPDATE pliegues SET
+                Subescapular = :subescapular,
+                Triceps = :tricep, 
+                Biceps = :bicep,
+                Ileocrestal = :ileocrestal,
+                Suprailiaco = :suprailiaco,
+                Abdominal = :abdominal,
+                muslo_Frontal = :frontal,
+                Pantorrilla_Medial = :medial,
+                Axiliar_Medial = :axiliar,
+                Pectoral = :pectoral
+                WHERE ID_PACIENTES = ".$id);
 
-            $pliegues = $conn->prepare("INSERT INTO pliegues (ID_PACIENTES, Subescapular, Triceps, Biceps, Ileocrestal, Suprailiaco, Abdominal, muslo_Frontal, Pantorrilla_Medial, Axiliar_Medial, Pectoral)
-                VALUES (:id, :subescapular, :tricep, :bicep, :ileocrestal, :suprailiaco, :abdominal, :frontal, :medial, :axiliar, :pectoral)");
-
-            $pliegues->bindParam(':id', $lastIdPaciente);
             $pliegues->bindParam(':subescapular', $_POST['subescapular']);
             $pliegues->bindParam(':tricep', $_POST['triceps']);
             $pliegues->bindParam(':bicep', $_POST['biceps']);
@@ -163,16 +212,26 @@
             $pliegues->bindParam(':medial', $_POST['pantorrilla-medial']);
             $pliegues->bindParam(':axiliar', $_POST['axilar-medial']);
             $pliegues->bindParam(':pectoral', $_POST['pectoral']);
-
             $pliegues->execute();
+
         } else if($value == 10){
             // PERIMETROS
-            $lastIdPaciente = $_COOKIE['Id'];
-            
-            $perimetros = $conn->prepare("INSERT INTO perimetros (ID_PACIENTES, Cefalico, Cuello, Brazo_Relajado, Brazo_Contraido, Antebrazo, Muneca, Meseoesternal, Umbilical, Cintura, Caderas, Muslo, Muslo_Medio, Pantorrilla)
-                VALUES (:id, :cefalico, :cuello, :relajado, :contraido, :antebrazo, :muneca, :meseoesternal, :umbilical, :cintura, :caderas, :muslo, :medio, :pantorrilla)");
+            $perimetros = $conn->prepare("UPDATE perimetros SET 
+                Cefalico = :cefalico,
+                Cuello = :cuello,
+                Brazo_Relajado = :relajado,
+                Brazo_Contraido = :contraido,
+                Antebrazo = :antebrazo,
+                Muneca = :muneca,
+                Meseoesternal = :meseoesternal,
+                Umbilical = :umbilical,
+                Cintura = :cintura,
+                Caderas = :caderas,
+                Muslo = :muslo,
+                muslo_Medio = :medio,
+                Pantorrilla = :pantorrilla
+                WHERE ID_PACIENTES = ".$id);
 
-            $perimetros->bindParam(':id', $lastIdPaciente);
             $perimetros->bindParam(':cefalico', $_POST['cefalico']);
             $perimetros->bindParam(':cuello', $_POST['cuello']);
             $perimetros->bindParam(':relajado', $_POST['mitad-brazo-relajado']);
@@ -186,8 +245,8 @@
             $perimetros->bindParam(':muslo', $_POST['muslo']);
             $perimetros->bindParam(':medio', $_POST['muslo-medio']);
             $perimetros->bindParam(':pantorrilla', $_POST['pantorrilla']);
-
             $perimetros->execute();
+
         }
     }catch(PDOException $e){
         echo 'Error: '.$e->getMessage();
@@ -297,6 +356,5 @@
         }
         return $drogas;
     }
-
     $conn = null;
 ?>

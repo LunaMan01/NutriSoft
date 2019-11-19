@@ -20,28 +20,40 @@ const PacientesModel = (() => {
         },
 
         buscarPaciente : (datoABuscar) => {
-
-            let respuesta = post('php/pacientes/consultarPacientes.php', 'dato='+datoABuscar);
-            console.log(respuesta);
-            return respuesta;
+            let req = new XMLHttpRequest();
+            req.open("POST", 'php/pacientes/dinamicaPacientes.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send('dato='+datoABuscar);            
+            console.log(req.responseText);
+            return req.responseText;
         },
 
         eliminarPaciente : (idPacienteAEliminar) => {
-            let respuesta = post('php/pacientes/eliminarPaciente', 'id='+idPacienteAEliminar);
-            console.log(respuesta);
-            return respuesta.trim() == 'success'  ? true : false;
+            let req = new XMLHttpRequest();
+            req.open("POST", 'php/pacientes/eliminarPacientes.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send('id='+idPacienteAEliminar);            
+            console.log(req.responseText);
+            return JSON.parse(req.responseText);
         },
 
         obtenerPacienteJSON : (idPaciente) => {
-            let respuesta = post('php/pacientes/pacienteJSON', 'id='+idPaciente);
-            return JSON.parse(respuesta);
+            let req = new XMLHttpRequest();
+            req.open("POST", 'php/pacientes/pacienteJSON.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send('id='+idPaciente);            
+            console.log(req.responseText);
+            return JSON.parse(req.responseText);            
         },
 
         actualizar : (data, numeroDeFormulario, idPaciente) => {
-            data.append('value', numeroDeFormulario);    
-            data.append('id-paciente', idPaciente);
-            let respuesta = postForm('php/pacientes/nuevoPaciente.php', data);
-            console.log(respuesta);
+            data.append("value", numeroDeFormulario);
+            data.append("id", idPaciente);
+            let req = new XMLHttpRequest();
+            req.open("POST", 'php/pacientes/actualizarPaciente.php', false);
+            req.send(data);
+            console.log(req.responseText);
+            return req.responseText;
         }
     }
 })();

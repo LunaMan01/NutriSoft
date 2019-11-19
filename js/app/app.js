@@ -1,6 +1,7 @@
 const load = (url, element) => {
   let req = new XMLHttpRequest();
   req.open("GET", url, false);
+  req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   req.send(null);
   element.innerHTML = req.responseText;
 }
@@ -99,4 +100,11 @@ const controller = (() => {
 
 })(UIController);
 
+const mostrarMensaje = (mensaje, tipo) => {
+  swal(mensaje, {
+    icon: tipo,
+  });
+}
+
 controller.init();
+

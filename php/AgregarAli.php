@@ -4,11 +4,14 @@
 		<title> AGREGAR ALIMENTOS </title>
 	</head> -->
 	<!-- <body> -->
+		<div class="d-none">
+			<iframe id="iframeAli" name="iframeAli" frameborder="1"></iframe>
+		</div>
 		<div class="card-pacientes">
 			<div class="container">
 				<h3 class="mb-5">Nuevo alimento</h3>
 				<div id="agregar">
-					<form action="php\AgregarAli.php" method="POST">				
+					<form action="php\AgregarAli.php" method="POST" target="iframeAli" onsubmit="mostrarMensaje('Alimento agregado correctamente', 'success')">				
 								<div class="form-group">
 									<label for="ID_ALIMENTOS"> ID_ALIMENTOS </label>
 								

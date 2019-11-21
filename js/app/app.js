@@ -35,8 +35,8 @@ const contentPanel = document.querySelector('.content');
 
 const HTMLRoutes = {
   pacientes: 'html/pacientes/pacientes.html',
-  alimentos: 'html/alimentos/alimentos.html'
-
+  alimentos: 'html/alimentos/alimentos.html',
+  platillos: 'html/platillos/platillos.html'
 
 };
 
@@ -75,6 +75,15 @@ const UIController = (() => {
       if (typeof AlimentosController !== 'undefined') {
         AlimentosController.init();
       }
+    },
+
+    abrirPlatillos : () => {
+      load(HTMLRoutes.platillos, contentPanel);
+      changeActiveItem('li-platillos');
+      addControllerScript('platillos-controller', 'js/Controllers/PlatillosController.js');
+      if (typeof PlatillosController !== 'undefined') {
+        PlatillosController.init();
+      }
     }
 
   }
@@ -88,7 +97,7 @@ const controller = (() => {
   const setUpEvents = () => {
     document.getElementById('pacientes-link').addEventListener('click', UIController.abrirPacientes);
     document.getElementById('alimentos-link').addEventListener('click', UIController.abrirAlimentos);
-
+    document.getElementById('platillos-link').addEventListener('click', UIController.abrirPlatillos);
   }
 
   return {

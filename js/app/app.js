@@ -36,7 +36,9 @@ const contentPanel = document.querySelector('.content');
 const HTMLRoutes = {
   pacientes: 'html/pacientes/pacientes.html',
   alimentos: 'html/alimentos/alimentos.html',
-  platillos: 'html/platillos/platillos.html'
+  platillos: 'html/platillos/platillos.html',
+  grupoAlimentos: 'html/grupos-alimentos/grupos-alimentos.html',
+  tiemposComidas: 'html/tiempos-comida/tiempos-comida.html'
 
 };
 
@@ -68,7 +70,7 @@ const UIController = (() => {
       }
     },
 
-    abrirAlimentos : () => {
+    abrirAlimentos: () => {
       load(HTMLRoutes.alimentos, contentPanel);
       changeActiveItem('li-alimentos');
       addControllerScript('alimentos-controller', 'js/Controllers/AlimentosController.js');
@@ -77,12 +79,21 @@ const UIController = (() => {
       }
     },
 
-    abrirPlatillos : () => {
+    abrirPlatillos: () => {
       load(HTMLRoutes.platillos, contentPanel);
       changeActiveItem('li-platillos');
       addControllerScript('platillos-controller', 'js/Controllers/PlatillosController.js');
       if (typeof PlatillosController !== 'undefined') {
         PlatillosController.init();
+      }
+    },
+
+    abrirGruposAlimentos: () => {
+      load(HTMLRoutes.grupoAlimentos, contentPanel);
+      changeActiveItem('li-grupos-alimentos');
+      addControllerScript('gpsalimentos-controller', 'js/Controllers/GpsAlimentosController.js');
+      if (typeof GruposAlimentosController !== 'undefined') {
+        GruposAlimentosController.init();
       }
     }
 
@@ -98,6 +109,7 @@ const controller = (() => {
     document.getElementById('pacientes-link').addEventListener('click', UIController.abrirPacientes);
     document.getElementById('alimentos-link').addEventListener('click', UIController.abrirAlimentos);
     document.getElementById('platillos-link').addEventListener('click', UIController.abrirPlatillos);
+    document.getElementById('grupo-alimentos-link').addEventListener('click', UIController.abrirGruposAlimentos);
   }
 
   return {

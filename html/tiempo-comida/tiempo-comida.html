@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row align-items-center  justify-content-between pacientes-cabecera">
+        <div class="col-md-12  text-center">
+            <span class="slogan text-white">"Nutre tu vida para que la vida te nutra"</span>
+            <hr>
+        </div>
+        <div class="col-lg-7">
+
+
+            <div class="pb-4">
+                <span class="font-weight-bold t text-white">Tiempos de comida</span>
+
+            </div>
+        </div>
+        <div class="col-lg-1  d-flex pb-4  align-items-center">
+
+            <router-link class="btn btn-success d-flex p-2" id="agregar-tiempos-btn">
+                <i class="material-icons">add</i>
+                Nuevo
+            </router-link>
+        </div>
+        <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
+            <input type="text" class="form-control rounded-pill" placeholder="Burcar..." id="buscar-tiempos-input">
+
+        </div>
+    </div>
+
+    <div id="contenido-tiempos">
+
+        <div class="row mt-5 card-tiempos">
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tiempo</th>
+                            <th scope="col">Hora</th>                            
+                        </tr>
+                    </thead>
+                    <tbody id="tiempos-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

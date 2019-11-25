@@ -38,7 +38,8 @@ const HTMLRoutes = {
   alimentos: 'html/alimentos/alimentos.html',
   platillos: 'html/platillos/platillos.html',
   grupoAlimentos: 'html/grupos-alimentos/grupos-alimentos.html',
-  tiemposComidas: 'html/tiempos-comida/tiempos-comida.html'
+  tiemposComidas: 'html/tiempo-comida/tiempo-comida.html',
+  menus: 'html/menus/menus.html'
 
 };
 
@@ -95,6 +96,24 @@ const UIController = (() => {
       if (typeof GruposAlimentosController !== 'undefined') {
         GruposAlimentosController.init();
       }
+    },
+
+    abrirMenus: () => {
+      load(HTMLRoutes.menus, contentPanel);
+      changeActiveItem('li-menus');
+      // addControllerScript('menus-controller', 'js/Controllers/TiemposController.js');
+      // if (typeof MenusController !== 'undefined') {
+      //   MenusController.init();
+      // }
+    },
+
+    abrirTiemposComida: () => {
+      load(HTMLRoutes.tiemposComidas, contentPanel);
+      changeActiveItem('li-tiempos');
+      addControllerScript('tiempos-controller', 'js/Controllers/TiemposController.js');
+      if (typeof TiemposController !== 'undefined') {
+        TiemposController.init();
+      }
     }
 
   }
@@ -110,6 +129,8 @@ const controller = (() => {
     document.getElementById('alimentos-link').addEventListener('click', UIController.abrirAlimentos);
     document.getElementById('platillos-link').addEventListener('click', UIController.abrirPlatillos);
     document.getElementById('grupo-alimentos-link').addEventListener('click', UIController.abrirGruposAlimentos);
+    document.getElementById('tiempos-link').addEventListener('click', UIController.abrirTiemposComida);
+    document.getElementById('menus-link').addEventListener('click', UIController.abrirMenus);
   }
 
   return {

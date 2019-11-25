@@ -4,7 +4,7 @@
 		<title> AGREGAR ALIMENTOS </title>
 	</head> -->
 	<!-- <body> -->
-		<div class="">
+		<div class="d-none">
 			<iframe id="iframeAli" name="iframeAli" frameborder="1"></iframe>
 		</div>
 		<div class="card-pacientes">

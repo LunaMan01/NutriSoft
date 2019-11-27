@@ -2,6 +2,13 @@ const PacientesController = (() => {
 
     let guardado = false;
     let idPacienteAEditar;
+    const postMenu = (url, data) => {
+        var req = new XMLHttpRequest();
+        req.open("POST", url, false);
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.send(data);
+        return req.responseText;
+    }
     // --------------------------------------------------------
     //    FUNCIONES NECESARIAS PARA AGREGAR UN NUEVO PACIENTE
     // --------------------------------------------------------
@@ -275,6 +282,168 @@ const PacientesController = (() => {
     }
 
 
+    //----------------------------------------------------------------------------------------------------------------------------
+    //--------------------------FUNCIONES PARA MENUS DE PACIENTES-----------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
+
+    let idsPlatillos = [];
+    let datosDieta = [];
+    let idTiempos = [];
+    let dia = "";
+    let datosAEnviar = [];
+    let fechaInicio = "";
+
+    const cargarPlatillos = () => {
+        let respuesta = post('php/platillosModal.php', null);
+        document.getElementById('platillos-table-modal').innerHTML = respuesta;
+    }
+
+    const cargarTiempos = () => {
+        let respuesta = post('php/tiemposModal.php', null);
+        console.log(respuesta);
+        document.getElementById('select-tiempo').innerHTML = respuesta;
+    }
+
+    const agregarPlatilloHTML = (tiempoObj, atributosPlatillo) => {
+
+        let template = `
+            <tr>
+                <td>${atributosPlatillo.nombre}</td>
+                <td>${tiempoObj.nombre}  ${tiempoObj.hora}</td>
+            </tr>    
+        `;
+
+        switch (dia) {
+            case "lunes":
+                document.getElementById('platillos-lunes').innerHTML += template;
+                break;
+            case "martes":
+                document.getElementById('platillos-martes').innerHTML += template;
+                break;
+            case "miercoles":
+                document.getElementById('platillos-miercoles').innerHTML += template;
+                break;
+            case "jueves":
+                document.getElementById('platillos-jueves').innerHTML += template;
+                break;
+            case "viernes":
+                document.getElementById('platillos-viernes').innerHTML += template;
+                break;
+            case "sabado":
+                document.getElementById('platillos-sabado').innerHTML += template;
+                break;
+            case "domingo":
+                document.getElementById('platillos-domingo').innerHTML += template;
+                break;
+
+        }
+
+
+    }
+
+    const guardarMenu = () => {
+        let fechaInicio = document.getElementById('fecha-inicio').value;
+        datosAEnviar.forEach((element, i) => {
+            console.log(element);
+            let data = `iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
+            let respuesta = postMenu('php/menus/agregar-menu', data);
+            console.log(respuesta);
+            console.log(fechaInicio);
+        });
+
+        
+    }
+
+    const eventoAgregarPlatillo = () => {
+        document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
+            if (e.target.matches('.agregar-platillo')) {
+                let option = document.getElementById('select-tiempo').options[document.getElementById('select-tiempo').selectedIndex];
+                let idTiempo = option.getAttribute('data-idtiempo');
+                idTiempos.push(idTiempo);
+
+                let tiempoObj = {
+                    nombre: option.getAttribute('data-nombre'),
+                    hora: option.getAttribute('data-hora')
+                }
+
+                let idPlatilloAAgregar = (e.target).getAttribute('data-idplatillo');
+                let atributosPlatillo = {
+                    nombre: (e.target).getAttribute('data-nombre'),
+                    energia: (e.target).getAttribute('data-energia'),
+                    lipidos: (e.target).getAttribute('data-lipidos'),
+                    proteinas: (e.target).getAttribute('data-proteinas'),
+                    hidratos: (e.target).getAttribute('data-hidratos')
+                }
+                idsPlatillos.push(idPlatilloAAgregar);
+                datosDieta.push(atributosPlatillo);
+
+                agregarPlatilloHTML(tiempoObj, atributosPlatillo);
+
+                let enviar = {
+                    dia : dia,
+                    idTiempo : idTiempo,
+                    idPlatillo: idPlatilloAAgregar
+                }
+
+                datosAEnviar.push(enviar)
+
+                $('#modal-platillos').modal('hide');
+            }
+        });
+    }
+
+    const irANuevoMenu = () => {
+        document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
+            if (e.target.matches('.nuevo-menu')) {
+                idPacienteAEditar = UIPacientes.obtenerId(e);
+                load('html/menus/nuevo-menu.html', contentPanel);
+                cargarPlatillos();
+                cargarTiempos();
+                eventoAgregarPlatillo();
+
+                new Lightpick({
+                    field: document.getElementById('fecha-inicio'),
+                    minDate: moment(),
+                    onSelect: () => {
+        
+                    }
+                });
+
+                document.getElementById("btn-lunes").addEventListener('click', () => {
+                    dia = "lunes";
+                });
+                document.getElementById("btn-martes").addEventListener('click', () => {
+                    dia = "martes";
+                });
+                document.getElementById("btn-miercoles").addEventListener('click', () => {
+                    dia = "miercoles";
+                });
+                document.getElementById("btn-jueves").addEventListener('click', () => {
+                    dia = "jueves";
+                });
+                document.getElementById("btn-viernes").addEventListener('click', () => {
+                    dia = "viernes";
+                });
+                document.getElementById("btn-sabado").addEventListener('click', () => {
+                    dia = "sabado";
+                });
+                document.getElementById("btn-domingo").addEventListener('click', () => {
+                    dia = "domingo";
+                });
+
+                document.getElementById('guardar-menu-btn').addEventListener('click', guardarMenu);
+
+            }
+        });
+    }
+
+
+
+    //----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
+
+
 
     const addEventos = () => {
 
@@ -283,11 +452,12 @@ const PacientesController = (() => {
         configurarEventoEliminar();
         configurarEventoEditar();
         configurarEventoVerPaciente();
+        irANuevoMenu();
     }
 
     return {
 
-        init : () => {
+        init: () => {
             mostrarTodosLosPacientes();
             addEventos();
         }

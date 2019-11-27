@@ -114,6 +114,10 @@ const UIController = (() => {
       if (typeof TiemposController !== 'undefined') {
         TiemposController.init();
       }
+      // addControllerScript('menus-controller', 'js/Controllers/MenusController.js');
+      // if (typeof MenusController !== 'undefined') {
+      //   MenusController.init();
+      // }
     }
 
   }

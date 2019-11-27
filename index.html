@@ -33,6 +33,51 @@
 </head>
 
 <body>
+    <div class="modal fade" id="modal-platillos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Platillos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tiempo de comida</p>
+                    <select name="select" id="select-tiempo">
+                        <option value="value1">Desayuno</option>
+                    </select>
+                    <div class="row mt-5 card-pacientes">
+
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Acciones</th>
+                                        <th scope="col"> ID_Platillo </th>
+                                        <th scope="col"> Nombre </th>
+                                        <th scope="col"> Energias Kal. </th>
+                                        <th scope="col"> Lipidos </th>
+                                        <th scope="col"> Proteinas </th>
+                                        <th scope="col"> Hidratos de Carbono </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody id="platillos-table-modal">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="app">
         <header>
 

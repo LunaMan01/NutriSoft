@@ -101,10 +101,10 @@ const UIController = (() => {
     abrirMenus: () => {
       load(HTMLRoutes.menus, contentPanel);
       changeActiveItem('li-menus');
-      // addControllerScript('menus-controller', 'js/Controllers/TiemposController.js');
-      // if (typeof MenusController !== 'undefined') {
-      //   MenusController.init();
-      // }
+      addControllerScript('menus-controller', 'js/Controllers/MenusController.js');
+      if (typeof MenusController !== 'undefined') {
+        MenusController.init();
+      }
     },
 
     abrirTiemposComida: () => {
@@ -127,6 +127,16 @@ const UIController = (() => {
 
 
 const controller = (() => {
+  const cargarPlatillos = () => {
+    let respuesta = post('php/platillosModal.php', null);
+    document.getElementById('platillos-table-modal').innerHTML = respuesta;
+  }
+
+  const cargarTiempos = () => {
+    let respuesta = post('php/tiemposModal.php', null);
+    console.log(respuesta);
+    document.getElementById('select-tiempo').innerHTML = respuesta;
+  }
 
   const setUpEvents = () => {
     document.getElementById('pacientes-link').addEventListener('click', UIController.abrirPacientes);
@@ -141,6 +151,8 @@ const controller = (() => {
     init: () => {
       UIController.abrirPacientes();
       setUpEvents();
+      cargarPlatillos();
+      cargarTiempos();
     }
   }
 

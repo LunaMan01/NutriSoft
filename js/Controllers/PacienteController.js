@@ -426,8 +426,8 @@ const PacientesController = (() => {
         let fechaInicio = document.getElementById('fecha-inicio').value;
         datosAEnviar.forEach((element, i) => {
             console.log(element);
-            let data = `iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
-            let respuesta = postMenu('php/menus/agregarMenu.php', data);
+            let data = `id-paciente=${idPacienteAEditar}&iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
+            let respuesta = postMenu('php/menus/agregar-menu', data);
             console.log(respuesta);
             console.log(fechaInicio);
         });
@@ -437,6 +437,7 @@ const PacientesController = (() => {
 
     const eventoAgregarPlatillo = () => {
         document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
+            console.log('ds');
             if (e.target.matches('.agregar-platillo')) {
                 let option = document.getElementById('select-tiempo').options[document.getElementById('select-tiempo').selectedIndex];
                 let idTiempo = option.getAttribute('data-idtiempo');

@@ -11,6 +11,206 @@ const MenusController = (() => {
         return req.responseText;
     }
 
+    let idsPlatillos = [];
+    let datosDieta = [];
+    let idTiempos = [];
+    let dia = "";
+    let datosAEnviar = [];
+    let fechaInicio = "";
+
+    
+
+    const calcularTotales = () => {
+        if (datosDieta.length > 0) {
+            let calorias = datosDieta.map(element => {
+                return parseFloat(element.energia);
+            });
+            let proteinas = datosDieta.map(element => {
+                return parseFloat(element.proteinas);
+            });
+            let lipidos = datosDieta.map(element => {
+                return parseFloat(element.lipidos);
+            });
+            let hidratos = datosDieta.map(element => {
+                return parseFloat(element.hidratos);
+            });
+
+            let totalCalorias = calorias.reduce((acumulador, actual) => acumulador + actual);
+            let totalProteinas = proteinas.reduce((acumulador, actual) => acumulador + actual);
+            let totalLipidos = lipidos.reduce((acumulador, actual) => acumulador + actual);
+            let totalHidratos = hidratos.reduce((acumulador, actual) => acumulador + actual);
+
+            document.getElementById('energia-td').innerHTML = totalCalorias + " kal";
+            document.getElementById('proteinas-td').innerHTML = totalProteinas;
+            document.getElementById('lipidos-td').innerHTML = totalLipidos;
+            document.getElementById('hidratos-td').innerHTML = totalHidratos;
+        } else {
+            document.getElementById('energia-td').innerHTML = "";
+            document.getElementById('proteinas-td').innerHTML = "";
+            document.getElementById('lipidos-td').innerHTML = "";
+            document.getElementById('hidratos-td').innerHTML = "";
+        }
+    }
+
+
+    const eliminarPlatillos = (e, dia) => {
+        let id = (e.target).getAttribute('data-ideliminar');
+        let idTiempo = (e.target).getAttribute('data-idtiempo');
+        datosAEnviar.forEach((element, i) => {
+            if (element.idPlatillo === id && element.dia === dia && element.idTiempo === idTiempo) {
+                datosAEnviar.splice(i, 1);
+                datosDieta.splice(i, 1);
+                // if(datosDieta.length > 0)
+                calcularTotales();
+
+            }
+        });
+
+        (((e.target).parentNode).parentNode).remove();
+        console.log(datosAEnviar);
+    }
+
+    const eventoEliminarPlatillos = () => {
+        document.getElementById('platillos-lunes').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'lunes');
+        });
+        document.getElementById('platillos-martes').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'martes');
+        });
+        document.getElementById('platillos-miercoles').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'miercoles');
+        });
+        document.getElementById('platillos-jueves').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'jueves');
+        });
+        document.getElementById('platillos-viernes').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'viernes');
+        });
+        document.getElementById('platillos-sabado').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'sabado');
+        });
+        document.getElementById('platillos-domingo').addEventListener('click', (e) => {
+            if (e.target.matches('.eliminar-platillo'))
+                eliminarPlatillos(e, 'domingo');
+        });
+    }
+
+
+    const agregarPlatilloHTML = (tiempoObj, atributosPlatillo) => {
+
+        let template = `
+            <tr>
+                <td>${atributosPlatillo.nombre}</td>
+                <td>${tiempoObj.nombre}  ${tiempoObj.hora}</td>
+                <td><i class="far fa-trash-alt eliminar-platillo acciones" data-ideliminar=${atributosPlatillo.id} data-idtiempo=${tiempoObj.id}></i></td>
+            </tr>    
+        `;
+
+        switch (dia) {
+            case "lunes":
+                document.getElementById('platillos-lunes').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+            case "martes":
+                document.getElementById('platillos-martes').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+            case "miercoles":
+                document.getElementById('platillos-miercoles').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+            case "jueves":
+                document.getElementById('platillos-jueves').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+            case "viernes":
+                document.getElementById('platillos-viernes').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+            case "sabado":
+                document.getElementById('platillos-sabado').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+            case "domingo":
+                document.getElementById('platillos-domingo').innerHTML += template;
+                eventoEliminarPlatillos();
+                return;
+
+
+
+        }
+
+
+    }
+
+
+
+    const editarMenu = () => {
+        let fechaInicio = document.getElementById('fecha-inicio').value;
+        datosAEnviar.forEach((element, i) => {
+            console.log(element);
+            //TODO cambiar iteracion por id menu
+            let data = `iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
+            let respuesta = postMenu('php/menus/editar-menu', data);
+            console.log(respuesta);
+            console.log(fechaInicio);
+        });
+
+
+    }
+
+    const eventoAgregarPlatillo = () => {
+        document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
+            console.log('ds');
+            if (e.target.matches('.agregar-platillo')) {
+                let option = document.getElementById('select-tiempo').options[document.getElementById('select-tiempo').selectedIndex];
+                let idTiempo = option.getAttribute('data-idtiempo');
+                idTiempos.push(idTiempo);
+
+                let tiempoObj = {
+                    id: idTiempo,
+                    nombre: option.getAttribute('data-nombre'),
+                    hora: option.getAttribute('data-hora')
+                }
+
+                let idPlatilloAAgregar = (e.target).getAttribute('data-idplatillo');
+                let atributosPlatillo = {
+                    id: idPlatilloAAgregar,
+                    nombre: (e.target).getAttribute('data-nombre'),
+                    energia: (e.target).getAttribute('data-energia'),
+                    lipidos: (e.target).getAttribute('data-lipidos'),
+                    proteinas: (e.target).getAttribute('data-proteinas'),
+                    hidratos: (e.target).getAttribute('data-hidratos')
+                }
+                idsPlatillos.push(idPlatilloAAgregar);
+                datosDieta.push(atributosPlatillo);
+
+                agregarPlatilloHTML(tiempoObj, atributosPlatillo);
+
+                let enviar = {
+                    dia: dia,
+                    idTiempo: idTiempo,
+                    idPlatillo: idPlatilloAAgregar
+                }
+
+                datosAEnviar.push(enviar)
+
+                calcularTotales();
+
+                $('#modal-platillos').modal('hide');
+            }
+        });
+    }
+
+
+
+
     const configuracionBotonesAgregarPlatillosSegunDia = () => {
         document.getElementById("btn-lunes").addEventListener('click', () => {
             dia = "lunes";

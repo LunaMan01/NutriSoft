@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row align-items-center  justify-content-between pacientes-cabecera">
+        <div class="col-md-12  text-center">
+            <span class="slogan text-white">"Nutre tu vida para que la vida te nutra"</span>
+            <hr>
+        </div>
+        <div class="col-lg-7">
+
+
+            <div class="pb-4">
+                <span class="font-weight-bold t text-white">Menús</span>
+
+            </div>
+        </div>
+        <div class="col-lg-1  d-flex pb-4  align-items-center">
+
+            <router-link class="btn btn-success d-flex p-2" id="agregar-menus-btn">
+                <i class="material-icons">add</i>
+                Nuevo
+            </router-link>
+        </div>
+        <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
+            <input type="text" class="form-control rounded-pill" placeholder="Burcar..." id="buscar-menus-input">
+
+        </div>
+    </div>
+
+    <div id="contenido-menus">
+
+        <div class="row mt-5 card-pacientes">
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col"> Paciente </th>
+
+                            <th scope="col"> Acciones </th>
+                        </tr>
+                    </thead>
+                    <tbody id="menus-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

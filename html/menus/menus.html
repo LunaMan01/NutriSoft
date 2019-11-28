@@ -8,24 +8,24 @@
 
 
             <div class="pb-4">
-                <span class="font-weight-bold t text-white">Menús</span>
+                <span class="font-weight-bold t text-white">Menus</span>
 
             </div>
         </div>
         <div class="col-lg-1  d-flex pb-4  align-items-center">
 
-            <router-link class="btn btn-success d-flex p-2" id="agregar-menus-btn">
+            <router-link class="btn btn-success d-flex p-2" id="agregar-platillos-btn">
                 <i class="material-icons">add</i>
                 Nuevo
             </router-link>
         </div>
         <div class="col-lg-4  ml-lg-0 d-flex align-items-center justify-content-end text-right pb-4">
-            <input type="text" class="form-control rounded-pill" placeholder="Burcar..." id="buscar-menus-input">
+            <input type="text" class="form-control rounded-pill" placeholder="Burcar..." id="buscar-menu-input">
 
         </div>
     </div>
 
-    <div id="contenido-menus">
+    <div id="contenido-platillos">
 
         <div class="row mt-5 card-pacientes">
 
@@ -33,12 +33,25 @@
                 <table class="table table-borderless">
                     <thead>
                         <tr>
+                            <th scope="col"> ID_Menu </th>
                             <th scope="col"> Paciente </th>
-
+                            <th scope="col"> Fecha inicio </th>
                             <th scope="col"> Acciones </th>
                         </tr>
                     </thead>
                     <tbody id="menus-table-body">
+                        <tr>
+                            <th scope="row">
+                                1
+                            </th>
+                            <td>Carlos</td>
+                            <td>Fecha inicio</td>
+                            <td>
+                                <i class="far fa-eye accion-ver acciones"></i>
+                                <i class="far fa-edit accion-editar acciones"></i>
+                                <i class="far fa-trash-alt accion-eliminar acciones"></i>
+                            </td>   
+                        </tr>
                     </tbody>
                 </table>
             </div>

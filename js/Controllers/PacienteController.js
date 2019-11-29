@@ -427,7 +427,7 @@ const PacientesController = (() => {
         datosAEnviar.forEach((element, i) => {
             console.log(element);
             let data = `id-paciente=${idPacienteAEditar}&iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
-            let respuesta = postMenu('php/menus/agregar-menu', data);
+            let respuesta = postMenu('php/menus/agregarMenu.php', data);
             console.log(respuesta);
             console.log(fechaInicio);
         });

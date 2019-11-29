@@ -13,22 +13,22 @@
     try{
         if($iteracion == 0){
             
-            $energia = getEnergia();
-            $proteinas = getProteinas();
-            $lipidos = getLipidos();
-            $hidratos = getHidratos();
+            $energia = getEnergia($idPlatillo,$conn);
+            $proteinas = getProteinas($idPlatillo,$conn);
+            $lipidos = getLipidos($idPlatillo,$conn);
+            $hidratos = getHidratos($idPlatillo,$conn);
 
-            $agregar = $conn->prepare("INSERT INTO menus (Energia_Kal_M, Proteinas_M, Lipidos_M, Hidratos_Carbono_M, ID_PACIENTES, Dia_Ini, Mes_Ini, Año_Ini, Dia, ID_TIEMPO, ID_PLATILLOS)
-                VALUES (:energia, :proteinas, :lipidos, :hidratos, :paciente, :diaI, :mesI, :añoI, :dia, :tiempo, :platillo)");
+            $agregar = $conn->prepare("INSERT INTO menus (Energia_Kal_M, Proteinas_M, Lipidos_M, Hidratos_Carbono_M, ID_PACIENTES, Dia_Ini, Mes_Ini, Anio_Ini, Dia, ID_TIEMPO, ID_PLATILLOS)
+                VALUES (:energia, :proteinas, :lipidos, :hidratos, :paciente, :diaI, :mesI, :anioI, :dia, :tiempo, :platillo)");
 
             $agregar->bindParam(':energia', $energia);
             $agregar->bindParam(':proteinas', $proteinas);
-            $agregar->bindParam(':lipidos', $lipídos);
+            $agregar->bindParam(':lipidos', $lipidos);
             $agregar->bindParam(':hidratos', $hidratos);
             $agregar->bindParam(':paciente', $idPaciente);
             $agregar->bindParam(':diaI', $fechaInicio[0]);
             $agregar->bindParam(':mesI', $fechaInicio[1]);
-            $agregar->bindParam(':añoI', $fechaInicio[2]);
+            $agregar->bindParam(':anioI', $fechaInicio[2]);
             $agregar->bindParam(':dia', $diaSemana);
             $agregar->bindParam(':tiempo', $idTiempo);
             $agregar->bindParam(':platillo', $idPlatillo);
@@ -40,20 +40,20 @@
             setcookie("lipidos", $lipidos, time() + (7200), "/");
             setcookie("hidratos", $hidratos, time() + (7200), "/");
         } else {
-            $lastIdMenu = $_COOKIE['IdMenu'];
+            $lastIdMenu = $_COOKIE['idMenu'];
 
-            $energia = getEnergia();
-            $proteinas = getProteinas();
-            $lipidos = getLipidos();
-            $hidratos = getHidratos();
+            $energia = getEnergia($idPlatillo,$conn);
+            $proteinas = getProteinas($idPlatillo,$conn);
+            $lipidos = getLipidos($idPlatillo,$conn);
+            $hidratos = getHidratos($idPlatillo,$conn);
 
             $energia = $energia + $_COOKIE['energia'];
             $proteinas = $proteinas + $_COOKIE['proteinas'];
             $lipidos = $lipidos + $_COOKIE['lipidos'];
-            $hidratos = $hidratos + $_COOKIE['hi$hidratos'];
+            $hidratos = $hidratos + $_COOKIE['hidratos'];
 
-            $agregar = $conn->prepare("INSERT INTO menus (ID_MENU, Energia_Kal_M, Proteinas_M, Lipidos_M, Hidratos_Carbono_M, ID_PACIENTES, Dia_Ini, Mes_Ini, Año_Ini, Dia, ID_TIEMPO, ID_PLATILLOS)
-                VALUES (:menu, :energia, :proteinas, :lipidos, :hidratos, :paciente, :diaI, :mesI, :añoI, :dia, :tiempo, :platillo)");
+            $agregar = $conn->prepare("INSERT INTO menus (ID_MENU, Energia_Kal_M, Proteinas_M, Lipidos_M, Hidratos_Carbono_M, ID_PACIENTES, Dia_Ini, Mes_Ini, Anio_Ini, Dia, ID_TIEMPO, ID_PLATILLOS)
+                VALUES (:menu, :energia, :proteinas, :lipidos, :hidratos, :paciente, :diaI, :mesI, :anioI, :dia, :tiempo, :platillo)");
 
             $agregar->bindParam(':menu', $lastIdMenu);
             $agregar->bindParam(':energia', $energia);
@@ -63,7 +63,7 @@
             $agregar->bindParam(':paciente', $idPaciente);
             $agregar->bindParam(':diaI', $fechaInicio[0]);
             $agregar->bindParam(':mesI', $fechaInicio[1]);
-            $agregar->bindParam(':añoI', $fechaInicio[2]);
+            $agregar->bindParam(':anioI', $fechaInicio[2]);
             $agregar->bindParam(':dia', $diaSemana);
             $agregar->bindParam(':tiempo', $idTiempo);
             $agregar->bindParam(':platillo', $idPlatillo);
@@ -73,40 +73,54 @@
             setcookie("proteinas", $proteinas, time() + (7200), "/");
             setcookie("lipidos", $lipidos, time() + (7200), "/");
             setcookie("hidratos", $hidratos, time() + (7200), "/");
+
+            $update = $conn->prepare("UPDATE menus SET
+                Energia_Kal_M = :energia, 
+                Proteinas_M = :proteinas, 
+                Lipidos_M = :lipidos, 
+                Hidratos_Carbono_M = :hidratos
+                WHERE ID_MENU = ".$lastIdMenu);
+            
+            $update->bindParam(':energia', $energia);
+            $update->bindParam(':proteinas', $proteinas);
+            $update->bindParam(':lipidos', $lipidos);
+            $update->bindParam(':hidratos', $hidratos);
+
+            $update->execute();
         }
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }
     $conn = null;
 
-    function getEnergia(){
-        $getEnergia = "SELECT Energia_Kal_M FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
+    function getEnergia($idPlatillo, $conn){
+        $getEnergia = "SELECT Energia_Kal_Pla FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
         foreach($conn->query($getEnergia) as $row){
-            $energia = $row['Energia_Kal_M'];
+            $energia = $row['Energia_Kal_Pla'];
         }
         return $energia;
     }
 
-    function getProteinas(){
-        $getProteinas = "SELECT Proteinas_M FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
+    function getProteinas($idPlatillo, $conn){
+        $getProteinas = "SELECT Proteinas_Pla FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
         foreach($conn->query($getProteinas) as $row){
-            $proteinas = $row['Proteinas_M'];
+            $proteinas = $row['Proteinas_Pla'];
         }
         return $proteinas;
     }
 
-    function getLipidos(){
-        $getLipidos = "SELECT Lipidos_M FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
+    function getLipidos($idPlatillo, $conn){
+        $getLipidos = "SELECT Lipidos_Pla FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
         foreach($conn->query($getLipidos) as $row){
-            $lipidos = $row['Lipidos_M'];
+            $lipidos = $row['Lipidos_Pla'];
         }
         return $lipidos;
     }
 
-    function getHidratos(){
-        $getHidratos = "SELECT Hidratos_Carbono_M FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
+    function getHidratos($idPlatillo, $conn){
+        $getHidratos = "SELECT Hidratos_Carbono_Pla FROM platillos WHERE ID_PLATILLOS = ". $idPlatillo;
         foreach($conn->query($getHidratos) as $row){
-            $hidratos = $row['Hidratos_Carbono_M'];
+            $hidratos = $row['Hidratos_Carbono_Pla'];
         }
         return $hidratos;
     }

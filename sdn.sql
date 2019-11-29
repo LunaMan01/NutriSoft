@@ -288,7 +288,7 @@ ALTER TABLE `mediciones_basicas`
   ADD KEY `fk_Mediciones_Pacientes` (`ID_PACIENTES`);
 
 ALTER TABLE `menus`
-  ADD PRIMARY KEY (`ID_MENU`,`ID_PLATILLOS`) USING BTREE,
+  ADD PRIMARY KEY (`ID_MENU`,`ID_PLATILLOS`,`ID_PACIENTES`,`ID_TIEMPO`,`Dia`) USING BTREE,
   ADD KEY `fk_Menus_Tiempos_Comida` (`ID_TIEMPO`),
   ADD KEY `fk_Menus_Pacientes` (`ID_PACIENTES`),
   ADD KEY `fk_Menus_Platillos` (`ID_PLATILLOS`);
@@ -406,8 +406,23 @@ COMMIT;
 ALTER TABLE pacientes CHANGE Año_N Anio_N char(4);
 ALTER TABLE pacientes CHANGE Año_C Anio_C char(4);
 ALTER TABLE pacientes CHANGE Año_SC Anio_SC char(4);
+
 ALTER TABLE perimetros CHANGE Muñeca Muneca float;
+
 ALTER TABLE habitos_toxicos CHANGE Cantidad_Cigarro Cantidad_Cigarro varchar(50);
 ALTER TABLE habitos_toxicos CHANGE Cantidad_Alcohol Cantidad_Alcohol varchar(50);
-ALTER TABLE habitos_toxicos CHANGE Cantidad_Drogas Cantidad_Drogas varchar(50); 
+ALTER TABLE habitos_toxicos CHANGE Cantidad_Drogas Cantidad_Drogas varchar(50);
+
+ALTER TABLE menus CHANGE Año_Ini Anio_Ini char(4);
+ALTER TABLE menus MODIFY column Dia varchar(10) not null, add KEY(Dia);
+
+ALTER TABLE menus CHANGE Energia_Kal_M Energia_Kal_M float;
+ALTER TABLE menus CHANGE Proteinas_M Proteinas_M float;
+ALTER TABLE menus CHANGE Lipidos_M Lipidos_M float;
+ALTER TABLE menus CHANGE Hidratos_Carbono_M Hidratos_Carbono_M float;
+
+ALTER TABLE alimentos CHANGE Energia_Kal_Ali Energia_Kal_Ali float;
+ALTER TABLE alimentos CHANGE Proteinas_Ali Proteinas_Ali float;
+ALTER TABLE alimentos CHANGE Lipidos_Ali Lipidos_Ali float;
+ALTER TABLE alimentos CHANGE Hidratos_Carbono_Ali Hidratos_Carbono_Ali float;
 

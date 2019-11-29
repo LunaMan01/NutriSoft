@@ -156,8 +156,8 @@ const MenusController = (() => {
         datosAEnviar.forEach((element, i) => {
             console.log(element);
             //TODO cambiar iteracion por id menu
-            let data = `iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
-            let respuesta = postMenu('php/menus/editar-menu', data);
+            let data = `id-paciente=${idPacienteAEditar}&iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
+            let respuesta = postMenu('php/menus/modificarMenu.php', data);
             console.log(respuesta);
             console.log(fechaInicio);
         });

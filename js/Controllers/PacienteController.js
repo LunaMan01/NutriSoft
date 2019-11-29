@@ -375,7 +375,7 @@ const PacientesController = (() => {
         });
     }
 
-    const agregarPlatilloHTML = (tiempoObj, atributosPlatillo) => {
+    function agregarPlatilloHTML (tiempoObj, atributosPlatillo)  {
 
         let template = `
             <tr>
@@ -532,7 +532,10 @@ const PacientesController = (() => {
 
 
     const addEventos = () => {
-
+        datosAEnviar = [];
+        datosDieta = [];
+        atributosPlatillo = [];
+        tiemposObj = [];
         document.getElementById('nuevo-paciente-btn').addEventListener('click', abrirVentanaNuevoPaciente);
         document.getElementById('buscar-paciente-input').addEventListener('keyup', consultaDinamicaPacientes);
         configurarEventoEliminar();

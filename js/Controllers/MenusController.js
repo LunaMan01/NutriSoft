@@ -351,9 +351,11 @@ const MenusController = (() => {
     //  ELIMINAR MENU
     //---------------------------------------
     const eliminarMenu = (idAEliminar, e) => {
-        if (post('php/menus/eliminarMenu.php', 'id-menu='+idAEliminar).trim() == 'success') {
+        let respuesta = post('php/menus/eliminarMenu.php', 'menu='+idAEliminar);
+        console.log(respuesta);
+        if (respuesta.trim() == 'success') {
             (((e.target).parentNode).parentNode).remove();
-            swal("Paciente eliminado correctamente", {
+            swal("Menu eliminado correctamente", {
                 icon: "success",
             });
         } else {

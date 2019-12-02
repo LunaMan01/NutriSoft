@@ -159,8 +159,15 @@ const MenusController = (() => {
     }
 
 
+    const editarFecha = () => {
+        let fechaInicio = document.getElementById('fecha-inicio').value;
+        let data = `fecha-inicio=${fechaInicio}`;
+        let respuesta = postMenu('php/menus/modificarMenu.php', data);
+        console.log(data);
+    }
 
     const editarMenu = () => {
+        editarFecha();
         let fechaInicio = document.getElementById('fecha-inicio').value;
         datosAEnviar.forEach((element, i) => {
             console.log(element);
@@ -175,6 +182,7 @@ const MenusController = (() => {
 
 
     }
+
 
     let contadoreventos = 0
     const eventoAgregarPlatillo = () => {

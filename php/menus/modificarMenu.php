@@ -13,6 +13,18 @@
     
     try{
         if($opcion == 1){
+            //MODIFICAR FECHA
+            $update = $conn->prepare("UPDATE menus SET 
+                Dia_Ini = :dia,
+                Mes_Ini = :mes,
+                Anio_Ini = :anio
+                WHERE ID_MENU = ".$idMenu);
+
+            $update->bindParam(':dia', $fechaInicio[0]);
+            $update->bindParam(':mes', $fechaInicio[1]);
+            $update->bindParam(':anio', $fechaInicio[2]);
+            $update->execute();
+            
             // AGREGAR
             $energia = getEnergia($idPlatillo,$conn);
             $proteinas = getProteinas($idPlatillo,$conn);
@@ -37,6 +49,18 @@
             $agregar->execute();
             
         } else if($opcion == 2){
+            //MODIFICAR FECHA
+            $update = $conn->prepare("UPDATE menus SET 
+                Dia_Ini = :dia,
+                Mes_Ini = :mes,
+                Anio_Ini = :anio
+                WHERE ID_MENU = ".$idMenu);
+
+            $update->bindParam(':dia', $fechaInicio[0]);
+            $update->bindParam(':mes', $fechaInicio[1]);
+            $update->bindParam(':anio', $fechaInicio[2]);
+            $update->execute();
+
             // ELIMINAR
             $delete = $conn->prepare("DELETE FROM menus 
                 WHERE ID_MENU = :menu
@@ -52,19 +76,7 @@
             $delete->bindParam(':dia', $diaSemana);
             $delete->execute();
 
-        } else if($opcion == 3){
-            //MODIFICAR FECHA
-            $update = $conn->prepare("UPDATE menus SET 
-                Dia_Ini = :dia,
-                Mes_Ini = :mes,
-                Anio_Ini = :anio
-                WHERE ID_MENU = ".$idMenu);
-
-            $update->bindParam(':dia', $fechaInicio[0]);
-            $update->bindParam(':mes', $fechaInicio[1]);
-            $update->bindParam(':anio', $fechaInicio[2]);
-            $update->execute();
-        }
+        } 
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

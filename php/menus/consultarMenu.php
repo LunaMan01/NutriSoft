@@ -14,7 +14,7 @@
                 '<td>
                     <i class="far fa-eye accion-ver acciones"></i>
                     <i class="far fa-trash-alt accion-eliminar acciones"></i>
-                    <i data-idmenu="'.$row['ID_MENU'].'" data-idpacinte="'.$row['ID_PACIENTES'].'" class="far fa-edit accion-editar acciones"></i>
+                    <i data-idmenu="'.$row['ID_MENU'].'" data-idpaciente="'.$row['ID_PACIENTES'].'" class="far fa-edit accion-editar acciones"></i>
                 </tr>';
         }
     }catch(PDOException $e){

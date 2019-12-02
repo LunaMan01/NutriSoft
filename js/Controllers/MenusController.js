@@ -77,37 +77,69 @@ const MenusController = (() => {
 
         (((e.target).parentNode).parentNode).remove();
         console.log(datosAEnviar);
+        console.log('eliminadofs');
     }
 
+    let cl=0,cm=0,cmi=0,cj=0,cv=0,cs=0,cd=0;
     const eventoEliminarPlatillos = () => {
-        document.getElementById('platillos-lunes').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'lunes');
-        });
-        document.getElementById('platillos-martes').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'martes');
-        });
-        document.getElementById('platillos-miercoles').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'miercoles');
-        });
-        document.getElementById('platillos-jueves').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'jueves');
-        });
-        document.getElementById('platillos-viernes').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'viernes');
-        });
-        document.getElementById('platillos-sabado').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'sabado');
-        });
-        document.getElementById('platillos-domingo').addEventListener('click', (e) => {
-            if (e.target.matches('.eliminar-platillo'))
-                eliminarPlatillos(e, 'domingo');
-        });
+        if(cl == 0) {
+            document.getElementById('platillos-lunes').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'lunes');
+                    cl++;
+                }
+                cl++;
+            });
+            cl++;
+        }
+        if(cm == 0)    
+            document.getElementById('platillos-martes').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'martes');
+                    cm++;
+                }
+                cm++;
+            });
+        if(cmi == 0)    
+            document.getElementById('platillos-miercoles').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'miercoles');
+                    cmi++;
+                }
+                cmi++;
+            });
+        if(cj == 0)
+            document.getElementById('platillos-jueves').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'jueves');
+                    cj++
+                }
+                cj++;
+            });
+        if(cv == 0)
+            document.getElementById('platillos-viernes').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'viernes');
+                    cv++;
+                }
+                cv++;
+            });
+        if(cs == 0)
+            document.getElementById('platillos-sabado').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'sabado');
+                    cs++;
+                }
+                cs++;
+            });
+        if(cd == 0)
+            document.getElementById('platillos-domingo').addEventListener('click', (e) => {
+                if (e.target.matches('.eliminar-platillo')) {
+                    eliminarPlatillos(e, 'domingo');
+                    cd++;
+                }
+                cd++;
+            });
     }
 
 
@@ -160,24 +192,25 @@ const MenusController = (() => {
 
 
     const editarFecha = () => {
-        let fechaInicio = document.getElementById('fecha-inicio').value;
-        let data = `fecha-inicio=${fechaInicio}`;
-        let respuesta = postMenu('php/menus/modificarMenu.php', data);
-        console.log(respuesta);
+        /*let fechaInicio = document.getElementById('fecha-inicio').value;
+        let data = `fecha-inicio=${fechaInicio}&opcion=3`;
+        let respuesta = post('php/menus/modificarMenu.php', data);
+        console.log(respuesta);*/
     }
 
     const editarMenu = () => {
-        editarFecha();
+        // editarFecha();
         let fechaInicio = document.getElementById('fecha-inicio').value;
         datosAEnviar.forEach((element, i) => {
             console.log(element);
             //TODO cambiar iteracion por id menu
 
             let data = `id-menu=${idMenuAEditar}&id-paciente=${idPacienteMenu}&opcion=${element.opcion}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
-            let respuesta = postMenu('php/menus/modificarMenu.php', data);
+            let respuesta = post('php/menus/modificarMenu.php', data);
 
             console.log(respuesta);
             console.log(fechaInicio);
+            console.log(data);
         });
 
 
@@ -186,7 +219,7 @@ const MenusController = (() => {
 
     let contadoreventos = 0
     const eventoAgregarPlatillo = () => {
-        if(contadoreventos == 0)
+        if(contadoreventos == 0) {
             document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
                 console.log('ds');
                 if (e.target.matches('.agregar-platillo')) {
@@ -224,11 +257,14 @@ const MenusController = (() => {
                     datosAEnviar.push(enviar)
 
                     calcularTotales();
-
+                    console.log("DATOS ENVIAR ",datosAEnviar);
                     $('#modal-platillos').modal('hide');
+                    contadoreventos++;
                 }
-                contadoreventos++;
+                    
             });
+            contadoreventos++;
+        }
     }
 
 
@@ -262,22 +298,25 @@ const MenusController = (() => {
     const configurarEventoEditar = () => {
         document.getElementById('menus-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-editar')) {
-                
+                cl=0;cm=0;cmi=0;cj=0;cv=0;cs=0;cd=0;
 
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 load('html/menus/editar-menu.html', contentPanel);
-                let platillosLunes = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=lunes`);
-                let platillosMartes = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=martes`);
-                let platillosMiercoles = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=miercoles`);
-                let platillosJueves = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=jueves`);
-                let platillosViernes = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=viernes`);
-                let platillosSabados = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=sabado`);
-                let platillosDomingos = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=domingo`);
-
-                let datosDietaJSON = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}`)
+                let platillosLunes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=lunes`);
+                let platillosMartes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=martes`);
+                let platillosMiercoles = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=miercoles`);
+                let platillosJueves = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=jueves`);
+                let platillosViernes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=viernes`);
+                let platillosSabados = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=sabado`);
+                let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo`);
+                
+                let datosDietaJSON = post('php/menus/menuJSON.php',`id-menu=${idMenuAEditar}`)
+                console.log(platillosLunes);
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 datosDieta.push(datosDietaJSON);
+                datosAEnviar = [];
+                console.log("DATOS ENVIAR ",datosAEnviar)
                 calcularTotales();
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;
@@ -288,6 +327,7 @@ const MenusController = (() => {
                 document.getElementById('platillos-domingo').innerHTML = platillosDomingos;
 
                 eventoAgregarPlatillo();
+                eventoEliminarPlatillos();
 
                 new Lightpick({
                     field: document.getElementById('fecha-inicio'),
@@ -350,7 +390,7 @@ const MenusController = (() => {
         document.getElementById('menus-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-ver')) {
                 load('html/menus/ver-menu.html', contentPanel);
-
+                
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 document.getElementById('fecha-inicio').value = (e.target).getAttribute('data-fechainicio');

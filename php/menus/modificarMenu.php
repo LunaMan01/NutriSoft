@@ -1,55 +1,70 @@
 <?php 
     include '../conexion.php';
 
-    $iteracion = $_POST['iteracion'];
-    $diaSemana = $_POST['dia'];
-
     $idMenu = $_POST['id-menu'];
+    $opcion = $_POST['opcion'];
+    $diaSemana = $_POST['dia'];
     $idPaciente = $_POST['id-paciente'];
     $idTiempo = $_POST['id-tiempo'];
     $idPlatillo = $_POST['id-platillo'];
-
-    $anteriorIdTiempo = $_POST['anterior-id-tiempo'];
-    $anteriorIdPlatillo = $_POST['anterior-id-platillo'];
     
     $fecha = $_POST['fecha-inicio'];
     $fechaInicio = explode("/", $fecha);
     
     try{
-        $energia = getEnergia($idPlatillo,$conn);
-        $proteinas = getProteinas($idPlatillo,$conn);
-        $lipidos = getLipidos($idPlatillo,$conn);
-        $hidratos = getHidratos($idPlatillo,$conn);
+        if($opcion == 1){
+            // AGREGAR
+            $energia = getEnergia($idPlatillo,$conn);
+            $proteinas = getProteinas($idPlatillo,$conn);
+            $lipidos = getLipidos($idPlatillo,$conn);
+            $hidratos = getHidratos($idPlatillo,$conn);
 
-        $modificar = $conn->prepare("UPDATE menu SET
-            Energia_Kal_M = :energia,
-            Proteinas_M = :proteinas,
-            Lipidos_M = :lipidos,
-            Hidratos_Carbono_M = :hidratos,
-            Dia_Ini = :dia,
-            Mes_Ini = :mes,
-            Anio_Ini = :anio,
-            Dia = :dia,
-            ID_TIEMPO = :tiempo,
-            ID_PLATILLOS = :platillo
-            WHERE ID_MENU = '".$idMenu."'
-            AND ID_PACIENTES = '".$idPaciente."'
-            AND ID_TIEMPO = '".$anteriorIdTiempo."'
-            AND ID_PLATILLOS = '".$anteriorIdPlatillo."'
-            AND Dia = ".$diaSemana);
-        
-        $modificar->bindParam(':energia', $energia);
-        $modificar->bindParam(':proteinas', $proteinas);
-        $modificar->bindParam(':lipidos', $lipidos);
-        $modificar->bindParam(':hidratos', $hidratos);
-        $modificar->bindParam(':dia', $fechaInicio[0]);
-        $modificar->bindParam(':mes', $fechaInicio[1]);
-        $modificar->bindParam(':anio', $fechaInicio[2]);
-        $modificar->bindParam(':dia', $diaSemana);
-        $modificar->bindParam(':tiempo', $idTiempo);
-        $modificar->bindParam(':platillo', $idPlatillo);
+            $agregar = $conn->prepare("INSERT INTO menus (ID_MENU, Energia_Kal_M, Proteinas_M, Lipidos_M, Hidratos_Carbono_M, ID_PACIENTES, Dia_Ini, Mes_Ini, Anio_Ini, Dia, ID_TIEMPO, ID_PLATILLOS)
+                VALUES (:menu, :energia, :proteinas, :lipidos, :hidratos, :paciente, :diaI, :mesI, :anioI, :dia, :tiempo, :platillo)");
+            
+            $agregar->bindParam(':menu', $idMenu);
+            $agregar->bindParam(':energia', $energia);
+            $agregar->bindParam(':proteinas', $proteinas);
+            $agregar->bindParam(':lipidos', $lipidos);
+            $agregar->bindParam(':hidratos', $hidratos);
+            $agregar->bindParam(':paciente', $idPaciente);
+            $agregar->bindParam(':diaI', $fechaInicio[0]);
+            $agregar->bindParam(':mesI', $fechaInicio[1]);
+            $agregar->bindParam(':anioI', $fechaInicio[2]);
+            $agregar->bindParam(':dia', $diaSemana);
+            $agregar->bindParam(':tiempo', $idTiempo);
+            $agregar->bindParam(':platillo', $idPlatillo);
+            $agregar->execute();
+            
+        } else if($opcion == 2){
+            // ELIMINAR
+            $delete = $conn->prepare("DELETE FROM menus 
+                WHERE ID_MENU = :menu
+                AND ID_PACIENTES = :paciente
+                AND ID_PLATILLOS = :platillo
+                AND ID_TIEMPO = :tiempo
+                AND Dia = :dia");
+            
+            $delete->bindParam(':menu', $idMenu);
+            $delete->bindParam(':paciente', $idPaciente);
+            $delete->bindParam(':platillo', $idPlatillo);
+            $delete->bindParam(':tiempo', $idTiempo);
+            $delete->bindParam(':dia', $diaSemana);
+            $delete->execute();
 
-        $modificar->execute();
+        } else if($opcion == 3){
+            //MODIFICAR FECHA
+            $update = $conn->prepare("UPDATE menus SET 
+                Dia_Ini = :dia,
+                Mes_Ini = :mes,
+                Anio_Ini = :anio
+                WHERE ID_MENU = ".$idMenu);
+
+            $update->bindParam(':dia', $fechaInicio[0]);
+            $update->bindParam(':mes', $fechaInicio[1]);
+            $update->bindParam(':anio', $fechaInicio[2]);
+            $update->execute();
+        }
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

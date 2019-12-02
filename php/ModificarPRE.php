@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title> MODIFICAR PREPARACION </title>
-	</head>
-	<body>
-
 		<?php 
 
 			$anteriorID_PREPARACION=$_POST['ID_PREPARACION'];
@@ -133,46 +126,3 @@
 				</div>
 				
 			</FORM>
-
-			<!--<script type="text/javascript">
-				var rec=XMLHttpRequest();
-				rec.open("GET","MPRE.php",false)
-			</script>-->
-
-		<!--CODIGO MODIFICAR ModificarPRE -->
-		<!--<?php/*
-
-			if (isset($_POST['Modificar'])) {
-				$conectar=mysqli_connect('localhost','root','','sdn');
-				if (!$conectar) {
-					die("conexion fallida: ".mysqli_connect_error());
-				}
-				echo "conecxion exitosa <br>";
-				
-				//Recuperar variables
-			/*	$ID_PREPARACION=$_G['ID_PREPARACION'];
-				$Nombre_Pla=$_GET['Nombre_Pla'];
-				$Nombre_Ali=$_GET['Nombre_Ali'];*/
-
-				
-				$ID_PLATILLOS=$_POST['ID_PLATILLOS'];
-				$ID_ALIMENTOS=$_POST['ID_ALIMENTOS'];
-				$Cantidad_Pre=$_POST['Cantidad_Pre'];
-				$Unidad_Pre=$_POST['Unidad_Pre'];
-				$Tipos_Pre=$_POST['Tipos_Pre'];
-
-
-				/*$sql="UPDATE preparacion SET  ID_PLATILLOS='$ID_PLATILLOS', ID_ALIMENTOS='$ID_ALIMENTOS', Cantidad_Pre='$Cantidad_Pre', Unidad_Pre='$Unidad_Pre', Tipos_Pre='$Tipos_Pre' WHERE ID_PREPARACION='$ID_PREPARACION' AND Nombre_Pla='$Nombre_Pla' AND Nombre_Ali='$Nombre_Ali'";
-
-
-				if (mysqli_query($conectar, $sql)) {
-					echo "Datos Modificados";
-				}else{
-					echo "error: " . $sql . "<br>" . mysqli_error($conectar);
-				}
-				mysqli_close($conectar);
-			}*/
-		?>-->
-
-	</body>
-</html>

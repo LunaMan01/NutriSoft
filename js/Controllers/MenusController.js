@@ -159,8 +159,14 @@ const MenusController = (() => {
     }
 
 
+    const editarFecha = () => {
+        let fechaInicio = document.getElementById('fecha-inicio').value;
+        let data = `fecha-inicio=${fechaInicio}`;
+        console.log(data);
+    }
 
     const editarMenu = () => {
+        editarFecha();
         let fechaInicio = document.getElementById('fecha-inicio').value;
         datosAEnviar.forEach((element, i) => {
             console.log(element);
@@ -175,6 +181,8 @@ const MenusController = (() => {
 
 
     }
+
+   
 
     const eventoAgregarPlatillo = () => {
         document.getElementById('platillos-table-modal').addEventListener('click', (e) => {

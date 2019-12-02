@@ -39,8 +39,8 @@ const HTMLRoutes = {
   platillos: 'html/platillos/platillos.html',
   grupoAlimentos: 'html/grupos-alimentos/grupos-alimentos.html',
   tiemposComidas: 'html/tiempo-comida/tiempo-comida.html',
-  menus: 'html/menus/menus.html'
-
+  menus: 'html/menus/menus.html',
+  preparacion: 'html/preparacion/preparacion.html'
 };
 
 
@@ -86,6 +86,16 @@ const UIController = (() => {
       addControllerScript('platillos-controller', 'js/Controllers/PlatillosController.js');
       if (typeof PlatillosController !== 'undefined') {
         PlatillosController.init();
+      }
+    },
+
+    
+    abrirPreparacion: () => {
+      load(HTMLRoutes.preparacion, contentPanel);
+      changeActiveItem('li-preparacion');
+      addControllerScript('preparacion-controller', 'js/Controllers/PreparacionController.js');
+      if (typeof PreparacionController !== 'undefined') {
+        PreparacionController.init();
       }
     },
 
@@ -145,6 +155,7 @@ const controller = (() => {
     document.getElementById('grupo-alimentos-link').addEventListener('click', UIController.abrirGruposAlimentos);
     document.getElementById('tiempos-link').addEventListener('click', UIController.abrirTiemposComida);
     document.getElementById('menus-link').addEventListener('click', UIController.abrirMenus);
+    document.getElementById('preparacion-link').addEventListener('click', UIController.abrirPreparacion);
   }
 
   return {
@@ -162,7 +173,15 @@ const mostrarMensaje = (mensaje, tipo) => {
   swal(mensaje, {
     icon: tipo,
   });
+  
 }
 
+const preparacionEliminada = (mensaje,tipo) => {
+  swal(mensaje, {
+    icon: tipo,
+  });
+  console.log('entros');
+  UIController.abrirPreparacion();
+}
 controller.init();
 

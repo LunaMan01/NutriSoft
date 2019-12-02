@@ -29,6 +29,14 @@
     margin-right: 5px;
     cursor: pointer;
 }
+
+#tabla input.form-control {
+    width: auto;
+}
+
+#tabla input.custom-select {
+    width: auto;
+}
 /* .nav-item:hover {
   background: #20253B;
   

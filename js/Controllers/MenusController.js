@@ -320,7 +320,7 @@ const MenusController = (() => {
                 let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo&opcion=${2}`);
                 
                 let datosDietaJSON = post('php/menus/menuJSON.php',`id-menu=${idMenuAEditar}`)
-                console.log(platillosLunes);
+                console.log(datosDietaJSON);
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 datosDieta.push(datosDietaJSON);
                 console.log("DTOS DIETA",datosDieta);

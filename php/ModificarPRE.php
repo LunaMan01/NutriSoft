@@ -7,15 +7,15 @@
 
 		<?php 
 
-			$anteriorID_PREPARACION=$_GET['ID_PREPARACION'];
+			$anteriorID_PREPARACION=$_POST['ID_PREPARACION'];
 
 			//setcookie("ID_PREPARACION",$_GET['ID_PREPARACION'],time()+(3600),"/");
 			
-			$anteriorID_PLATILLOS=$_REQUEST['ID_PLATILLOS'];
+			$anteriorID_PLATILLOS=$_POST['ID_PLATILLOS'];
 
 			//setcookie("Nombre_Pla",$_GET['Nombre_Pla'],time()+(3600),"/");
 
-			$anteriorID_ALIMENTOS=$_REQUEST['ID_ALIMENTOS'];
+			$anteriorID_ALIMENTOS=$_POST['ID_ALIMENTOS'];
 
 			//setcookie("Nombre_Ali",$_GET['Nombre_Ali'],time()+(3600),"/");
 
@@ -23,9 +23,9 @@
 			$Nombre_Pla=$_COOKIE['Nombre_Pla'];
 			$Nombre_Ali=$_COOKIE['Nombre_Ali'];*/
 
-			echo  "$anteriorID_PREPARACION <br>";
-			echo "$anteriorID_PLATILLOS <br>";
-			echo "$anteriorID_ALIMENTOS";
+			// echo  "$anteriorID_PREPARACION <br>";
+			// echo "$anteriorID_PLATILLOS <br>";
+			// echo "$anteriorID_ALIMENTOS";
 
 			$conexion=mysqli_connect('localhost','root','','sdn');
 
@@ -39,13 +39,18 @@
 			//$mostrarp=mysqli_fetch_array($result)
 
 		?>
-			<FORM id="Modi" action="MPRE.php?ID_PLATILLOS = <?php echo $mostrarpl['ID_PLATILLOS'] ?> & ID_ALIMENTOS = <?php echo $mostrara['ID_ALIMENTOS'] ?> & Cantidad_Pre = <?php echo $mostrarp['Cantidad_Pre'] ?> & Unidad_Pre = <?php echo $mostrarp['Unidad_Pre'] ?> & Tipos_Pre = <?php echo $mostrarp['Tipos_Pre']?>"  method="GET" target="iframePRE">
+			<div class="d-none">
+				<iframe src="" name="iframePRE" frameborder="0"></iframe>
+			</div>
+			<FORM id="Modi" action="php\MPRE.php?ID_PLATILLOS = <?php echo $mostrarpl['ID_PLATILLOS'] ?> & ID_ALIMENTOS = <?php echo $mostrara['ID_ALIMENTOS'] ?> & Cantidad_Pre = <?php echo $mostrarp['Cantidad_Pre'] ?> & Unidad_Pre = <?php echo $mostrarp['Unidad_Pre'] ?> & Tipos_Pre = <?php echo $mostrarp['Tipos_Pre']?>"  method="GET" target="iframePRE" 
+			onsubmit="mostrarMensaje('Modificacion correcta', 'success')">
 				
 				<input type="hidden" name="anteriorID_PREPARACION" value="<?php echo $anteriorID_PREPARACION?>">
 				<input type="hidden" name="anteriorID_PLATILLOS" value="<?php echo $anteriorID_PLATILLOS?>">
 				<input type="hidden" name="anteriorID_ALIMENTOS" value="<?php echo $anteriorID_ALIMENTOS?>">
-				<table border="2">
-					<p> Datos a Modificar </p>
+			<div class="card-pacientes mt-5 table-responsive">
+				<table class="table table-borderless">
+					<!-- <p> Datos a Modificar </p> -->
 					<tr>
 						<td>
 							<label for="ID_PREPARACION"> PREPARACION </label>
@@ -72,7 +77,7 @@
 						</td>
 						<td>
 							 <!--<label name="ID_PLATILLOS"> <?php echo $mostrarp['Nombre_Pla']; ?> </label>-->					
-							<select  name="ID_PLATILLOS">
+							<select  name="ID_PLATILLOS" class="custom-select" style="width:auto;">
 								<option> <?php echo $mostrarp['Nombre_Pla']?> </option>
 									<?php
 										$conexion=mysqli_connect('localhost','root','','sdn');
@@ -89,7 +94,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="ID_ALIMENTOS">
+							<select name="ID_ALIMENTOS" class="custom-select" style="width:auto;">
 								<option> <?php echo $mostrarp['Nombre_Ali']?> </option>
 									<?php
 
@@ -111,19 +116,22 @@
 							</select>
 						</td>
 						<td>
-							<input type="text" name="Cantidad_Pre" value="<?php echo $mostrarp['Cantidad_Pre']; ?>" pattern="[0-9]{1,5}" title="numero en rango de 1-99999">
+							<input type="text" name="Cantidad_Pre" value="<?php echo $mostrarp['Cantidad_Pre']; ?>" pattern="[0-9]{1,5}" title="numero en rango de 1-99999" class="form-control">
 						</td>
 						<td>
-							<input type="text" name="Unidad_Pre" value="<?php echo $mostrarp['Unidad_Pre']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+							<input type="text" name="Unidad_Pre" value="<?php echo $mostrarp['Unidad_Pre']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" class="form-control">
 						</td>
 						<td>
-							<input type="text" name="Tipos_Pre" value="<?php echo $mostrarp['Tipos_Pre']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+							<input type="text" name="Tipos_Pre" value="<?php echo $mostrarp['Tipos_Pre']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" class="form-control">
 						</td>
 					</tr>
 				</table>
+				</div>
 				|<br><br>
-				<input type="submit" value="Modificar" name="Modificar" id="Modificar" >
-				<br>
+				<div class="text-right">
+				<input type="submit" class="btn btn-success" value="Modificar" name="Modificar" id="Modificar" >
+				</div>
+				
 			</FORM>
 
 			<!--<script type="text/javascript">

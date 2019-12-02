@@ -6,7 +6,7 @@
 	<body>
 
 		<?php 
-			$ID_PREPARACION=$_GET['ID_PREPARACION'];
+			$ID_PREPARACION=$_POST['ID_PREPARACION'];
 
 			$conexion=mysqli_connect('localhost','root','','sdn');
 
@@ -15,10 +15,14 @@
 			$result=mysqli_query($conexion,$sql);
 
 		?>
-			<FORM action="EPRE.php" method="GET" target="iframePRE">
+		<div class="d-none">
+			<iframe src="" name="iframePRE" frameborder="0"></iframe>
+		</div>
+			<FORM action="php\EPRE.php" method="GET" target="iframePRE" class="mt-5" onsubmit="preparacionEliminada('Preparacion eliminada correctamente', 'success')">
 				<input type="hidden" name="ID_PREPARACION" value="<?php echo $ID_PREPARACION?>">
-				<table border="2">
-					<p> ¿SEGURO QUE DESEA ELIMINAR LA PREPARACION...<?php echo $ID_PREPARACION?>?</p>
+				<div class="card-pacientes table-responsive">
+				<table class="table table-borderless">
+					<p class="text-bold"> ¿SEGURO QUE DESEA ELIMINAR LA PREPARACION...<?php echo $ID_PREPARACION?>?</p>
 						<tr>
 							<td> ID_PREPARACION </td>
 							<td> Nombre Platillo </td>
@@ -45,8 +49,10 @@
 				}
 			?>
 				</table>
-				<br><br>
-				<input type="submit" value="Eliminar" name="Eliminar">
+				</div>
+				<div class="text-right mt-5 ml-3">
+				<input type="submit"  class="btn btn-success" value="Eliminar" name="Eliminar">
+				</div>
 			</FORM>
 	</body>
 </html>

@@ -56,15 +56,23 @@ const MenusController = (() => {
     const eliminarPlatillos = (e, dia) => {
         let id = (e.target).getAttribute('data-ideliminar');
         let idTiempo = (e.target).getAttribute('data-idtiempo');
-        datosAEnviar.forEach((element, i) => {
-            if (element.idPlatillo === id && element.dia === dia && element.idTiempo === idTiempo) {
-                datosAEnviar.splice(i, 1);
-                datosDieta.splice(i, 1);
-               
-                calcularTotales();
 
-            }
+        datosAEnviar.push({
+            dia: dia,
+            idTiempo: idTiempo,
+            idPlatillo: id,
+            opcion: 2
         });
+
+        // datosAEnviar.forEach((element, i) => {
+        //     if (element.idPlatillo === id && element.dia === dia && element.idTiempo === idTiempo) {
+        //         datosAEnviar.splice(i, 1);
+        //         datosDieta.splice(i, 1);
+               
+        //         calcularTotales();
+
+        //     }
+        // });
 
         (((e.target).parentNode).parentNode).remove();
         console.log(datosAEnviar);
@@ -157,7 +165,7 @@ const MenusController = (() => {
             console.log(element);
             //TODO cambiar iteracion por id menu
 
-            let data = `id-paciente=${idPacienteMenu}&iteracion=${i}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
+            let data = `id-paciente=${idPacienteMenu}&opcion=${element.opcion}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
             let respuesta = postMenu('php/menus/modificarMenu.php', data);
 
             console.log(respuesta);
@@ -198,7 +206,8 @@ const MenusController = (() => {
                 let enviar = {
                     dia: dia,
                     idTiempo: idTiempo,
-                    idPlatillo: idPlatilloAAgregar
+                    idPlatillo: idPlatilloAAgregar,
+                    opcion: 1
                 }
 
                 datosAEnviar.push(enviar)
@@ -355,7 +364,7 @@ const MenusController = (() => {
     }
 
     const mostrarTodosLosMenus = () => {
-        // document.getElementById('menus-table-body').innerHTML = post('php/menu/todosLosMenus.php',null); Descomentar 
+        document.getElementById('menus-table-body').innerHTML = post('php/menus/consultarMenu.php',null); 
     }
 
 

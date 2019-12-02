@@ -303,13 +303,13 @@ const MenusController = (() => {
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 load('html/menus/editar-menu.html', contentPanel);
-                let platillosLunes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=lunes`);
-                let platillosMartes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=martes`);
-                let platillosMiercoles = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=miercoles`);
-                let platillosJueves = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=jueves`);
-                let platillosViernes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=viernes`);
-                let platillosSabados = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=sabado`);
-                let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo`);
+                let platillosLunes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=lunes&opcion=${2}`);
+                let platillosMartes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=martes&opcion=${2}`);
+                let platillosMiercoles = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=miercoles&opcion=${2}`);
+                let platillosJueves = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=jueves&opcion=${2}`);
+                let platillosViernes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=viernes&opcion=${2}`);
+                let platillosSabados = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=sabado&opcion=${2}`);
+                let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo&opcion=${2}`);
                 
                 let datosDietaJSON = post('php/menus/menuJSON.php',`id-menu=${idMenuAEditar}`)
                 console.log(platillosLunes);
@@ -397,13 +397,13 @@ const MenusController = (() => {
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 document.getElementById('fecha-inicio').value = (e.target).getAttribute('data-fechainicio');
                 
-                let platillosLunes = post('php/platillos-menu.php','dia=lunes');
-                let platillosMartes = post('php/platillos-menu.php','dia=martes');
-                let platillosMiercoles = post('php/platillos-menu.php','dia=miercoles');
-                let platillosJueves = post('php/platillos-menu.php','dia=jueves');
-                let platillosViernes = post('php/platillos-menu.php','dia=viernes');
-                let platillosSabados = post('php/platillos-menu.php','dia=sabado');
-                let platillosDomingos = post('php/platillos-menu.php','dia=domingo');
+                let platillosLunes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=lunes&opcion=${1}`);
+                let platillosMartes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=martes&opcion=${1}`);
+                let platillosMiercoles = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=miercoles&opcion=${1}`);
+                let platillosJueves = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=jueves&opcion=${1}`);
+                let platillosViernes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=viernes&opcion=${1}`);
+                let platillosSabados = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=sabado&opcion=${1}`);
+                let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo&opcion=${1}`);
 
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;

@@ -163,7 +163,7 @@ const MenusController = (() => {
         let fechaInicio = document.getElementById('fecha-inicio').value;
         let data = `fecha-inicio=${fechaInicio}`;
         let respuesta = postMenu('php/menus/modificarMenu.php', data);
-        console.log(data);
+        console.log(respuesta);
     }
 
     const editarMenu = () => {

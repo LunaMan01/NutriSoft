@@ -265,6 +265,10 @@ const MenusController = (() => {
                 let platillosSabados = post('php/platillos-menu.php','dia=sabado');
                 let platillosDomingos = post('php/platillos-menu.php','dia=domingo');
 
+                let datosDietaJSON = post('php/platillos-menu.php','dia=domingo')
+                datosDietaJSON = JSON.parse(datosDietaJSON);
+                datosDieta.push(datosDietaJSON);
+                calcularTotales();
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;
                 document.getElementById('platillos-miercoles').innerHTML = platillosMiercoles;

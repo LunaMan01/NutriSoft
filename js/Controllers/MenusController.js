@@ -2,6 +2,7 @@ const MenusController = (() => {
 
     let guardado = false;
     let idPacienteMenu;
+    let idMenuAEditar;
 
     const post = (url, data) => {
         var req = new XMLHttpRequest();
@@ -165,7 +166,7 @@ const MenusController = (() => {
             console.log(element);
             //TODO cambiar iteracion por id menu
 
-            let data = `id-paciente=${idPacienteMenu}&opcion=${element.opcion}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
+            let data = `id-menu=${idMenuAEditar}&id-paciente=${idPacienteMenu}&opcion=${element.opcion}&dia=${element.dia}&id-tiempo=${element.idTiempo}&id-platillo=${element.idPlatillo}&fecha-inicio=${fechaInicio}`;
             let respuesta = postMenu('php/menus/modificarMenu.php', data);
 
             console.log(respuesta);
@@ -334,6 +335,7 @@ const MenusController = (() => {
                 load('html/menus/ver-menu.html', contentPanel);
 
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
+                idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 document.getElementById('fecha-inicio').value = (e.target).getAttribute('data-fechainicio');
                 
                 let platillosLunes = post('php/platillos-menu.php','dia=lunes');

@@ -75,6 +75,14 @@ const MenusController = (() => {
         //     }
         // });
 
+        datosAEnviar.forEach((element, i) => {
+            if (element.idPlatillo === id && element.dia === dia && element.idTiempo === idTiempo) {
+                datosDieta.splice(i, 1);
+                calcularTotales();
+            }
+        });
+        
+        // calcularTotales();
         (((e.target).parentNode).parentNode).remove();
         console.log(datosAEnviar);
         console.log('eliminadofs');
@@ -315,8 +323,9 @@ const MenusController = (() => {
                 console.log(platillosLunes);
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 datosDieta.push(datosDietaJSON);
+                console.log("DTOS DIETA",datosDieta);
                 datosAEnviar = [];
-                console.log("DATOS ENVIAR ",datosAEnviar)
+                // console.log("DATOS ENVIAR ",datosAEnviar)
                 calcularTotales();
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;

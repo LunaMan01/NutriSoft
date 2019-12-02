@@ -2,6 +2,7 @@
     include '../conexion.php';
 
     $idMenu = $_POST['id-menu'];
+    $array = [];
 
     try{
         $datos = "SELECT * FROM menus WHERE ID_MENU = ".$idMenu;
@@ -20,8 +21,10 @@
             $platillos->lipidos = $row['Proteinas_M'];
             $platillos->proteinas = $row['Lipidos_M'];
             $platillos->hidratos = $row['Hidratos_Carbono_M'];
+
+            array_push($array, $platillos);            
         }
-        $platillosJSON = json_encode($platillos);
+        $platillosJSON = json_encode($array);
         echo $platillosJSON;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();

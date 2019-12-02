@@ -14,6 +14,8 @@
             $platillos->proteinas = $row['Lipidos_M'];
             $platillos->hidratos = $row['Hidratos_Carbono_M'];
         }
+        $platillosJSON = json_encode($platillos);
+        echo $platillosJSON;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

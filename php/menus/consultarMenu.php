@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     try{
-        $menus = "SELECT pacientes.ID_PACIENTES, ID_MENU, Nombre_P, AP_P, AM_P, Dia_Ini, Mes_Ini, Anio_Ini 
+        $menus = "SELECT  DISTINCT pacientes.ID_PACIENTES, ID_MENU, Nombre_P, AP_P, AM_P, Dia_Ini, Mes_Ini, Anio_Ini 
             FROM menus INNER JOIN pacientes
             ON menus.ID_PACIENTES = pacientes.ID_PACIENTES";
 
@@ -14,7 +14,7 @@
                 '<td>
                     <i class="far fa-eye accion-ver acciones"></i>
                     <i class="far fa-trash-alt accion-eliminar acciones"></i>
-                    <i data-idmenu="'.$row['ID_MENU'].'"class="far fa-edit accion-editar acciones"></i>
+                    <i data-idmenu="'.$row['ID_MENU'].'" data-idpacinte="'.$row['ID_PACIENTES'].'" class="far fa-edit accion-editar acciones"></i>
                 </tr>';
         }
     }catch(PDOException $e){

@@ -163,7 +163,7 @@ const MenusController = (() => {
         let fechaInicio = document.getElementById('fecha-inicio').value;
         let data = `fecha-inicio=${fechaInicio}`;
         let respuesta = postMenu('php/menus/modificarMenu.php', data);
-        console.log(data);
+        console.log(respuesta);
     }
 
     const editarMenu = () => {
@@ -262,18 +262,20 @@ const MenusController = (() => {
     const configurarEventoEditar = () => {
         document.getElementById('menus-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-editar')) {
-                load('html/menus/editar-menu.html', contentPanel);
+                
 
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
-                let platillosLunes = post('php/platillos-menu.php','dia=lunes');
-                let platillosMartes = post('php/platillos-menu.php','dia=martes');
-                let platillosMiercoles = post('php/platillos-menu.php','dia=miercoles');
-                let platillosJueves = post('php/platillos-menu.php','dia=jueves');
-                let platillosViernes = post('php/platillos-menu.php','dia=viernes');
-                let platillosSabados = post('php/platillos-menu.php','dia=sabado');
-                let platillosDomingos = post('php/platillos-menu.php','dia=domingo');
+                idMenuAEditar = (e.target).getAttribute('data-idmenu');
+                load('html/menus/editar-menu.html', contentPanel);
+                let platillosLunes = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=lunes`);
+                let platillosMartes = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=martes`);
+                let platillosMiercoles = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=miercoles`);
+                let platillosJueves = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=jueves`);
+                let platillosViernes = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=viernes`);
+                let platillosSabados = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=sabado`);
+                let platillosDomingos = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}&dia=domingo`);
 
-                let datosDietaJSON = post('php/platillos-menu.php','dia=domingo')
+                let datosDietaJSON = post('php/platillos-menu.php',`id-menu=${idMenuAEditar}`)
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 datosDieta.push(datosDietaJSON);
                 calcularTotales();

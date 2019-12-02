@@ -176,48 +176,51 @@ const MenusController = (() => {
 
     }
 
+    let contadoreventos = 0
     const eventoAgregarPlatillo = () => {
-        document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
-            console.log('ds');
-            if (e.target.matches('.agregar-platillo')) {
-                let option = document.getElementById('select-tiempo').options[document.getElementById('select-tiempo').selectedIndex];
-                let idTiempo = option.getAttribute('data-idtiempo');
-                idTiempos.push(idTiempo);
+        if(contadoreventos == 0)
+            document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
+                console.log('ds');
+                if (e.target.matches('.agregar-platillo')) {
+                    let option = document.getElementById('select-tiempo').options[document.getElementById('select-tiempo').selectedIndex];
+                    let idTiempo = option.getAttribute('data-idtiempo');
+                    idTiempos.push(idTiempo);
 
-                let tiempoObj = {
-                    id: idTiempo,
-                    nombre: option.getAttribute('data-nombre'),
-                    hora: option.getAttribute('data-hora')
+                    let tiempoObj = {
+                        id: idTiempo,
+                        nombre: option.getAttribute('data-nombre'),
+                        hora: option.getAttribute('data-hora')
+                    }
+
+                    let idPlatilloAAgregar = (e.target).getAttribute('data-idplatillo');
+                    let atributosPlatillo = {
+                        id: idPlatilloAAgregar,
+                        nombre: (e.target).getAttribute('data-nombre'),
+                        energia: (e.target).getAttribute('data-energia'),
+                        lipidos: (e.target).getAttribute('data-lipidos'),
+                        proteinas: (e.target).getAttribute('data-proteinas'),
+                        hidratos: (e.target).getAttribute('data-hidratos')
+                    }
+                    idsPlatillos.push(idPlatilloAAgregar);
+                    datosDieta.push(atributosPlatillo);
+
+                    agregarPlatilloHTML(tiempoObj, atributosPlatillo);
+
+                    let enviar = {
+                        dia: dia,
+                        idTiempo: idTiempo,
+                        idPlatillo: idPlatilloAAgregar,
+                        opcion: 1
+                    }
+
+                    datosAEnviar.push(enviar)
+
+                    calcularTotales();
+
+                    $('#modal-platillos').modal('hide');
                 }
-
-                let idPlatilloAAgregar = (e.target).getAttribute('data-idplatillo');
-                let atributosPlatillo = {
-                    id: idPlatilloAAgregar,
-                    nombre: (e.target).getAttribute('data-nombre'),
-                    energia: (e.target).getAttribute('data-energia'),
-                    lipidos: (e.target).getAttribute('data-lipidos'),
-                    proteinas: (e.target).getAttribute('data-proteinas'),
-                    hidratos: (e.target).getAttribute('data-hidratos')
-                }
-                idsPlatillos.push(idPlatilloAAgregar);
-                datosDieta.push(atributosPlatillo);
-
-                agregarPlatilloHTML(tiempoObj, atributosPlatillo);
-
-                let enviar = {
-                    dia: dia,
-                    idTiempo: idTiempo,
-                    idPlatillo: idPlatilloAAgregar,
-                    opcion: 1
-                }
-
-                datosAEnviar.push(enviar)
-
-                calcularTotales();
-
-                $('#modal-platillos').modal('hide');
-            }
-        });
+                contadoreventos++;
+            });
     }
 
 

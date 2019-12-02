@@ -125,7 +125,7 @@ CREATE TABLE `menus` (
   `ID_PACIENTES` int(255) NOT NULL,
   `Dia_Ini` char(2) NOT NULL,
   `Mes_Ini` char(2) NOT NULL,
-  `Año_Ini` year(4) NOT NULL,
+  `Anio_Ini` year(4) NOT NULL,
   `Dia` varchar(10) NOT NULL,
   `ID_TIEMPO` int(255) NOT NULL,
   `ID_PLATILLOS` int(255) NOT NULL

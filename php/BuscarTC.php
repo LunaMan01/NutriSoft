@@ -14,7 +14,8 @@
 				
 
 				// $sql="SELECT ID_TIEMPO, Nombre_Tiempo, Hora_Tiempo FROM tiempo_comida WHERE ID_TIEMPO='$ID_TIEMPO'";
-				$sql="SELECT ID_TIEMPO, Nombre_Tiempo, Hora_Tiempo FROM tiempo_comida WHERE Nombre_Tiempo='$Nombre_Tiempo'";
+				$sql="SELECT ID_TIEMPO, Nombre_Tiempo, Hora_Tiempo 
+					FROM tiempo_comida WHERE Nombre_Tiempo LIKE '$Nombre_Tiempo%'";
 				$result=mysqli_query($conectar,$sql);
 				// $result1=mysqli_query($conectar,$sql1);
 

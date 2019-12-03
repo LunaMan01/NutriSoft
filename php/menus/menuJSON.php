@@ -27,8 +27,6 @@
             $platillos->hidratos = $row['Hidratos_Carbono_M'];
 
             array_push($array, $platillos);
-           
-            
         }
         $platillosJSON = json_encode($array);
         echo $platillosJSON;

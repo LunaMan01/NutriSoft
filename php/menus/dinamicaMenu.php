@@ -4,10 +4,10 @@
     $dato = $_POST['dato'];
 
     try{
-        $menus = "SELECT pacientes.ID_PACIENTES, ID_MENU, Nombre_P, AP_P, AM_P, Dia_Ini, Mes_Ini, Anio_Ini 
+        $menus = $conn->prepare("SELECT DISTINCT pacientes.ID_PACIENTES, ID_MENU, Nombre_P, AP_P, AM_P, Dia_Ini, Mes_Ini, Anio_Ini 
             FROM menus INNER JOIN pacientes
             ON menus.ID_PACIENTES = pacientes.ID_PACIENTES
-            WHERE ID_MENU = ? OR Nombre_P = ? OR AP_P = ? OR AM_P = ?";
+            WHERE ID_MENU LIKE ? OR Nombre_P LIKE ? OR AP_P LIKE ? OR AM_P LIKE ?");
 
         $menus->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
             

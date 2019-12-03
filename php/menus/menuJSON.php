@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     $idMenu = $_POST['id-menu'];
-    $array = [];
+    $array = array();
 
     try{
         $datos = "SELECT * FROM menus WHERE ID_MENU = ".$idMenu;
@@ -22,7 +22,7 @@
             $platillos->proteinas = $row['Lipidos_M'];
             $platillos->hidratos = $row['Hidratos_Carbono_M'];
 
-            array_push($array, $platillos);            
+            array_push($array, $platillos);
         }
         $platillosJSON = json_encode($array);
         echo $platillosJSON;

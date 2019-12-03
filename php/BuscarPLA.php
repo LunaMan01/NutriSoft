@@ -15,7 +15,8 @@
 				
 
 				// $sql="SELECT ID_PLATILLOS, Nombre_Pla, Energia_Kal_Pla, Lipidos_Pla, Proteinas_Pla, Hidratos_Carbono_Pla FROM platillos WHERE ID_PLATILLOS='$ID_PLATILLOS'";
-				$sql1="SELECT ID_PLATILLOS, Nombre_Pla, Energia_Kal_Pla, Lipidos_Pla, Proteinas_Pla, Hidratos_Carbono_Pla FROM platillos WHERE Nombre_Pla='$Nombre_Pla'";
+				$sql1="SELECT ID_PLATILLOS, Nombre_Pla, Energia_Kal_Pla, Lipidos_Pla, Proteinas_Pla, Hidratos_Carbono_Pla 
+					FROM platillos WHERE Nombre_Pla LIKE '$Nombre_Pla%'";
 				// $result=mysqli_query($conectar,$sql);
 				$result1=mysqli_query($conectar,$sql1);
 

@@ -421,7 +421,7 @@ const MenusController = (() => {
 
     const buscarMenu = () => {
         let dato = document.getElementById('buscar-menu-input').value;
-        document.getElementById('menus-table-body').innerHTML = post('php/menu/busquedaDinamica.php','dato='+dato);
+        document.getElementById('menus-table-body').innerHTML = post('php/menus/dinamicaMenu.php','dato='+dato);
     }
 
     const mostrarTodosLosMenus = () => {

@@ -14,7 +14,8 @@
 				
 
 				//$sql="SELECT ID_ALIMENTOS, ID_GRUPOS, Nombre_Ali, Cantidad_Ali, Unidad_Ali, Peso_Bruto, Peso_Neto, Energia_Kal_Ali, Proteinas_Ali, Lipidos_Ali, Hidratos_Carbono_Ali FROM alimentos WHERE ID_ALIMENTOS='$ID_ALIMENTOS'";
-				$sql1="SELECT ID_ALIMENTOS, ID_GRUPOS, Nombre_Ali, Cantidad_Ali, Unidad_Ali, Peso_Bruto, Peso_Neto, Energia_Kal_Ali, Proteinas_Ali, Lipidos_Ali, Hidratos_Carbono_Ali FROM alimentos WHERE Nombre_Ali='$Nombre_Ali'";
+				$sql1="SELECT ID_ALIMENTOS, ID_GRUPOS, Nombre_Ali, Cantidad_Ali, Unidad_Ali, Peso_Bruto, Peso_Neto, Energia_Kal_Ali, Proteinas_Ali, Lipidos_Ali, Hidratos_Carbono_Ali 
+					FROM alimentos WHERE Nombre_Ali LIKE '$Nombre_Ali%' OR Unidad_Ali LIKE '$Nombre_Ali%' ";
 				//$result=mysqli_query($conectar,$sql);
 				$result=mysqli_query($conectar,$sql1);
 

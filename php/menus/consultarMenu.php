@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     try{
-        $menus = "SELECT  DISTINCT pacientes.ID_PACIENTES, ID_MENU, Nombre_P, AP_P, AM_P, Dia_Ini, Mes_Ini, Anio_Ini 
+        $menus = "SELECT DISTINCT pacientes.ID_PACIENTES, ID_MENU, Nombre_P, AP_P, AM_P, Dia_Ini, Mes_Ini, Anio_Ini 
             FROM menus INNER JOIN pacientes
             ON menus.ID_PACIENTES = pacientes.ID_PACIENTES";
 

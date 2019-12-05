@@ -388,6 +388,68 @@ const MenusController = (() => {
         })
     }
 
+
+    const obtenerEquivalenciasPorDia = (dia) => {
+        
+        let tiempos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=2&dia=${dia}`);
+        tiempos = JSON.parse(tiempos);
+        console.log("Tiepos", tiempos);
+        let grupos =  post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=1&dia=${dia}`);
+        grupos = JSON.parse(grupos);
+        
+        let alimentos = post('php/equivalencias.php',`id-menu=${idMenuAEditar}&opcion=3&dia=${dia}`);
+        alimentos = JSON.parse(alimentos);
+        
+        let tiemposHEAD = '';
+        let tiemposTD = '';
+        let gruposHTML = '';
+
+        tiemposHEAD += `<th scope="col">Grupos</th>`
+
+        tiempos.forEach(element => {
+            tiemposHEAD += `<th scope="col">${element.nombre} ${element.hora}</th>`;
+        });
+
+        tiempos.forEach(element => {
+            tiemposTD += `<td class="tiempo${element.idTiempo}"></td>`;
+        });
+
+        grupos.forEach(element => {
+            let n = element.nombre;
+            gruposHTML += `
+            <tr id="${dia}${element.idGrupo}" class="tr">
+                <td> ${n} </td>
+            </tr>`;
+        });
+
+        document.getElementById(`equivalencias-table-head-${dia}`).innerHTML = tiemposHEAD;
+        document.getElementById(`equivalencias-table-body-${dia}`).innerHTML = gruposHTML;
+
+        let tr = document.getElementsByClassName('tr')
+        Array.from(tr).forEach(element => {
+            element.innerHTML += tiemposTD;
+        });
+
+        
+            alimentos.forEach(element => {
+                document.querySelector(`#${dia}${element.idGrupo} .tiempo${element.idTiempo}`).innerHTML = element.cantidad;
+            });
+
+    }
+
+    const generarEquivalencias = () => {
+
+        // let divs = document.getElementsByClassName('equivalencias-div');
+
+        // Array.from(divs).forEach = (div => {
+        //     div.classlist.remove('d-none');
+        // })
+
+        let dias = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+        dias.forEach(dia => {
+            obtenerEquivalenciasPorDia(dia);
+        });
+    }
     //---------------------------------------
     //  VER MENU
     //---------------------------------------
@@ -427,6 +489,8 @@ const MenusController = (() => {
                 document.getElementById('platillos-viernes').innerHTML = platillosViernes;
                 document.getElementById('platillos-sabado').innerHTML = platillosSabados;
                 document.getElementById('platillos-domingo').innerHTML = platillosDomingos;
+
+                document.getElementById('equivalencias-btn').addEventListener('click', generarEquivalencias);
             }
 
         });
@@ -443,6 +507,7 @@ const MenusController = (() => {
         document.getElementById('menus-table-body').innerHTML = post('php/menus/consultarMenu.php',null); 
     }
 
+    
 
     const cargarEventos = () => {
         mostrarTodosLosMenus();

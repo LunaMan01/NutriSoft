@@ -28,7 +28,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                             </tbody>
                         </table>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                             </tbody>
                         </table>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
                             </tbody>
                         </table>
                     </div>
-                  
+
                 </div>
             </div>
         </div>
@@ -201,33 +201,64 @@
                             </tbody>
                         </table>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
     </div>
     <div class="card-pacientes mt-5">
-            <div class="table-responsive">
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th scope="col"> Energía </th>
-                            <th scope="col"> Lípidos </th>
-                            <th scope="col"> Proteínas </th>
-                            <th scope="col"> Hidratos de carbono </th>
-                        </tr>
-                    </thead>
-                    <tbody id="platillos-lunes">
-                        <tr>
-                            <td id="energia-td"></td>
-                            <td id="lipidos-td"></td>
-                            <td id="proteinas-td"></td>
-                            <td id="hidratos-td"></td>
-    
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-    
-        </div>  
-   
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col"> Energía </th>
+                        <th scope="col"> Lípidos </th>
+                        <th scope="col"> Proteínas </th>
+                        <th scope="col"> Hidratos de carbono </th>
+                    </tr>
+                </thead>
+                <tbody id="platillos-lunes">
+                    <tr>
+                        <td id="energia-td"></td>
+                        <td id="lipidos-td"></td>
+                        <td id="proteinas-td"></td>
+                        <td id="hidratos-td"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="equivalencias-container" class="mt-5">
+        <table>
+            <thead>
+                <!-- 1. llenar table-head -->
+                <tr id="equivalencias-table-head">
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Tiempo 1</th>
+                    <th scope="col">Tiempo 2</th>
+                </tr>
+            </thead>
+            <!-- 2. llenar tbody con tr id = dia+grupoalimento -->
+            <tbody id="equivalencias-table-body">
+                <tr id="lunesverduras">
+                    <td id="verdurasidtiempo">
+
+                    </td>
+
+                </tr>
+                <tr id="lunesfrutas">
+
+                </tr>
+                <tr id="lunescereales">
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-5">
+        <button class="btn btn-lg btn-block btn-info" id="equivalencias-btn">Generar Equivalencias</button>
+    </div>

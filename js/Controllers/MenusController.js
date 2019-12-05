@@ -388,6 +388,49 @@ const MenusController = (() => {
         })
     }
 
+
+    const generarEquivalencias = () => {
+        let tiempos = post('php/menus/equivalencias', `id-menu=${idMenuAEditar}&opcion=1`);
+        tiempos = JSON.parse(tiempos);
+        console.log("tiempo:", tiempos);
+        let grupos =  post('php/menus/equivalencias', `id-menu=${idMenuAEditar}&opcion=2`);
+        grupos = JSON.parse(grupos);
+        console.log("grupos:", grupos);
+
+        let alimentos = [{idGrupo:"1", idTiempo:"2", cantidad: '5'}];
+        alimentos = JSON.parse(alimentos);
+        console.log("alimentos:", alimentos);
+
+        let tiemposHEAD = '';
+        let tiemposTD = '';
+        let gruposHTML = '';
+
+        tiempos.forEach(element => {
+            tiemposHEAD += `<th scope="col">${element.nombre} ${element.hora}</th>`;
+        });
+
+        tiempos.forEach(element => {
+            tiemposTD += `<td class="tiempo${element.id}"></td>`;
+        });
+
+        grupos.forEach(element => {
+            gruposHTML += `<tr id="lunes${element.id}" class="tr">${element.nombre}</tr>`;
+        });
+
+        document.getElementById('equivalencias-table-head').innerHTML = tiemposHEAD;
+        document.getElementById('equivalencias-table-body').innerHTML = gruposHTML;
+
+        document.getElementsByClassName('tr').forEach(element => {
+            element.innerHTML = tiemposTD;
+        });
+
+        alimentos.forEach(element => {
+            document.querySelector(`#lunes${element.idGrupo} .tiempo${element.idTiempo}`).innerHTML = element.cantidad;
+        });
+
+
+    }
+
     //---------------------------------------
     //  VER MENU
     //---------------------------------------
@@ -427,6 +470,8 @@ const MenusController = (() => {
                 document.getElementById('platillos-viernes').innerHTML = platillosViernes;
                 document.getElementById('platillos-sabado').innerHTML = platillosSabados;
                 document.getElementById('platillos-domingo').innerHTML = platillosDomingos;
+
+                document.getElementById('equivalencias-btn').addEventListener('click', generarEquivalencias);
             }
 
         });
@@ -443,6 +488,7 @@ const MenusController = (() => {
         document.getElementById('menus-table-body').innerHTML = post('php/menus/consultarMenu.php',null); 
     }
 
+    
 
     const cargarEventos = () => {
         mostrarTodosLosMenus();

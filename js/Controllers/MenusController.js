@@ -389,48 +389,67 @@ const MenusController = (() => {
     }
 
 
-    const generarEquivalencias = () => {
-        let tiempos = post('php/menus/equivalencias', `id-menu=${idMenuAEditar}&opcion=1`);
+    const obtenerEquivalenciasPorDia = (dia) => {
+        
+        let tiempos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=2&dia=${dia}`);
         tiempos = JSON.parse(tiempos);
-        console.log("tiempo:", tiempos);
-        let grupos =  post('php/menus/equivalencias', `id-menu=${idMenuAEditar}&opcion=2`);
+        console.log("Tiepos", tiempos);
+        let grupos =  post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=1&dia=${dia}`);
         grupos = JSON.parse(grupos);
-        console.log("grupos:", grupos);
-
-        let alimentos = [{idGrupo:"1", idTiempo:"2", cantidad: '5'}];
+        
+        let alimentos = post('php/equivalencias.php',`id-menu=${idMenuAEditar}&opcion=3&dia=${dia}`);
         alimentos = JSON.parse(alimentos);
-        console.log("alimentos:", alimentos);
-
+        
         let tiemposHEAD = '';
         let tiemposTD = '';
         let gruposHTML = '';
+
+        tiemposHEAD += `<th scope="col">Grupos</th>`
 
         tiempos.forEach(element => {
             tiemposHEAD += `<th scope="col">${element.nombre} ${element.hora}</th>`;
         });
 
         tiempos.forEach(element => {
-            tiemposTD += `<td class="tiempo${element.id}"></td>`;
+            tiemposTD += `<td class="tiempo${element.idTiempo}"></td>`;
         });
 
         grupos.forEach(element => {
-            gruposHTML += `<tr id="lunes${element.id}" class="tr">${element.nombre}</tr>`;
+            let n = element.nombre;
+            gruposHTML += `
+            <tr id="${dia}${element.idGrupo}" class="tr">
+                <td> ${n} </td>
+            </tr>`;
         });
 
-        document.getElementById('equivalencias-table-head').innerHTML = tiemposHEAD;
-        document.getElementById('equivalencias-table-body').innerHTML = gruposHTML;
+        document.getElementById(`equivalencias-table-head-${dia}`).innerHTML = tiemposHEAD;
+        document.getElementById(`equivalencias-table-body-${dia}`).innerHTML = gruposHTML;
 
-        document.getElementsByClassName('tr').forEach(element => {
-            element.innerHTML = tiemposTD;
+        let tr = document.getElementsByClassName('tr')
+        Array.from(tr).forEach(element => {
+            element.innerHTML += tiemposTD;
         });
 
-        alimentos.forEach(element => {
-            document.querySelector(`#lunes${element.idGrupo} .tiempo${element.idTiempo}`).innerHTML = element.cantidad;
-        });
-
+        
+            alimentos.forEach(element => {
+                document.querySelector(`#${dia}${element.idGrupo} .tiempo${element.idTiempo}`).innerHTML = element.cantidad;
+            });
 
     }
 
+    const generarEquivalencias = () => {
+
+        // let divs = document.getElementsByClassName('equivalencias-div');
+
+        // Array.from(divs).forEach = (div => {
+        //     div.classlist.remove('d-none');
+        // })
+
+        let dias = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+        dias.forEach(dia => {
+            obtenerEquivalenciasPorDia(dia);
+        });
+    }
     //---------------------------------------
     //  VER MENU
     //---------------------------------------

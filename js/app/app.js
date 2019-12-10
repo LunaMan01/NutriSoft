@@ -181,7 +181,10 @@ const preparacionEliminada = (mensaje,tipo) => {
     icon: tipo,
   });
   console.log('entros');
-  UIController.abrirPreparacion();
+  setTimeout(function() {
+    UIController.abrirPreparacion();
+  }, 1000)
+  
 }
 controller.init();
 

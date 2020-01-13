@@ -17,6 +17,9 @@ const PacientesController = (() => {
         let datos = UIPacientes.obtenerDatosDeFormulario('datos-generales-form');
         datos.append('value', 1);
         PacientesModel.add(datos);
+        swal('Datos Generales Guardados', {
+            icon: 'success',
+         });
     }
 
     const addDatosEstiloVida = () => {

@@ -4,6 +4,7 @@
 			$conexion=mysqli_connect('localhost','root','','sdn');
 
 			$sql="SELECT * FROM grupos_ali WHERE ID_GRUPOS='$ID_GRUPOS'";
+			
 			$result=mysqli_query($conexion,$sql);
 			$mostrar=$result->fetch_assoc();
 
@@ -19,7 +20,8 @@
 					
 					<tr>
 						<td><label for="Nombre"> Nombre </label></td>
-						<td><input type="text" name="Nombre_Grupo" class="form-control rounded-pill" value="<?php echo $mostrar['Nombre_Grupo']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"></td>
+						<td><input type="text" name="Nombre_Grupo" class="form-control rounded-pill" value="<?php echo $mostrar['Nombre_Grupo']; ?>" ></td>
+						<!-- pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" -->
 					</tr>
 					<tr>
 						<td><label for="Color"> Color </label></td>

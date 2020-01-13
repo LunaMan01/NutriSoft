@@ -1,5 +1,4 @@
-
-		<div class="d-none">
+<div class="d-none">
 			<iframe src="" name="iframePRE" frameborder="0"></iframe>
 		</div>
 		<!--<form id="agregarpre" action="AgregarPRE.php" method="POST" target="iframePRE">-->
@@ -180,4 +179,3 @@
 				mysqli_close($conectar);
 			}
 		?>
-		

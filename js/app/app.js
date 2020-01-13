@@ -173,7 +173,12 @@ const mostrarMensaje = (mensaje, tipo) => {
   swal(mensaje, {
     icon: tipo,
   });
-  
+  /*
+  console.log('entros');
+  setTimeout(function() {
+    UIController.abrirPreparacion();
+  }, 1000)
+  */
 }
 
 const preparacionEliminada = (mensaje,tipo) => {
@@ -181,7 +186,10 @@ const preparacionEliminada = (mensaje,tipo) => {
     icon: tipo,
   });
   console.log('entros');
-  UIController.abrirPreparacion();
+  setTimeout(function() {
+    UIController.abrirPreparacion();
+  }, 1000)
+  
 }
 controller.init();
 

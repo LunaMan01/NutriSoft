@@ -12,28 +12,50 @@
 				<h3 class="mb-5">Nuevo alimento</h3>
 				<div id="agregar">
 					<form action="php\AgregarAli.php" method="POST" target="iframeAli" onsubmit="mostrarMensaje('Alimento agregado correctamente', 'success')">				
-								<div class="form-group">
+							<!--	<div class="form-group">
 									<label for="ID_ALIMENTOS"> ID_ALIMENTOS </label>
 								
 									<input type="text" class="form-control" name="ID_ALIMENTOS" value="" pattern="[0-9]{1,5}" title="numero en rango de 1-99999">
-								</div>
-							
-								<div class="form-group">
-									<label for="ID_GRUPOS"> ID_GRUPOS </label>
-								
-									<input type="text" name="ID_GRUPOS" class="form-control" value="" pattern="[0-9]{1,5}" title="Numero dentro del rango de 1-99999">
-								</div>
+								</div> -->
 							
 								<div class="form-group">
 									<label for="Nombre_Ali"> Nombre </label>
 								
-									<input type="text" name="Nombre_Ali" class="form-control" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+									<input type="text" name="Nombre_Ali" class="form-control" value="" >
+									<!-- pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" -->
 								</div>
+								
+								<div class="form-group">
+									
+									<label for="ID_GRUPOS"> Pertenece al Grupo </label>
+									<select  name="ID_GRUPOS">
+										<option> Grupos: </option>
+											<?php
+												$conexion=mysqli_connect('localhost','root','','sdn');
+
+												$sql="SELECT * from grupos_ali";
+												$result=mysqli_query($conexion,$sql);
+
+												while ($mostrar=mysqli_fetch_array($result)){
+											?>
+												<option value="<?php echo $mostrar['ID_GRUPOS']?>"> <?php echo $mostrar['Nombre_Grupo']?> </option>
+												<?php
+													}
+												?>
+									</select>
+									<!-- <label for="ID_GRUPOS"> Grupo de Alimento </label>
+								
+									<input type="text" name="ID_GRUPOS" class="form-control" value="" pattern="[0-9]{1,5}" title="Numero dentro del rango de 1-99999">
+									-->
+								</div>
+							
+								
 							
 								<div class="form-group">
 									<label for="Cantidad_Ali"> Cantidad </label>
 								
-									<input type="text" name="Cantidad_Ali" class="form-control" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+									<input type="text" name="Cantidad_Ali" class="form-control" value="" >
+									<!-- pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" -->
 								</div>
 								<div class="form-group">
 									<label class="form-group" for="Unidad_Ali"> Unidad </label>
@@ -56,25 +78,29 @@
 							
 								<div class="form-group">
 									<label for="Energia_Kal_Ali"> Energias Kal. </label>
-									<input type="text" name="Energia_Kal_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros">
+									<input type="text" name="Energia_Kal_Ali" class="form-control" value="" >
+									<!-- pattern="[0-9]{1,5}" title="Solo numeros" -->
 								<div>
 							
 								<div class="form-group">
 									<label for="Proteinas_Ali"> Proteinas </label>
 								
-									<input type="text" name="Proteinas_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal">
+									<input type="text" name="Proteinas_Ali" class="form-control" value="" >
+									<!-- pattern="[0-9]{1,5}" title="Solo numeros con punto decimal" -->
 								<div>
 							
 								<div class="form-group">
 									<label for="Lipidos_Ali"> Lipidos </label>
 								
-									<input type="text" name="Lipidos_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal">
+									<input type="text" name="Lipidos_Ali" class="form-control" value="" >
+									<!-- pattern="[0-9]{1,5}" title="Solo numeros con punto decimal" -->
 								<div>
 							
 								<div class="form-group">
 									<label for="Hidratos_Carbono_Ali"> Hidratos de Carbono </label>
 								
-									<input type="text" name="Hidratos_Carbono_Ali" class="form-control" value="" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal">
+									<input type="text" name="Hidratos_Carbono_Ali" class="form-control" value="" >
+									<!-- pattern="[0-9]{1,5}" title="Solo numeros con punto decimal" -->
 								</div>				
 
 						<div class="text-right">

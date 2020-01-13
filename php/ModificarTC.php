@@ -8,9 +8,11 @@
 			$mostrar=$result->fetch_assoc();
 
 		?>
-		<div class="">
+		
+		<div class="d-none">
 			<iframe src="" frameborder="1" name="iframeTC"></iframe>
 		</div>
+		
 		<div id="modificar" class="card-pacientes">
 			<FORM action="php\ModificarTC.php?ID_TIEMPO=<?php echo $mostrar['ID_TIEMPO']; ?>" method="POST" target="iframeTC" onsubmit="mostrarMensaje('Tiempo modificado correctamente', 'success')">
 				<div class="table-responsive">
@@ -21,21 +23,25 @@
 								<label for="Nombre_Tiempo"> Nombre </label>
 							</td>
 							<td>
-								<input type="text" name="Nombre_Tiempo" class="form-control rounded-pill" value="<?php echo $mostrar['Nombre_Tiempo']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas">
+								<input type="text" name="Nombre_Tiempo" class="form-control rounded-pill" value="<?php echo $mostrar['Nombre_Tiempo']; ?>" >
+								<!-- pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" -->
 							</td>
 						</tr>
+						<!--
 						<tr>
 							<td>
 								<label for="Hora_Tiempo"> Hora </label>
 							</td>
 							<td>
-								<input type="text" name="Hora_Tiempo" class="form-control rounded-pill" value="<?php echo $mostrar['Hora_Tiempo']; ?>" pattern="[0-9]{1,5}" title="numero en rango de 1-99999">
+								<input type="text" name="Hora_Tiempo" class="form-control rounded-pill" value="<?php echo $mostrar['Hora_Tiempo']; ?>" >
+								<!-- pattern="[0-9]{1,5}" title="numero en rango de 1-99999" 
 							</td>
 						</tr>
+						-->
 					</table>
 				</div>
 				<div class="text-right mt-5">
-					<input type="reset" value="Limpiar" class="btn btn-secondary">
+					<!-- <input type="reset" value="Limpiar" class="btn btn-secondary"> -->
 					<input type="submit" value="Modificar" name="Modificar" class="btn btn-success">
 				</div>
 			</FORM>

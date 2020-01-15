@@ -19,7 +19,7 @@ const PacientesController = (() => {
         PacientesModel.add(datos);
         swal('Datos Generales Guardados', {
             icon: 'success',
-         });
+        });
     }
 
     const addDatosEstiloVida = () => {
@@ -290,15 +290,26 @@ const PacientesController = (() => {
     //----------------------------------------------------------------------------------------------------------------------------
 
     let idsPlatillos = [];
-    let datosDieta = [];
+    let datosDieta = []
+    let datosDietaLunes = []
+    let datosDietaMartes = []
+    let datosDietaMiercoles = []
+    let datosDietaJueves = []
+    let datosDietaViernes = []
+    let datosDietaSabado = []
+    let datosDietaDomingo = []
+
+
     let idTiempos = [];
     let dia = "";
     let datosAEnviar = [];
     let fechaInicio = "";
 
-    
 
-    const calcularTotales = () => {
+
+
+    //Calcula los totales de todo
+    const calcularTotales = (datosDieta, energiaTd, proteinasTd, lipidosTd, hidratosTd) => {
         if (datosDieta.length > 0) {
             let calorias = datosDieta.map(element => {
                 return parseFloat(element.energia);
@@ -318,15 +329,49 @@ const PacientesController = (() => {
             let totalLipidos = lipidos.reduce((acumulador, actual) => acumulador + actual);
             let totalHidratos = hidratos.reduce((acumulador, actual) => acumulador + actual);
 
-            document.getElementById('energia-td').innerHTML = totalCalorias + " kal";
-            document.getElementById('proteinas-td').innerHTML = totalProteinas;
-            document.getElementById('lipidos-td').innerHTML = totalLipidos;
-            document.getElementById('hidratos-td').innerHTML = totalHidratos;
+            document.getElementById(energiaTd).innerHTML = totalCalorias + " kal";
+            document.getElementById(proteinasTd).innerHTML = totalProteinas;
+            document.getElementById(lipidosTd).innerHTML = totalLipidos;
+            document.getElementById(hidratosTd).innerHTML = totalHidratos;
         } else {
-            document.getElementById('energia-td').innerHTML = "";
-            document.getElementById('proteinas-td').innerHTML = "";
-            document.getElementById('lipidos-td').innerHTML = "";
-            document.getElementById('hidratos-td').innerHTML = "";
+            document.getElementById(energiaTd).innerHTML = "";
+            document.getElementById(proteinasTd).innerHTML = "";
+            document.getElementById(lipidosTd).innerHTML = "";
+            document.getElementById(hidratosTd).innerHTML = "";
+        }
+    }
+
+    const verificarDiaParaCalcularTotales = (dia, index) => {
+        console.log('dia', dia);
+        switch (dia) {
+            case 'lunes':
+                datosDietaLunes.splice(index, 1);
+                calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+                break;
+            case 'martes':
+                datosDietaMartes.splice(index, 1);
+                calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+                break;
+            case 'miercoles':
+                datosDietaMiercoles.splice(index, 1);
+                calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+                break;
+            case 'jueves':
+                datosDietaJueves.splice(index, 1);
+                calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+                break;
+            case 'viernes':
+                datosDietaViernes.splice(index, 1);
+                calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+                break;
+            case 'sabado':
+                datosDietaSabado.splice(index, 1);
+                calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+                break;
+            case 'domingo':
+                datosDietaDomingo.splice(index, 1);
+                calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+                break;
         }
     }
 
@@ -338,8 +383,8 @@ const PacientesController = (() => {
                 datosAEnviar.splice(i, 1);
                 datosDieta.splice(i, 1);
                 // if(datosDieta.length > 0)
-                calcularTotales();
-
+                calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td', i);
+                verificarDiaParaCalcularTotales(dia);
             }
         });
 
@@ -351,6 +396,7 @@ const PacientesController = (() => {
         document.getElementById('platillos-lunes').addEventListener('click', (e) => {
             if (e.target.matches('.eliminar-platillo'))
                 eliminarPlatillos(e, 'lunes');
+
         });
         document.getElementById('platillos-martes').addEventListener('click', (e) => {
             if (e.target.matches('.eliminar-platillo'))
@@ -378,7 +424,7 @@ const PacientesController = (() => {
         });
     }
 
-    function agregarPlatilloHTML (tiempoObj, atributosPlatillo)  {
+    function agregarPlatilloHTML(tiempoObj, atributosPlatillo) {
 
         let template = `
             <tr>
@@ -441,7 +487,7 @@ const PacientesController = (() => {
 
     let contadoreventos = 0;
     const eventoAgregarPlatillo = () => {
-        if(contadoreventos == 0)
+        if (contadoreventos == 0)
             document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
                 if (e.target.matches('.agregar-platillo')) {
                     let option = document.getElementById('select-tiempo').options[document.getElementById('select-tiempo').selectedIndex];
@@ -466,6 +512,29 @@ const PacientesController = (() => {
                     idsPlatillos.push(idPlatilloAAgregar);
                     datosDieta.push(atributosPlatillo);
 
+                    if (dia == 'lunes') {
+                        datosDietaLunes.push(atributosPlatillo);
+                        calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+                    } else if (dia == 'martes') {
+                        datosDietaMartes.push(atributosPlatillo);
+                        calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+                    } else if (dia == 'miercoles') {
+                        datosDietaMiercoles.push(atributosPlatillo);
+                        calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+                    } else if (dia == 'jueves') {
+                        datosDietaJueves.push(atributosPlatillo);
+                        calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+                    } else if (dia == 'viernes') {
+                        datosDietaViernes.push(atributosPlatillo);
+                        calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+                    } else if (dia == 'sabado') {
+                        datosDietaSabado.push(atributosPlatillo);
+                        calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+                    } else if (dia == 'domingo') {
+                        datosDietaDomingo.push(atributosPlatillo);
+                        calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+                    }
+
                     // debugger;
                     agregarPlatilloHTML(tiempoObj, atributosPlatillo);
 
@@ -477,18 +546,19 @@ const PacientesController = (() => {
 
                     datosAEnviar.push(enviar)
 
-                    calcularTotales();
+                    calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td');
+
 
                     $('#modal-platillos').modal('hide');
                     contadoreventos++;
-                    
+
                 }
             });
-        
+
     }
 
     const irANuevoMenu = () => {
-        
+
         document.getElementById('pacientes-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.nuevo-menu')) {
                 console.log('evento');
@@ -559,7 +629,7 @@ const PacientesController = (() => {
     return {
 
         init: () => {
-            
+
             mostrarTodosLosPacientes();
             addEventos();
         }

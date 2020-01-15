@@ -19,7 +19,7 @@ const MenusController = (() => {
     let datosAEnviar = [];
     let fechaInicio = "";
 
-    
+
 
     const calcularTotales = () => {
         if (datosDieta.length > 0) {
@@ -75,16 +75,16 @@ const MenusController = (() => {
             }
         });
         console.log("DATOS DIETAS DESPES", datosDieta);
-        
+
         calcularTotales();
         (((e.target).parentNode).parentNode).remove();
         console.log(datosAEnviar);
         console.log('eliminadofs');
     }
 
-    let cl=0,cm=0,cmi=0,cj=0,cv=0,cs=0,cd=0;
+    let cl = 0, cm = 0, cmi = 0, cj = 0, cv = 0, cs = 0, cd = 0;
     const eventoEliminarPlatillos = () => {
-        if(cl == 0) {
+        if (cl == 0) {
             document.getElementById('platillos-lunes').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'lunes');
@@ -94,7 +94,7 @@ const MenusController = (() => {
             });
             cl++;
         }
-        if(cm == 0)    
+        if (cm == 0)
             document.getElementById('platillos-martes').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'martes');
@@ -102,7 +102,7 @@ const MenusController = (() => {
                 }
                 cm++;
             });
-        if(cmi == 0)    
+        if (cmi == 0)
             document.getElementById('platillos-miercoles').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'miercoles');
@@ -110,7 +110,7 @@ const MenusController = (() => {
                 }
                 cmi++;
             });
-        if(cj == 0)
+        if (cj == 0)
             document.getElementById('platillos-jueves').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'jueves');
@@ -118,7 +118,7 @@ const MenusController = (() => {
                 }
                 cj++;
             });
-        if(cv == 0)
+        if (cv == 0)
             document.getElementById('platillos-viernes').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'viernes');
@@ -126,7 +126,7 @@ const MenusController = (() => {
                 }
                 cv++;
             });
-        if(cs == 0)
+        if (cs == 0)
             document.getElementById('platillos-sabado').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'sabado');
@@ -134,7 +134,7 @@ const MenusController = (() => {
                 }
                 cs++;
             });
-        if(cd == 0)
+        if (cd == 0)
             document.getElementById('platillos-domingo').addEventListener('click', (e) => {
                 if (e.target.matches('.eliminar-platillo')) {
                     eliminarPlatillos(e, 'domingo');
@@ -211,7 +211,7 @@ const MenusController = (() => {
 
     let contadoreventos = 0
     const eventoAgregarPlatillo = () => {
-        if(contadoreventos == 0) {
+        if (contadoreventos == 0) {
             document.getElementById('platillos-table-modal').addEventListener('click', (e) => {
                 console.log('ds');
                 if (e.target.matches('.agregar-platillo')) {
@@ -235,7 +235,7 @@ const MenusController = (() => {
                         hidratos: (e.target).getAttribute('data-hidratos'),
                         idTiempo: idTiempo,
                         dia: dia
-                        
+
                     }
                     idsPlatillos.push(idPlatilloAAgregar);
                     datosDieta.push(atributosPlatillo);
@@ -252,11 +252,11 @@ const MenusController = (() => {
                     datosAEnviar.push(enviar)
 
                     calcularTotales();
-                    console.log("DATOS ENVIAR ",datosAEnviar);
+                    console.log("DATOS ENVIAR ", datosAEnviar);
                     $('#modal-platillos').modal('hide');
                     contadoreventos++;
                 }
-                    
+
             });
             contadoreventos++;
         }
@@ -293,22 +293,22 @@ const MenusController = (() => {
     const configurarEventoEditar = () => {
         document.getElementById('menus-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-editar')) {
-                cl=0;cm=0;cmi=0;cj=0;cv=0;cs=0;cd=0;
+                cl = 0; cm = 0; cmi = 0; cj = 0; cv = 0; cs = 0; cd = 0;
                 datosDieta = [];
 
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 load('html/menus/editar-menu.html', contentPanel);
-                let platillosLunes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=lunes&opcion=${2}`);
-                let platillosMartes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=martes&opcion=${2}`);
-                let platillosMiercoles = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=miercoles&opcion=${2}`);
-                let platillosJueves = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=jueves&opcion=${2}`);
-                let platillosViernes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=viernes&opcion=${2}`);
-                let platillosSabados = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=sabado&opcion=${2}`);
-                let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo&opcion=${2}`);
-                
-                let datosDietaJSON = post('php/menus/menuJSON.php',`id-menu=${idMenuAEditar}`);
-                
+                let platillosLunes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=lunes&opcion=${2}`);
+                let platillosMartes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=martes&opcion=${2}`);
+                let platillosMiercoles = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=miercoles&opcion=${2}`);
+                let platillosJueves = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=jueves&opcion=${2}`);
+                let platillosViernes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=viernes&opcion=${2}`);
+                let platillosSabados = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=sabado&opcion=${2}`);
+                let platillosDomingos = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=domingo&opcion=${2}`);
+
+                let datosDietaJSON = post('php/menus/menuJSON.php', `id-menu=${idMenuAEditar}`);
+
                 console.log("DIETASTRING", datosDietaJSON);
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 document.getElementById('fecha-inicio').value = datosDietaJSON[0].fechaMenu;
@@ -316,8 +316,8 @@ const MenusController = (() => {
                 datosDietaJSON.forEach(element => {
                     datosDieta.push(element);
                 });
-                
-                console.log("DTOS DIETA",datosDieta);
+
+                console.log("DTOS DIETA", datosDieta);
                 datosAEnviar = [];
                 // console.log("DATOS ENVIAR ",datosAEnviar)
                 calcularTotales();
@@ -340,7 +340,7 @@ const MenusController = (() => {
                     }
                 });
                 configuracionBotonesAgregarPlatillosSegunDia();
-                
+
                 document.getElementById('editar-menu-btn').addEventListener('click', editarMenu);
 
             }
@@ -354,7 +354,7 @@ const MenusController = (() => {
     //  ELIMINAR MENU
     //---------------------------------------
     const eliminarMenu = (idAEliminar, e) => {
-        let respuesta = post('php/menus/eliminarMenu.php', 'menu='+idAEliminar);
+        let respuesta = post('php/menus/eliminarMenu.php', 'menu=' + idAEliminar);
         console.log(respuesta);
         if (respuesta.trim() == 'success') {
             (((e.target).parentNode).parentNode).remove();
@@ -390,16 +390,16 @@ const MenusController = (() => {
 
 
     const obtenerEquivalenciasPorDia = (dia) => {
-        
+
         let tiempos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=2&dia=${dia}`);
         tiempos = JSON.parse(tiempos);
         console.log("Tiepos", tiempos);
-        let grupos =  post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=1&dia=${dia}`);
+        let grupos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=1&dia=${dia}`);
         grupos = JSON.parse(grupos);
-        
-        let alimentos = post('php/equivalencias.php',`id-menu=${idMenuAEditar}&opcion=3&dia=${dia}`);
+
+        let alimentos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=3&dia=${dia}`);
         alimentos = JSON.parse(alimentos);
-        
+
         let tiemposHEAD = '';
         let tiemposTD = '';
         let gruposHTML = '';
@@ -430,26 +430,20 @@ const MenusController = (() => {
             element.innerHTML += tiemposTD;
         });
 
-        
-            alimentos.forEach(element => {
-                document.querySelector(`#${dia}${element.idGrupo} .tiempo${element.idTiempo}`).innerHTML = element.cantidad;
-            });
+
+        alimentos.forEach(element => {
+            document.querySelector(`#${dia}${element.idGrupo} .tiempo${element.idTiempo}`).innerHTML = element.cantidad;
+        });
 
     }
 
     const generarEquivalencias = () => {
-
-        // let divs = document.getElementsByClassName('equivalencias-div');
-
-        // Array.from(divs).forEach = (div => {
-        //     div.classlist.remove('d-none');
-        // })
-
-        let dias = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+        let dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
         dias.forEach(dia => {
             obtenerEquivalenciasPorDia(dia);
         });
     }
+
     //---------------------------------------
     //  VER MENU
     //---------------------------------------
@@ -457,13 +451,13 @@ const MenusController = (() => {
         document.getElementById('menus-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-ver')) {
                 load('html/menus/ver-menu.html', contentPanel);
-                
+
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
                 document.getElementById('fecha-inicio').value = (e.target).getAttribute('data-fechainicio');
 
-                let datosDietaJSON = post('php/menus/menuJSON.php',`id-menu=${idMenuAEditar}`);
-                
+                let datosDietaJSON = post('php/menus/menuJSON.php', `id-menu=${idMenuAEditar}`);
+
                 console.log("DIETASTRING", datosDietaJSON);
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 document.getElementById('fecha-inicio').value = datosDietaJSON[0].fechaMenu;
@@ -471,16 +465,16 @@ const MenusController = (() => {
                 datosDietaJSON.forEach(element => {
                     datosDieta.push(element);
                 });
-                
+
                 calcularTotales();
-                
-                let platillosLunes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=lunes&opcion=${1}`);
-                let platillosMartes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=martes&opcion=${1}`);
-                let platillosMiercoles = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=miercoles&opcion=${1}`);
-                let platillosJueves = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=jueves&opcion=${1}`);
-                let platillosViernes = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=viernes&opcion=${1}`);
-                let platillosSabados = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=sabado&opcion=${1}`);
-                let platillosDomingos = post('php/menus/platillosMenu.php',`id-menu=${idMenuAEditar}&dia=domingo&opcion=${1}`);
+
+                let platillosLunes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=lunes&opcion=${1}`);
+                let platillosMartes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=martes&opcion=${1}`);
+                let platillosMiercoles = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=miercoles&opcion=${1}`);
+                let platillosJueves = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=jueves&opcion=${1}`);
+                let platillosViernes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=viernes&opcion=${1}`);
+                let platillosSabados = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=sabado&opcion=${1}`);
+                let platillosDomingos = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=domingo&opcion=${1}`);
 
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;
@@ -500,14 +494,14 @@ const MenusController = (() => {
 
     const buscarMenu = () => {
         let dato = document.getElementById('buscar-menu-input').value;
-        document.getElementById('menus-table-body').innerHTML = post('php/menus/dinamicaMenu.php','dato='+dato);
+        document.getElementById('menus-table-body').innerHTML = post('php/menus/dinamicaMenu.php', 'dato=' + dato);
     }
 
     const mostrarTodosLosMenus = () => {
-        document.getElementById('menus-table-body').innerHTML = post('php/menus/consultarMenu.php',null); 
+        document.getElementById('menus-table-body').innerHTML = post('php/menus/consultarMenu.php', null);
     }
 
-    
+
 
     const cargarEventos = () => {
         mostrarTodosLosMenus();

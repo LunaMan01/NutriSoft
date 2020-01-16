@@ -19,9 +19,20 @@ const MenusController = (() => {
     let datosAEnviar = [];
     let fechaInicio = "";
 
+    let datosDietaLunes = []
+    let datosDietaMartes = []
+    let datosDietaMiercoles = []
+    let datosDietaJueves = []
+    let datosDietaViernes = []
+    let datosDietaSabado = []
+    let datosDietaDomingo = []
 
 
-    const calcularTotales = () => {
+
+
+
+    //Calcula los totales de todo
+    const calcularTotales = (datosDieta, energiaTd, proteinasTd, lipidosTd, hidratosTd) => {
         if (datosDieta.length > 0) {
             let calorias = datosDieta.map(element => {
                 return parseFloat(element.energia);
@@ -41,15 +52,49 @@ const MenusController = (() => {
             let totalLipidos = lipidos.reduce((acumulador, actual) => acumulador + actual);
             let totalHidratos = hidratos.reduce((acumulador, actual) => acumulador + actual);
 
-            document.getElementById('energia-td').innerHTML = totalCalorias + " kal";
-            document.getElementById('proteinas-td').innerHTML = totalProteinas;
-            document.getElementById('lipidos-td').innerHTML = totalLipidos;
-            document.getElementById('hidratos-td').innerHTML = totalHidratos;
+            document.getElementById(energiaTd).innerHTML = totalCalorias + " kal";
+            document.getElementById(proteinasTd).innerHTML = totalProteinas;
+            document.getElementById(lipidosTd).innerHTML = totalLipidos;
+            document.getElementById(hidratosTd).innerHTML = totalHidratos;
         } else {
-            document.getElementById('energia-td').innerHTML = "";
-            document.getElementById('proteinas-td').innerHTML = "";
-            document.getElementById('lipidos-td').innerHTML = "";
-            document.getElementById('hidratos-td').innerHTML = "";
+            document.getElementById(energiaTd).innerHTML = "";
+            document.getElementById(proteinasTd).innerHTML = "";
+            document.getElementById(lipidosTd).innerHTML = "";
+            document.getElementById(hidratosTd).innerHTML = "";
+        }
+    }
+
+    const verificarDiaParaCalcularTotales = (dia, index) => {
+        console.log('dia', dia);
+        switch (dia) {
+            case 'lunes':
+                datosDietaLunes.splice(index, 1);
+                calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+                break;
+            case 'martes':
+                datosDietaMartes.splice(index, 1);
+                calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+                break;
+            case 'miercoles':
+                datosDietaMiercoles.splice(index, 1);
+                calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+                break;
+            case 'jueves':
+                datosDietaJueves.splice(index, 1);
+                calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+                break;
+            case 'viernes':
+                datosDietaViernes.splice(index, 1);
+                calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+                break;
+            case 'sabado':
+                datosDietaSabado.splice(index, 1);
+                calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+                break;
+            case 'domingo':
+                datosDietaDomingo.splice(index, 1);
+                calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+                break;
         }
     }
 
@@ -69,14 +114,39 @@ const MenusController = (() => {
         console.log("DATOS DIETAS ANTES", datosDieta);
         datosDieta.forEach((element, i) => {
             console.log("elemento");
+            if (dia == 'lunes') {
+                datosDietaLunes.splice(i, 1);
+                calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+            } else if (dia == 'martes') {
+                datosDietaMartes.splice(i, 1);
+                calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+            } else if (dia == 'miercoles') {
+                datosDietaMiercoles.splice(i, 1);
+                calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+            } else if (dia == 'jueves') {
+                datosDietaJueves.splice(i, 1);
+                calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+            } else if (dia == 'viernes') {
+                datosDietaViernes.splice(i, 1);
+                calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+            } else if (dia == 'sabado') {
+                datosDietaSabado.splice(i, 1);
+                calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+            } else if (dia == 'domingo') {
+                datosDietaDomingo.splice(i, 1);
+                calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+            }
             if (element.idPlatillo === id && element.dia === dia && element.idTiempo === idTiempo) {
                 datosDieta.splice(i, 1);
-                // calcularTotales();
+                calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td');
             }
         });
+
+
+
         console.log("DATOS DIETAS DESPES", datosDieta);
 
-        calcularTotales();
+        calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td');
         (((e.target).parentNode).parentNode).remove();
         console.log(datosAEnviar);
         console.log('eliminadofs');
@@ -240,6 +310,29 @@ const MenusController = (() => {
                     idsPlatillos.push(idPlatilloAAgregar);
                     datosDieta.push(atributosPlatillo);
 
+                    if (dia == 'lunes') {
+                        datosDietaLunes.push(atributosPlatillo);
+                        calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+                    } else if (dia == 'martes') {
+                        datosDietaMartes.push(atributosPlatillo);
+                        calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+                    } else if (dia == 'miercoles') {
+                        datosDietaMiercoles.push(atributosPlatillo);
+                        calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+                    } else if (dia == 'jueves') {
+                        datosDietaJueves.push(atributosPlatillo);
+                        calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+                    } else if (dia == 'viernes') {
+                        datosDietaViernes.push(atributosPlatillo);
+                        calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+                    } else if (dia == 'sabado') {
+                        datosDietaSabado.push(atributosPlatillo);
+                        calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+                    } else if (dia == 'domingo') {
+                        datosDietaDomingo.push(atributosPlatillo);
+                        calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+                    }
+
                     agregarPlatilloHTML(tiempoObj, atributosPlatillo);
 
                     let enviar = {
@@ -251,7 +344,7 @@ const MenusController = (() => {
 
                     datosAEnviar.push(enviar)
 
-                    calcularTotales();
+                    calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td');
                     console.log("DATOS ENVIAR ", datosAEnviar);
                     $('#modal-platillos').modal('hide');
                     contadoreventos++;
@@ -290,11 +383,19 @@ const MenusController = (() => {
 
     }
 
+
     const configurarEventoEditar = () => {
         document.getElementById('menus-table-body').addEventListener('click', (e) => {
             if (e.target.matches('.accion-editar')) {
                 cl = 0; cm = 0; cmi = 0; cj = 0; cv = 0; cs = 0; cd = 0;
                 datosDieta = [];
+                datosDietaLunes = [];
+                datosDietaMartes = [];
+                datosDietaMiercoles = [];
+                datosDietaJueves = [];
+                datosDietaViernes = [];
+                datosDietaSabado = [];
+                datosDietaDomingo = [];
 
                 idPacienteMenu = (e.target).getAttribute('data-idpaciente');
                 idMenuAEditar = (e.target).getAttribute('data-idmenu');
@@ -312,15 +413,41 @@ const MenusController = (() => {
                 console.log("DIETASTRING", datosDietaJSON);
                 datosDietaJSON = JSON.parse(datosDietaJSON);
                 document.getElementById('fecha-inicio').value = datosDietaJSON[0].fechaMenu;
-                console.log("DITASJSON", datosDietaJSON);
+
+
+
+
                 datosDietaJSON.forEach(element => {
+                    if (element.dia == 'lunes') {
+                        datosDietaLunes.push(element);
+                        calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+                    } else if (element.dia == 'martes') {
+                        datosDietaMartes.push(element);
+                        calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+                    } else if (element.dia == 'miercoles') {
+                        datosDietaMiercoles.push(element);
+                        calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+                    } else if (element.dia == 'jueves') {
+                        datosDietaJueves.push(element);
+                        calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+                    } else if (element.dia == 'viernes') {
+                        datosDietaViernes.push(element);
+                        calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+                    } else if (element.dia == 'sabado') {
+                        datosDietaSabado.push(element);
+                        calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+                    } else if (element.dia == 'domingo') {
+                        datosDietaDomingo.push(element);
+                        calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+                    }
+
                     datosDieta.push(element);
                 });
 
                 console.log("DTOS DIETA", datosDieta);
                 datosAEnviar = [];
                 // console.log("DATOS ENVIAR ",datosAEnviar)
-                calcularTotales();
+                calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td');
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;
                 document.getElementById('platillos-miercoles').innerHTML = platillosMiercoles;

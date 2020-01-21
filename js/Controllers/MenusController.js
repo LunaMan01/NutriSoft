@@ -515,6 +515,91 @@ const MenusController = (() => {
         })
     }
 
+    //-------------------------------------------------------------------
+    //-------------------------------------------------------------------
+    //-------------------------------------------------------------------
+
+    let tiemposSemanales = [];
+    let gruposSemanales = [];
+    let alimentosSemanales = [];
+
+    const noExisteEnTiempos = tiempo => {
+        tiemposSemanales.forEach(t => {
+            if (t == tiempo)
+                return true;
+        });
+
+        return false;
+    }
+
+    const noExisteEnGrupos = grupo => {
+        gruposSemanales.forEach(s => {
+            if (s == grupo)
+                return true;
+        });
+
+        return false;
+    }
+
+    const obtenerEquivalenciasSemanales = () => {
+        let tiemposHEAD = '';
+        let tiemposTD = '';
+        let gruposHTML = '';
+
+        tiemposHEAD += `<th scope="col">Grupos</th>`
+
+        tiemposSemanales.forEach(element => {
+            if (document.getElementById(`headSemanal${element.nombre}${element.hora}`) == null)
+                tiemposHEAD += `<th scope="col" id="headSemanal${element.nombre}${element.hora}">${element.nombre} ${element.hora}</th>`;
+            document.getElementById(`equivalencias-table-head-semanal`).innerHTML = tiemposHEAD;
+        });
+
+        tiemposSemanales.forEach(element => {
+            if (document.getElementById(`tiempoSemanal${element.idTiempo}`) == null)
+                tiemposTD += `<td class="tiempoSemanal${element.idTiempo}" id="tiempoSemanal${element.idTiempo}"></td>`;
+
+
+        });
+
+        console.log(tiemposSemanales);
+
+        gruposSemanales.forEach(element => {
+            let n = element.nombre;
+            if (document.getElementById(`semanal${element.idGrupo}`) == null)
+                gruposHTML += `
+                    <tr id="semanal${element.idGrupo}" class="tr">
+                        <td> ${n} </td>
+                    </tr>`;
+            document.getElementById(`equivalencias-table-body-semanal`).innerHTML = gruposHTML;
+        });
+
+
+
+
+        let tr = document.getElementsByClassName('tr')
+        Array.from(tr).forEach(element => {
+            element.innerHTML += tiemposTD;
+        });
+
+        console.log("ALIMENTOOOSS SEMAnales", alimentosSemanales);
+        alimentosSemanales.forEach((grupoAlimentosDiarios) => {
+            grupoAlimentosDiarios.forEach(alimento => {
+                let cantidadAnterior = 0;
+                cantidadAnterior += parseFloat(document.querySelector(`#semanal${alimento.idGrupo} .tiempoSemanal${alimento.idTiempo}`).innerHTML);
+
+                if (document.querySelector(`#semanal${alimento.idGrupo} .tiempoSemanal${alimento.idTiempo}`).innerHTML == '')
+                    document.querySelector(`#semanal${alimento.idGrupo} .tiempoSemanal${alimento.idTiempo}`).innerHTML = alimento.cantidad;
+                else
+                    document.querySelector(`#semanal${alimento.idGrupo} .tiempoSemanal${alimento.idTiempo}`).innerHTML = cantidadAnterior + parseFloat(alimento.cantidad);
+
+            });
+        });
+
+
+
+
+
+    }
 
     const obtenerEquivalenciasPorDia = (dia) => {
 
@@ -524,8 +609,23 @@ const MenusController = (() => {
         let grupos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=1&dia=${dia}`);
         grupos = JSON.parse(grupos);
 
+        tiempos.forEach(tiempo => {
+            if (noExisteEnTiempos)
+                tiemposSemanales.push(tiempo);
+        });
+
+        grupos.forEach(grupo => {
+            if (noExisteEnGrupos)
+                gruposSemanales.push(grupo);
+        });
+
         let alimentos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=3&dia=${dia}`);
         alimentos = JSON.parse(alimentos);
+
+        if (alimentos.length > 0)
+            alimentosSemanales.push(alimentos);
+
+        // console.log("ALISMENTOS SEMANALES", alimentosSemanales);
 
         let tiemposHEAD = '';
         let tiemposTD = '';
@@ -569,6 +669,9 @@ const MenusController = (() => {
         dias.forEach(dia => {
             obtenerEquivalenciasPorDia(dia);
         });
+
+        console.log("WAIR");
+        obtenerEquivalenciasSemanales();
     }
 
     //---------------------------------------
@@ -590,10 +693,33 @@ const MenusController = (() => {
                 document.getElementById('fecha-inicio').value = datosDietaJSON[0].fechaMenu;
                 console.log("DITASJSON", datosDietaJSON);
                 datosDietaJSON.forEach(element => {
+                    if (element.dia == 'lunes') {
+                        datosDietaLunes.push(element);
+                        calcularTotales(datosDietaLunes, 'energia-td-lunes', 'proteinas-td-lunes', 'lipidos-td-lunes', 'hidratos-td-lunes');
+                    } else if (element.dia == 'martes') {
+                        datosDietaMartes.push(element);
+                        calcularTotales(datosDietaMartes, 'energia-td-martes', 'proteinas-td-martes', 'lipidos-td-martes', 'hidratos-td-martes');
+                    } else if (element.dia == 'miercoles') {
+                        datosDietaMiercoles.push(element);
+                        calcularTotales(datosDietaMiercoles, 'energia-td-miercoles', 'proteinas-td-miercoles', 'lipidos-td-miercoles', 'hidratos-td-miercoles');
+                    } else if (element.dia == 'jueves') {
+                        datosDietaJueves.push(element);
+                        calcularTotales(datosDietaJueves, 'energia-td-jueves', 'proteinas-td-jueves', 'lipidos-td-jueves', 'hidratos-td-jueves');
+                    } else if (element.dia == 'viernes') {
+                        datosDietaViernes.push(element);
+                        calcularTotales(datosDietaViernes, 'energia-td-viernes', 'proteinas-td-viernes', 'lipidos-td-viernes', 'hidratos-td-viernes');
+                    } else if (element.dia == 'sabado') {
+                        datosDietaSabado.push(element);
+                        calcularTotales(datosDietaSabado, 'energia-td-sabado', 'proteinas-td-sabado', 'lipidos-td-sabado', 'hidratos-td-sabado');
+                    } else if (element.dia == 'domingo') {
+                        datosDietaDomingo.push(element);
+                        calcularTotales(datosDietaDomingo, 'energia-td-domingo', 'proteinas-td-domingo', 'lipidos-td-domingo', 'hidratos-td-domingo');
+                    }
+
                     datosDieta.push(element);
                 });
 
-                calcularTotales();
+                calcularTotales(datosDieta, 'energia-td', 'proteinas-td', 'lipidos-td', 'hidratos-td');
 
                 let platillosLunes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=lunes&opcion=${1}`);
                 let platillosMartes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=martes&opcion=${1}`);
@@ -602,6 +728,8 @@ const MenusController = (() => {
                 let platillosViernes = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=viernes&opcion=${1}`);
                 let platillosSabados = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=sabado&opcion=${1}`);
                 let platillosDomingos = post('php/menus/platillosMenu.php', `id-menu=${idMenuAEditar}&dia=domingo&opcion=${1}`);
+
+                console.log("PLATILLOS MIERCOLES", platillosMiercoles);
 
                 document.getElementById('platillos-lunes').innerHTML = platillosLunes;
                 document.getElementById('platillos-martes').innerHTML = platillosMartes;

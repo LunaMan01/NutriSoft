@@ -13,12 +13,12 @@ const GruposAlimentosController = (() => {
         console.log('res' + respuesta);
         if (respuesta.trim() === 'success') {
             document.getElementById('tr' + idAEliminar).remove();
-            swal("Alimento eliminado correctamente", {
+            swal("Grupo de Alimento eliminado correctamente", {
                 icon: "success",
             });
         }
          else {
-            swal("Alimento eliminado correctamente", {
+            swal("Grupo de Alimento eliminado correctamente", {
                 icon: "Ha ocurrido un erro inesperado",
             });
         }

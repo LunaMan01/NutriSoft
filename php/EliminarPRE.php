@@ -10,7 +10,12 @@
 
 			$conexion=mysqli_connect('localhost','root','','sdn');
 
-			$sql="SELECT preparacion.ID_PREPARACION, preparacion.ID_PLATILLOS, preparacion.ID_ALIMENTOS, platillos.Nombre_Pla, alimentos.Nombre_Ali, preparacion.Cantidad_Pre, preparacion.Unidad_Pre, preparacion.Tipos_Pre FROM preparacion INNER JOIN platillos INNER JOIN alimentos ON preparacion.ID_PLATILLOS = platillos.ID_PLATILLOS  AND preparacion.ID_ALIMENTOS = alimentos.ID_ALIMENTOS WHERE ID_PREPARACION = '$ID_PREPARACION'";
+			$sql="SELECT preparacion.ID_PREPARACION, preparacion.ID_PLATILLOS, 
+					preparacion.ID_ALIMENTOS, platillos.Nombre_Pla, alimentos.Nombre_Ali, 
+					preparacion.Cantidad_Pre, preparacion.Unidad_Pre, preparacion.Tipos_Pre 
+					FROM preparacion INNER JOIN platillos INNER JOIN alimentos 
+					ON preparacion.ID_PLATILLOS = platillos.ID_PLATILLOS  
+					AND preparacion.ID_ALIMENTOS = alimentos.ID_ALIMENTOS WHERE ID_PREPARACION = '$ID_PREPARACION'";
 
 			$result=mysqli_query($conexion,$sql);
 

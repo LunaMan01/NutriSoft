@@ -1,5 +1,5 @@
 
-		<!--CODIGO BUSCAR GRUPOS_ALi -->
+		<!--CODIGO BUSCAR PLATILLOS -->
 		<?php
 
 				$conectar=mysqli_connect('localhost','root','','sdn');
@@ -24,15 +24,15 @@
 			?>
 					
 			
-						<tr id="tr<?php echo $mostrar['ID_PLATILLOS']?>">
+						<tr id="tr <?php echo $mostra['Nombre_Pla']?>">
 							<td><?php echo $mostrar['ID_PLATILLOS']?></td>
 							<td><?php echo $mostrar['Nombre_Pla']?></td>
 							<td><?php echo $mostrar['Energia_Kal_Pla']?></td>
-							<td><?php echo $mostrar['Lipidos_Pla']?></td>
 							<td><?php echo $mostrar['Proteinas_Pla']?></td>
+							<td><?php echo $mostrar['Lipidos_Pla']?></td>
 							<td><?php echo $mostrar['Hidratos_Carbono_Pla']?></td>
 							<td>
-								<i data-editar="<?php echo $mostrar['ID_PLATILLOS']; ?>" class="far fa-edit accion-editar acciones"></i>
+								<i data-editar=" <?php echo $mostrar['ID_PLATILLOS']; ?> " class="far fa-edit accion-editar acciones"></i>
 								<i id="<?php echo $mostrar['ID_PLATILLOS']; ?>" name="<?php echo $mostrar['Nombre_Pla']?>" class="far fa-trash-alt accion-eliminar acciones"></i>
 							</td>
 						</tr>

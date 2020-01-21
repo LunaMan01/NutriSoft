@@ -27,11 +27,13 @@
 						</tr>
 						<tr>
 							<td><label for="Nombre_Ali"> Nombre </label></td>
-							<td><input type="text" name="Nombre_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Nombre_Ali']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"></td>
+							<td><input type="text" name="Nombre_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Nombre_Ali']; ?>" ></td>
+							<!-- pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" -->
 						</tr>
 						<tr>
 							<td><label for="Cantidad_Ali"> Cantidad </label></td>
-							<td><input type="text" class="form-control rounded-pill" name="Cantidad_Ali" value="<?php echo $mostrar['Cantidad_Ali']; ?>" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"></td>
+							<td><input type="text" class="form-control rounded-pill" name="Cantidad_Ali" value="<?php echo $mostrar['Cantidad_Ali']; ?>" ></td>
+							<!-- pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" -->
 						</tr>
 						<tr>
 							<td><label for="Unidad_Ali"> Unidad </label></td>
@@ -47,19 +49,23 @@
 						</tr>
 						<tr>
 							<td><label for="Energia_Kal_Ali"> Energias Kal. </label></td>
-							<td><input type="text" name="Energia_Kal_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Energia_Kal_Ali']; ?>" pattern="[0-9]{1,5}" title="Solo numeros"></td>
+							<td><input type="text" name="Energia_Kal_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Energia_Kal_Ali']; ?>" ></td>
+							<!-- pattern="[0-9]{1,5}" title="Solo numeros" -->
 						</tr>
 						<tr>
 							<td><label for="Proteinas_Ali"> Proteinas </label></td>
-							<td><input type="text" name="Proteinas_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Proteinas_Ali']; ?>" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal"></td>
+							<td><input type="text" name="Proteinas_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Proteinas_Ali']; ?>" ></td>
+							<!-- pattern="[0-9]{1,5}" title="Solo numeros con punto decimal" -->
 						</tr>
 						<tr>
 							<td><label for="Lipidos_Ali"> Lipidos </label></td>
-							<td><input type="text" name="Lipidos_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Lipidos_Ali']; ?>" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal"></td>
+							<td><input type="text" name="Lipidos_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Lipidos_Ali']; ?>" ></td>
+							<!-- pattern="[0-9]{1,5}" title="Solo numeros con punto decimal" -->
 						</tr>
 						<tr>
 							<td><label for="Hidratos_Carbono_Ali"> Hidratos de Carbono </label></td>
-							<td><input type="text" name="Hidratos_Carbono_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Hidratos_Carbono_Ali']; ?>" pattern="[0-9]{1,5}" title="Solo numeros con punto decimal"></td>
+							<td><input type="text" name="Hidratos_Carbono_Ali" class="form-control rounded-pill" value="<?php echo $mostrar['Hidratos_Carbono_Ali']; ?>" ></td>
+							<!-- pattern="[0-9]{1,5}" title="Solo numeros con punto decimal" -->
 						</tr>
 					</table>
 				<br><br>

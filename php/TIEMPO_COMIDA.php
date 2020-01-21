@@ -11,7 +11,7 @@
 			<tr id="tr<?php echo $mostrar['ID_TIEMPO']?>">
 				<td><?php echo $mostrar['ID_TIEMPO']?></td>
 				<td><?php echo $mostrar['Nombre_Tiempo']?></td>
-				<td><?php echo $mostrar['Hora_Tiempo']?></td>
+				<!-- <td><?php// echo $mostrar['Hora_Tiempo']?></td> -->
 				<td>
 				<i data-editar="<?php echo $mostrar['ID_TIEMPO']; ?>" class="far fa-edit accion-editar acciones"></i>
 								<i id="<?php echo $mostrar['ID_TIEMPO']; ?>" name="<?php echo $mostrar['Nombre_Tiempo']?>" class="far fa-trash-alt accion-eliminar acciones"></i>

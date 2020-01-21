@@ -6,10 +6,11 @@
 		<h3 class="mb-5">Nuevo grupo de alimentos</h3>
 		<!-- agregar grupos_Ali -->
 		<div id="agregar">
-			<FORM action="php\AgregarGA.php" method="POST" target="iframeGA">
+			<FORM action="php\AgregarGA.php" method="POST" target="iframeGA" onsubmit="mostrarMensaje('Grupo de Alimento agregado correctamente', 'success')" >
 					<div class="form-group">	
 						<label for="Nombre"> Nombre </label>
-						<input type="text" name="Nombre_Grupo" value="" pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas" class="form-control" ></td>
+						<input type="text" name="Nombre_Grupo" value=""  class="form-control" ></td>
+						<!--pattern="[a-zA-Z]{1,15}" title="solo letras Mayusculas y Minusculas"-->
 					</div>
 					<div class="form-group">	
 						<label for="Color"> Color </label>

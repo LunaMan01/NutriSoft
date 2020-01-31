@@ -27,6 +27,7 @@ const MenusController = (() => {
     let datosDietaSabado = []
     let datosDietaDomingo = []
 
+    let coloresLunes = [];
 
 
 
@@ -543,7 +544,7 @@ const MenusController = (() => {
 
     const obtenerEquivalenciasSemanales = () => {
         let tiemposHEAD = '';
-        let tiemposTD = '';
+        let tiemposTDSemanal = '';
         let gruposHTML = '';
 
         tiemposHEAD += `<th scope="col">Grupos</th>`
@@ -556,7 +557,7 @@ const MenusController = (() => {
 
         tiemposSemanales.forEach(element => {
             if (document.getElementById(`tiempoSemanal${element.idTiempo}`) == null)
-                tiemposTD += `<td class="tiempoSemanal${element.idTiempo}" id="tiempoSemanal${element.idTiempo}"></td>`;
+                tiemposTDSemanal += `<td class="tiempoSemanal${element.idTiempo}" id="tiempoSemanal${element.idTiempo}"></td>`;
 
 
         });
@@ -567,7 +568,7 @@ const MenusController = (() => {
             let n = element.nombre;
             if (document.getElementById(`semanal${element.idGrupo}`) == null)
                 gruposHTML += `
-                    <tr id="semanal${element.idGrupo}" class="tr">
+                    <tr id="semanal${element.idGrupo}" class="trSemanal">
                         <td> ${n} </td>
                     </tr>`;
             document.getElementById(`equivalencias-table-body-semanal`).innerHTML = gruposHTML;
@@ -576,9 +577,9 @@ const MenusController = (() => {
 
 
 
-        let tr = document.getElementsByClassName('tr')
+        let tr = document.getElementsByClassName('trSemanal')
         Array.from(tr).forEach(element => {
-            element.innerHTML += tiemposTD;
+            element.innerHTML += tiemposTDSemanal;
         });
 
         console.log("ALIMENTOOOSS SEMAnales", alimentosSemanales);
@@ -617,6 +618,8 @@ const MenusController = (() => {
         grupos.forEach(grupo => {
             if (noExisteEnGrupos)
                 gruposSemanales.push(grupo);
+            if (dia == 'lunes')
+                coloresLunes.push(grupo.color);
         });
 
         let alimentos = post('php/equivalencias.php', `id-menu=${idMenuAEditar}&opcion=3&dia=${dia}`);
@@ -644,7 +647,7 @@ const MenusController = (() => {
         grupos.forEach(element => {
             let n = element.nombre;
             gruposHTML += `
-            <tr id="${dia}${element.idGrupo}" class="tr">
+            <tr id="${dia}${element.idGrupo}" class="tr" bgColor="255,154,154">
                 <td> ${n} </td>
             </tr>`;
         });
@@ -740,6 +743,8 @@ const MenusController = (() => {
                 document.getElementById('platillos-domingo').innerHTML = platillosDomingos;
 
                 document.getElementById('equivalencias-btn').addEventListener('click', generarEquivalencias);
+                document.getElementById('pdf-btn').addEventListener('click', descargarPDF)
+
             }
 
         });
@@ -765,6 +770,117 @@ const MenusController = (() => {
         configurarEventoVerMenu();
 
         document.getElementById('buscar-menu-input').addEventListener('keyup', buscarMenu);
+    }
+
+    function descargarPDF() {
+        let yPos = 15;
+        let xPos = 15;
+
+
+
+        var doc = new jsPDF();
+
+        /* Encabezado*/
+        doc.setFont('times');
+        doc.setFontType('italic')
+        // doc.addImage(imgData, 'JPEG', 20, 20, 20, 20);
+        doc.text(xPos += 80, yPos += 15, 'XXXX');
+
+        /*Lineas*/
+        doc.setDrawColor(84, 173, 88);
+        doc.setLineWidth(.5);
+        doc.line(15, 45, doc.internal.pageSize.getWidth() - 15, 45);
+        doc.line(15, 55, doc.internal.pageSize.getWidth() - 15, 55);
+
+        //Lateral IZQ
+        doc.line(5, 5, 5, doc.internal.pageSize.getHeight() - 5);
+        //TOP
+        doc.line(5, 5, doc.internal.pageSize.getWidth() - 5, 5);
+        //Lateral DER
+        doc.line(doc.internal.pageSize.getWidth() - 5, 5, doc.internal.pageSize.getWidth() - 5, doc.internal.pageSize.getHeight() - 5);
+        //BAJO
+        doc.line(5, doc.internal.pageSize.getHeight() - 5, doc.internal.pageSize.getWidth() - 5, doc.internal.pageSize.getHeight() - 5);
+        // Color: Negro
+        doc.setDrawColor(0, 0, 0);
+
+        /*Letrero R E P O R T E   D E  .. .. ..*/
+
+        doc.setFontType('normal');
+
+        xPos = xPos - 5;
+        yPos = yPos + 22;
+        doc.text(xPos, yPos, 'Equivalencias');
+
+        let r = 80;
+        let g = 154;
+
+
+
+        if (document.querySelector('#tabla-lunes') != null) {
+
+           
+
+            yPos += 12;
+            doc.text('Equivalencias lunes', 15, yPos);
+
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#tabla-lunes',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid',
+                // bodyStyles: {0: {fillColor: [255, 173, 88]} }
+                columnStyles: {
+                    "0": {fillColor: [255,0,0]} 
+                },
+                willDrawCell: function (data) {
+                    var rows = data.table.body;
+
+
+                    if (data.row.index < rows.length) {
+                        console.log('datakey', data.column.dataKey)
+                        // doc.setTextColor(255, 255, 255);
+                        doc.setFontType('bold')
+                        // data.row.cells[0].styles.textColor = 'blue'
+                        // data.row.cells[0].styles.fillColor = [255,0,0]
+                        if(data.column.dataKey == 0) {
+                            doc.setFillColor(coloresLunes[data.row.index]);
+                            doc.setTextColor(255, 255, 255);
+                        }
+
+                    }
+
+
+                    // console.log("ROW INDEX",data.row.index);
+                }
+            });
+
+            yPos = doc.autoTableEndPosY();
+        }
+        // if (document.querySelector('#clientes-masVisitas-table') != null) {
+        //     yPos += 12;
+        //     doc.text('Top 5 Clientes con mayor número de visitas', 15, yPos);
+        //     doc.autoTable(
+        //         {
+        //             startY: number = yPos + 5,
+        //             html: '#clientes-masVisitas-table',
+        //             headStyles: { fillColor: [84, 173, 88] },
+        //             theme: 'grid'
+        //         });
+        //     yPos = doc.autoTableEndPosY();
+        // }
+
+        // if (document.querySelector('#clientes-menosVisitas-table') != null) {
+        //     yPos += 12;
+        //     doc.text('Top 5 Clientes con menor número de visitas', 15, yPos);
+        //     doc.autoTable(
+        //         {
+        //             startY: number = yPos + 5,
+        //             html: '#clientes-menosVisitas-table',
+        //             headStyles: { fillColor: [84, 173, 88] },
+        //             theme: 'grid'
+        //         });
+        // }
+        doc.save('equivalencias.pdf');
     }
 
     return {

@@ -307,6 +307,34 @@ const PacientesController = (() => {
 
 
 
+    const compararDatosActualesConDatosDeseados = (totalCalorias, totalProteinas, totalLipidos, totalHidratos) => {
+        let caloriasDeseadas = document.getElementById('calorias-deseadas').value;
+        let proteinasDeseadas = document.getElementById('proteinas-deseadas').value;
+        let lipidosDeseados = document.getElementById('lipidos-deseados').value;
+        let hidratosDeseados = document.getElementById('hidratos-deseados').value;
+
+        if (totalCalorias > caloriasDeseadas)
+            document.getElementById('energia-td').classList.add('bg-danger');
+        else
+            document.getElementById('energia-td').classList.remove('bg-danger');
+
+        if (totalProteinas > proteinasDeseadas)
+            document.getElementById('proteinas-td').classList.add('bg-danger');
+        else
+            document.getElementById('proteinas-td').classList.remove('bg-danger');
+
+
+        if (totalLipidos > lipidosDeseados)
+            document.getElementById('lipidos-td').classList.add('bg-danger');
+        else
+            document.getElementById('lipidos-td').classList.remove('bg-danger');
+
+
+        if (totalHidratos > hidratosDeseados)
+            document.getElementById('hidratos-td').classList.add('bg-danger');
+        else
+            document.getElementById('hidratos-td').classList.remove('bg-danger');
+    }
 
     //Calcula los totales de todo
     const calcularTotales = (datosDieta, energiaTd, proteinasTd, lipidosTd, hidratosTd) => {
@@ -333,6 +361,8 @@ const PacientesController = (() => {
             document.getElementById(proteinasTd).innerHTML = totalProteinas;
             document.getElementById(lipidosTd).innerHTML = totalLipidos;
             document.getElementById(hidratosTd).innerHTML = totalHidratos;
+
+            compararDatosActualesConDatosDeseados(totalCalorias, totalProteinas, totalLipidos, totalHidratos);
         } else {
             document.getElementById(energiaTd).innerHTML = "";
             document.getElementById(proteinasTd).innerHTML = "";
@@ -600,6 +630,11 @@ const PacientesController = (() => {
                 });
 
                 document.getElementById('guardar-menu-btn').addEventListener('click', guardarMenu);
+
+                // document.getElementById('calorias-deseadas').addEventListener('keyup', calcularTotales);
+                // document.getElementById('proteinas-deseadas').addEventListener('keyup', calcularTotales);
+                // document.getElementById('lipidos-deseados').addEventListener('keyup', calcularTotales);
+                // document.getElementById('hidratos-deseados').addEventListener('keyup', calcularTotales);
 
             }
         });

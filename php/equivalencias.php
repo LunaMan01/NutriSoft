@@ -16,7 +16,7 @@
         // GRUPOS DE ALIMENTOS // ID_GRUPO - NOMBRE_GRUPO
         if($_POST['opcion'] == 1){
             $array = array();
-            $getGrupos = "SELECT DISTINCT grupos_ali.ID_GRUPOS, Nombre_Grupo
+            $getGrupos = "SELECT DISTINCT grupos_ali.ID_GRUPOS, Nombre_Grupo, Color_Grupo
                 FROM alimentos INNER JOIN grupos_ali INNER JOIN tiempo_comida INNER JOIN menus INNER JOIN preparacion INNER JOIN platillos
                 ON grupos_ali.ID_GRUPOS = alimentos.ID_GRUPOS 
                 AND tiempo_comida.ID_TIEMPO = menus.ID_TIEMPO
@@ -29,6 +29,7 @@
                 $grupos = new \stdClass();
                 $grupos->idGrupo = $row['ID_GRUPOS'];
                 $grupos->nombre = $row['Nombre_Grupo'];
+                $grupos->color = $row['Color_Grupo'];
                 array_push($array, $grupos);
             }
             $gruposJSON = json_encode($array);
